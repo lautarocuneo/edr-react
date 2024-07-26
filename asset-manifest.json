@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/edr-react/static/css/main.f9f62771.css",
+    "main.js": "/edr-react/static/js/main.39759c09.js",
+    "index.html": "/edr-react/index.html",
+    "main.f9f62771.css.map": "/edr-react/static/css/main.f9f62771.css.map",
+    "main.39759c09.js.map": "/edr-react/static/js/main.39759c09.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f9f62771.css",
+    "static/js/main.39759c09.js"
+  ]
+}
