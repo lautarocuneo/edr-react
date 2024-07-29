@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 const sliderStyles = {
   position: "relative",
@@ -59,25 +59,25 @@ const dotStyle = {
 const Slider = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const goToPrevious = useCallback(() => {
+    const isFirstSlide = currentIndex === 0;
+    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
+  }, [currentIndex, slides.length]);
+
+  const goToNext = useCallback(() => {
+    const isLastSlide = currentIndex === slides.length - 1;
+    const newIndex = isLastSlide ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
+  }, [currentIndex, slides.length]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       goToNext();
     }, 3000); // Cambia de imagen cada 3 segundos
 
     return () => clearInterval(interval);
-  }, [currentIndex]);
-
-  const goToPrevious = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
-  };
-
-  const goToNext = () => {
-    const isLastSlide = currentIndex === slides.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
-  };
+  }, [goToNext]);
 
   const goToSlide = (slideIndex) => {
     setCurrentIndex(slideIndex);
