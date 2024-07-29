@@ -1,6 +1,5 @@
 import React from 'react';
 import Slider from "./Slider";
-import { MdKeyboardDoubleArrowDown } from "react-icons/md";
 
 const Equipos = () => {
     const slides = [
