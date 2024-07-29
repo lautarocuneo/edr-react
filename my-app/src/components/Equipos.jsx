@@ -3,11 +3,10 @@ import Slider from "./Slider";
 
 const Equipos = () => {
     const slides = [
-        { url: "/collage-fondo-programacion.jpg", title: "Camara" },
-        { url: "/4884785.jpg", title: "Lente" },
-        { url: "/collage-fondo-programacion.jpg", title: "Luces" },
-        { url: "/4884785.jpg", title: "Grip" },
-        { url: "/collage-fondo-programacion.jpg", title: "Utileria" }
+        { url: "/alexa-mini.jpg", title: "Camara" },
+        { url: "/lentes-13.jpeg", title: "Lente" },
+        { url: "/arri-sky.jpeg", title: "Luces" },
+        { url: "/filmacion.jpg", title: "Utileria" }
     ];
 
     return (
