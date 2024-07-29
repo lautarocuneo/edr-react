@@ -1,9 +1,21 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+const sliderStyles = {
+  position: "relative",
+  height: "100%",
+  overflow: "hidden",
+};
+
+const slidesContainerStyles = {
+  display: "flex",
+  height: "100%",
+  transition: "transform 1s ease-in-out",
+};
 
 const slideStyles = {
   width: "100%",
   height: "100%",
-  borderRadius: "10px",
+  flexShrink: 0,
   backgroundSize: "cover",
   backgroundPosition: "center",
 };
@@ -30,14 +42,12 @@ const leftArrowStyles = {
   cursor: "pointer",
 };
 
-const sliderStyles = {
-  position: "relative",
-  height: "100%",
-};
-
 const dotsContainerStyles = {
   display: "flex",
   justifyContent: "center",
+  position: "absolute",
+  bottom: "10px",
+  width: "100%",
 };
 
 const dotStyle = {
@@ -48,6 +58,14 @@ const dotStyle = {
 
 const Slider = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      goToNext();
+    }, 3000); // Cambia de imagen cada 3 segundos
+
+    return () => clearInterval(interval);
+  }, [currentIndex]);
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
@@ -65,24 +83,22 @@ const Slider = ({ slides }) => {
     setCurrentIndex(slideIndex);
   };
 
-  const slideStylesWidthBackground = {
-    ...slideStyles,
-    backgroundImage: `url(${slides[currentIndex].url})`,
-  };
-
   return (
     <div style={sliderStyles}>
-      <div>
-        <div onClick={goToPrevious} style={leftArrowStyles}>
-          ❰
-        </div>
-        <div onClick={goToNext} style={rightArrowStyles}>
-          ❱
-        </div>
+      <div style={{ ...slidesContainerStyles, transform: `translateX(-${currentIndex * 100}%)` }}>
+        {slides.map((slide, index) => (
+          <div key={index} style={{ ...slideStyles, backgroundImage: `url(${slide.url})` }}>
+          </div>
+        ))}
       </div>
-      <div style={slideStylesWidthBackground}></div>
+      <div onClick={goToPrevious} style={leftArrowStyles}>
+        ❰
+      </div>
+      <div onClick={goToNext} style={rightArrowStyles}>
+        ❱
+      </div>
       <div style={dotsContainerStyles}>
-        {slides.map((slide, slideIndex) => (
+        {slides.map((_, slideIndex) => (
           <div
             style={dotStyle}
             key={slideIndex}

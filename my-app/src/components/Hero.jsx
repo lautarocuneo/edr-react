@@ -26,7 +26,7 @@ const Hero = () => {
         </div>
         
       </div>
-      <div className="">
+      <div className="relative">
         <div className="absolute bottom-4 right-4">
           <MdKeyboardDoubleArrowDown size={40} color={"#2A86E2"} />
         </div>
