@@ -1,7 +1,6 @@
 import React from 'react'
 import { ReactTyped } from "react-typed";
 import IconAnimation from './IconAnimation';
-
 import { MdKeyboardDoubleArrowDown } from "react-icons/md";
 
 

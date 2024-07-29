@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from "./Slider";
-import { ReactTyped } from 'react-typed';
+
 
 const Equipos = () => {
     const slides = [
