@@ -17,7 +17,7 @@ const NavBar = () => {
     <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white '>
       <div className='flex flex-row justify-stretch items-center z-10'>
          <img src={`${process.env.PUBLIC_URL}/logoedr.png`} alt="Logoedr" className='h-24 w-auto' />
-         <h1 className='w-full text-2xl md:text-3xl font-medium text-[#2A86E2] flex-grow  hover:cursor-default'>Equipos de Rodaje</h1>
+         <h1 className='w-full text-2xl md:text-4xl font-medium text-[#2A86E2] flex-grow  hover:cursor-default'>Equipos de Rodaje</h1>
       </div> 
         <ul className='hidden md:flex'>
             <li className='p-4'>Home</li>
