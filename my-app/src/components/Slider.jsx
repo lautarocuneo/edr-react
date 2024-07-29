@@ -18,6 +18,8 @@ const slideStyles = {
   flexShrink: 0,
   backgroundSize: "cover",
   backgroundPosition: "center",
+  borderRadius: "10px",
+
 };
 
 const rightArrowStyles = {
