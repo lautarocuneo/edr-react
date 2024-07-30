@@ -15,7 +15,7 @@ const Equipos = () => {
                 <div className='h-72'>
                     <Slider slides={slides}/> 
                 </div>
-                <div className='flex flex-col justify-center p-4'>
+                <div className='flex flex-col justify-center p-4 text-center md:text-left'>
                     <p className='text-[#2A86E2] text-2xl'>RENTAL</p>
                     <h1 className='md:text-4xl sm:text-3xl text-2xl font-bold py-2'>Alquiler de equipos de filmación</h1>
                     <p className='text-sm md:text-lg'>
