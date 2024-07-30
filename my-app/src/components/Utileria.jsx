@@ -23,7 +23,9 @@ const Utileria = () => {
                     Ofrecemos una amplia gama de cámaras antiguas, aparatos históricos, y otros accesorios únicos,
                     asegurando que dispongas de las mejores herramientas para llevar a cabo tus proyectos audiovisuales con un toque auténtico y profesionalismo inigualable.
                     </p>
-                    <button className='bg-[#2A86E2] w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3 text-black'>Catálogo utilería</button>
+                    <button className='bg-[#2A86E2] text-white w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3 transition-colors duration-300 ease-in-out hover:bg-[#1b6db1] hover:text-gray-200 hover:shadow-lg'>
+                        Catálogo utilería
+                    </button>
             </div>
             
         </div>

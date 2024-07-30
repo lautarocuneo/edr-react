@@ -23,7 +23,9 @@ const Equipos = () => {
                     Proveemos una gran variedad de cámaras, accesorios, iluminación, monitores, lentes, entre otros productos,
                     garantizando que tengas las mejores herramientas para llevar a cabo tus proyectos audiovisuales con la máxima precisión y profesionalismo.
                     </p>
-                    <button className='bg-[#2A86E2] w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3 text-black'>Catálogo rental</button>
+                    <button className='bg-[#2A86E2] text-white w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3 transition-colors duration-300 ease-in-out hover:bg-[#1b6db1] hover:text-gray-200 hover:shadow-lg'>
+                        Catálogo rental
+                    </button>
             </div>
         </div>
     </div>
