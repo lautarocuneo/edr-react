@@ -9,14 +9,24 @@ import Contacto from "./components/Contacto";
 
 function App() {
   return (
-    <div>
+    <div id = "top">
       <NavBar/>
       <Hero/>
-      <Equipos/>
-      <Utileria/>
-      <Nosotros/>
-      <Contacto/>
-      <Footer/>
+      <section id="equipos">
+        <Equipos/>
+      </section>
+      <section id="utileria">
+        <Utileria/>
+      </section>
+      <section id="nosotros">
+        <Nosotros/>
+      </section>
+      <section id="contacto">
+        <Contacto/>
+      </section>
+      <section id="footer">
+        <Footer/>
+      </section>
     </div>
   );
 }
