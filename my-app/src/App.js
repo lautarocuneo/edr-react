@@ -6,10 +6,12 @@ import Utileria from "./components/Utileria";
 import Footer from "./components/Footer";
 import Nosotros from "./components/Nosotros";
 import Contacto from "./components/Contacto";
+import WhatsAppButton from "./components/WhatsAppIcon";
 
 function App() {
   return (
     <div id = "top">
+      <WhatsAppButton/>
       <NavBar/>
       <Hero/>
       <section id="equipos">
