@@ -3,10 +3,15 @@
 @tailwind utilities;
 
 body {
-  background-color: #202425
-  ;
+ background-color: #202425;
 }
+
 
 html {
   scroll-behavior: smooth;
+}
+
+.parallax-image {
+  will-change: transform;
+  transition: transform 0.2s ease-out;
 }

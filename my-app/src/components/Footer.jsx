@@ -3,7 +3,7 @@ import { GiSteampunkGoggles } from 'react-icons/gi';
 
 const Footer = () => {
   return (
-    <footer className='bg-gray-900 text-gray-200 py-8'>
+    <footer className='bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 h-full text-gray-200 py-8'>
       <div className='max-w-[1240px] mx-auto px-4 text-center'>
         <img src={`${process.env.PUBLIC_URL}/logoedr.png`} alt="Logoedr" className='mx-auto h-24 w-auto mb-6' />
         <div className='flex justify-center space-x-6 mb-6'>
@@ -14,7 +14,7 @@ const Footer = () => {
             <FaInstagram size={30} className='hover:text-[#2A86E2] transition-colors duration-300'/>
           </a>
           <a href="https://www.instagram.com/ars_machina_argentina/" target="_blank" rel="noopener noreferrer">
-            <GiSteampunkGoggles size={30} className='hover:text-[#2A86E2] transition-colors duration-300'/>
+            <GiSteampunkGoggles size={30} className='hover:text-[#e2862a] transition-colors duration-300'/>
           </a>
         </div>
         <div className='flex justify-center'>

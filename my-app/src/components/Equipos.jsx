@@ -10,13 +10,13 @@ const Equipos = () => {
     ];
 
     return (
-    <div className='w-full bg-[#141717] text-white py-4 pt-16 px-5 md:py-16'>
+    <div className='w-full bg-gradient-to-r from-[#141717] via-[#1b1b1b] to-[#141717] h-full text-white py-4 pt-16 px-5 md:py-16'>
         <div className='max-w-[1240px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8'>
                 <div className='h-72'>
                     <Slider slides={slides}/> 
                 </div>
                 <div className='flex flex-col justify-center p-4'>
-                    <p className='text-[#2A86E2] text-xl'>RENTAL</p>
+                    <p className='text-[#2A86E2] text-2xl'>RENTAL</p>
                     <h1 className='md:text-4xl sm:text-3xl text-2xl font-bold py-2'>Alquiler de equipos de filmación</h1>
                     <p className='text-sm md:text-lg'>
                     Contamos con un equipamiento extenso y de alta gama para satisfacer todas tus demandas de producción.
