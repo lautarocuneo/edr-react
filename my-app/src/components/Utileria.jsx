@@ -2,12 +2,25 @@ import React from 'react';
 import Slider from './Slider';
 
 const Utileria = () => {
-
     const slides = [
-        { url: "/camara-atc.JPG", title: "Fotografía" },
-        { url: "/sextante.jpg", title: "Cinematografía" },
-        { url: "/foto.jpg", title: "Televisión" },
-        { url: "/2.png", title: "Otros" }
+        { url: "/arte-fotografia.jpg", title: "Fotografía", file: "/inventario-arte-foto.xlsx" },
+        { url: "/arte-cinematografia.jpg", title: "Cinematografía", file: "/inventario-arte-video.pdf" },
+        { url: "/camara-atc.JPG", title: "Televisión", file: "/inventario-television.xlsx" },
+        { url: "/sextante.jpg", title: "Otros", file: "/inventario-otros.xlsx" }
+    ];
+
+    const slidesCarrousel = [
+        { url: "/DSC00960.jpg"},
+        { url: "/DSC01019.jpg"},
+        { url: "/DSC00908.jpg"},
+        { url: "/DSC00922.jpg"},
+        { url: "/DSC00978.jpg"},
+        { url: "/DSC00364.jpg"},
+        { url: "/DSC00341.jpg"},
+        { url: "/DSC00295.jpg"},
+        { url: "/DSC00385.jpg"},
+        { url: "/DSC00361.jpg"},
+        { url: "/DSC00399.jpg"}
     ];
 
     return (
@@ -22,7 +35,7 @@ const Utileria = () => {
                     </p>     
                 </div>
                 <div className='h-72 w-[70%] m-auto'>
-                    <Slider slides={slides}/> 
+                    <Slider slides={slidesCarrousel}/> 
                 </div>
                 
                 <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5'>
@@ -41,7 +54,15 @@ const Utileria = () => {
                                 <p className='text-xl md:text-2xl font-bold text-white opacity-100 transition-opacity duration-500 group-hover:opacity-0'>
                                     {slide.title}
                                 </p>
-                                <button className='bg-[#e2862a] text-white rounded-md font-medium py-3 px-6 transition-opacity duration-500 opacity-0 group-hover:opacity-100 absolute'>
+                                <button
+                                    className='bg-[#e2862a] text-white rounded-md font-medium py-3 px-6 transition-opacity duration-500 opacity-0 group-hover:opacity-100 absolute'
+                                    onClick={() => {
+                                        const link = document.createElement('a');
+                                        link.href = slide.file; // Ruta al archivo correspondiente
+                                        link.download = slide.file.split('/').pop(); // Nombre del archivo descargado
+                                        link.click();
+                                    }}
+                                >
                                     Ver más
                                 </button>
                             </div>
