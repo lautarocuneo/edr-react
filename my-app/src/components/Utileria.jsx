@@ -1,5 +1,6 @@
 import React from 'react';
 import Slider from './Slider';
+import { GiSteampunkGoggles } from 'react-icons/gi';
 
 const Utileria = () => {
     const slides = [
@@ -37,7 +38,6 @@ const Utileria = () => {
                 <div className='h-72 w-[70%] m-auto'>
                     <Slider slides={slidesCarrousel}/> 
                 </div>
-                
                 <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5'>
                     {slides.map((slide, index) => (
                         <div
@@ -68,6 +68,12 @@ const Utileria = () => {
                             </div>
                         </div>
                     ))}
+                </div>
+                <div className="bg-[#242424] p-8 rounded-lg shadow-lg text-center max-w-[200px] mx-auto transition-transform duration-300 hover:scale-105">
+                    <p className="text-[#e2862a] text-xl">ARS MACHINA ARGENTINA</p>
+                    <a href="https://www.instagram.com/ars_machina_argentina/" target="_blank" rel="noopener noreferrer">
+                        <GiSteampunkGoggles size={50} className="hover:text-[#e2862a] transition-transform transition-colors duration-300 hover:scale-110 m-auto mt-4" />
+                    </a>
                 </div>
             </div>
         </div>
