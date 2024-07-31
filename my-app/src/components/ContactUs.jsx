@@ -43,6 +43,7 @@ export const ContactUs = () => {
 
 export default ContactUs;
 
+
 const StyledContactForm = styled.div`
   width: 400px;
   margin: auto; /* Centrar el formulario horizontalmente */
@@ -87,6 +88,18 @@ const StyledContactForm = styled.div`
       background: #2A86E2;
       color: white;
       border: none;
+      border-radius: 5px; /* Asegura bordes redondeados */
+      padding: 10px 20px; /* Añade padding para el botón */
+      font-size: 16px; /* Ajusta el tamaño de fuente */
+      text-align: center; /* Centra el texto dentro del botón */
+      transition: background-color 0.3s, transform 0.3s; /* Añade transición para los efectos de hover */
+      display: inline-block; /* Asegura que el botón respete el tamaño del contenido */
+      line-height: 1; /* Ajusta la altura de línea para centrar verticalmente */
+    }
+
+    input[type="submit"]:hover {
+      background: #1a5bb8; /* Color más oscuro para el hover */
+      transform: scale(1.05); /* Escala ligeramente el botón */
     }
 
     p {

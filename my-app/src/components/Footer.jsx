@@ -3,7 +3,7 @@ import { GiSteampunkGoggles } from 'react-icons/gi';
 
 const Footer = () => {
   return (
-    <footer className='bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 h-full text-gray-200 py-8'>
+    <footer className='bg-gradient-to-r from-[#121212] via-[#171717] to-[#121212] h-full text-gray-200 py-8'>
       <div className='max-w-[1240px] mx-auto px-4 text-center'>
         <img src={`${process.env.PUBLIC_URL}/logoedr.png`} alt="Logoedr" className='mx-auto h-24 w-auto mb-6' />
         <div className='flex justify-center space-x-6 mb-6'>
