@@ -6,7 +6,7 @@ const Utileria = () => {
     const slides = [
         { url: "/arte-fotografia.jpg", title: "Fotografía", file: "/inventario-arte-foto.xlsx" },
         { url: "/arte-cinematografia.jpg", title: "Cinematografía", file: "/inventario-arte-video.pdf" },
-        { url: "/camara-atc.JPG", title: "Televisión", file: "/inventario-television.xlsx" },
+        { url: "/camara-atc.JPG", title: "Televisión", file: "/inventario-arte-tv.pdf" },
         { url: "/sextante.jpg", title: "Otros", file: "/inventario-otros.xlsx" }
     ];
 
