@@ -7,8 +7,6 @@ import Footer from "./components/Footer";
 import Nosotros from "./components/Nosotros";
 import Contacto from "./components/Contacto";
 import WhatsAppButton from "./components/WhatsAppIcon";
-import { Alert } from "flowbite-react";
-import { Button } from "flowbite-react";
 
 
 
