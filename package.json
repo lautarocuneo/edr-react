@@ -1,0 +1,10 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cd my-app && npm start",
+    "build": "cd my-app && npm run build",
+    "install": "cd my-app && npm install"
+  }
+}
