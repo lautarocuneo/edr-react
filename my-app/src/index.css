@@ -15,3 +15,17 @@ html {
   will-change: transform;
   transition: transform 0.2s ease-out;
 }
+
+@keyframes slide-slow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-slide-slow {
+  display: flex;
+  animation: slide-slow 40s linear infinite; /* 👈 más lento */
+}
