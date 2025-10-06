@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
+const EDR = "#2A86E2";
+
 const NavBar = () => {
   const [nav, setNav] = useState(false);
   const [activeLink, setActiveLink] = useState("home");
@@ -16,19 +18,61 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const linkClass = (section) =>
-    `hover:text-[#2A86E2] transition-colors duration-300 cursor-pointer ${
-      activeLink === section ? "border-b-2 border-white pb-1" : ""
-    }`;
+  const LinkItem = ({ href, section, children, onClick }) => {
+    const isActive = activeLink === section;
+
+    return (
+      <li>
+        <a
+          href={href}
+          onClick={onClick}
+          className="group relative inline-block cursor-pointer"
+          style={{ ["--edr"]: EDR }}
+        >
+          {/* Texto: se pinta EDR con delay para coincidir con el final del barrido */}
+          <span
+            className={[
+              "relative z-10 select-none",
+              // base en blanco
+              isActive ? "text-[color:var(--edr)]" : "text-white",
+              // transición de color; en hover aplicamos EDR con delay 300ms
+              "transition-colors duration-200",
+              !isActive ? "group-hover:text-[color:var(--edr)] delay-[300ms]" : ""
+            ].join(" ")}
+          >
+            {children}
+          </span>
+
+          {/* Barra blanca (debajo) que hace el barrido */}
+          <span
+            className={[
+              "pointer-events-none absolute left-0 -bottom-1 h-[2px] w-full origin-left bg-white",
+              "transition-transform duration-300",
+              isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+            ].join(" ")}
+          />
+
+          {/* Barra azul EDR (encima) que aparece cuando termina el barrido */}
+          <span
+            className={[
+              "pointer-events-none absolute left-0 -bottom-1 h-[2px] w-full bg-[color:var(--edr)]",
+              "transition-opacity duration-200",
+              isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100 delay-[300ms]"
+            ].join(" ")}
+          />
+        </a>
+      </li>
+    );
+  };
 
   return (
     <div
       className={`fixed left-0 w-full z-50 
         ${atTop ? "top-8" : "top-0"} 
-        bg-[#181A1B]/90 backdrop-blur-md`}
+        bg-[#070808]/90 backdrop-blur-md`}
     >
-      <div className='flex justify-between items-center h-20 max-w-[1240px] mx-auto px-6 text-white'>
-        
+      <div className="flex justify-between items-center h-20 max-w-[1240px] mx-auto px-6 text-white">
+
         {/* Logo + Links */}
         <div className="flex items-center space-x-6">
           <img
@@ -36,11 +80,19 @@ const NavBar = () => {
             alt="Logoedr"
             className="h-20 w-auto"
           />
-          <ul className='hidden md:flex space-x-6 font-medium'>
-            <li><a href="#home" onClick={() => setActiveLink("home")} className={linkClass("home")}>Inicio</a></li>
-            <li><a href="#catalogo" onClick={() => setActiveLink("catalogo")} className={linkClass("catalogo")}>Catálogo</a></li>
-            <li><a href="#contacto" onClick={() => setActiveLink("contacto")} className={linkClass("contacto")}>Contacto</a></li>
-            <li><a href="#nosotros" onClick={() => setActiveLink("nosotros")} className={linkClass("nosotros")}>Sobre nosotros</a></li>
+          <ul className="hidden md:flex space-x-6 font-medium">
+            <LinkItem href="#home" section="home" onClick={() => setActiveLink("home")}>
+              Inicio
+            </LinkItem>
+            <LinkItem href="#catalogo" section="catalogo" onClick={() => setActiveLink("catalogo")}>
+              Catálogo
+            </LinkItem>
+            <LinkItem href="#contacto" section="contacto" onClick={() => setActiveLink("contacto")}>
+              Contacto
+            </LinkItem>
+            <LinkItem href="#nosotros" section="nosotros" onClick={() => setActiveLink("nosotros")}>
+              Sobre nosotros
+            </LinkItem>
           </ul>
         </div>
 
@@ -58,17 +110,17 @@ const NavBar = () => {
         </div>
 
         {/* Hamburguesa */}
-        <div onClick={handleNav} className='block md:hidden z-50 cursor-pointer'>
+        <div onClick={handleNav} className="block md:hidden z-50 cursor-pointer">
           {nav ? <AiOutlineClose size={28}/> : <AiOutlineMenu size={28}/>}
         </div>
 
         {/* Menú mobile */}
         <div className={`fixed top-0 left-0 h-screen w-[70%] bg-[#181A1B]/95 backdrop-blur-md transform transition-transform duration-500 ${nav ? 'translate-x-0' : '-translate-x-full'}`}>
-          <ul className='uppercase p-6 text-lg space-y-4'>
-            <li><a href="#home" onClick={() => { setActiveLink("home"); handleNav(); }} className={linkClass("home")}>Inicio</a></li>
-            <li><a href="#catalogo" onClick={() => { setActiveLink("catalogo"); handleNav(); }} className={linkClass("catalogo")}>Catálogo</a></li>
-            <li><a href="#contacto" onClick={() => { setActiveLink("contacto"); handleNav(); }} className={linkClass("contacto")}>Contacto</a></li>
-            <li><a href="#nosotros" onClick={() => { setActiveLink("nosotros"); handleNav(); }} className={linkClass("nosotros")}>Sobre nosotros</a></li>
+          <ul className="uppercase p-6 text-lg space-y-4">
+            <LinkItem href="#home" section="home" onClick={() => { setActiveLink("home"); handleNav(); }}>Inicio</LinkItem>
+            <LinkItem href="#catalogo" section="catalogo" onClick={() => { setActiveLink("catalogo"); handleNav(); }}>Catálogo</LinkItem>
+            <LinkItem href="#contacto" section="contacto" onClick={() => { setActiveLink("contacto"); handleNav(); }}>Contacto</LinkItem>
+            <LinkItem href="#nosotros" section="nosotros" onClick={() => { setActiveLink("nosotros"); handleNav(); }}>Sobre nosotros</LinkItem>
           </ul>
 
           <div className="flex space-x-6 mt-6 text-2xl px-6">

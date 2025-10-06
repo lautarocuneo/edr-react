@@ -4,10 +4,7 @@ import { motion } from "framer-motion";
 // como LandingPage está dentro de components/paginas,
 // el resto de componentes viven un nivel arriba en /components
 import NavBar from "../NavBar";
-import Equipos from "../Equipos";
-import Utileria from "../Utileria";
 import Footer from "../Footer";
-import Nosotros from "../Nosotros";
 import Contacto from "../Contacto";
 import WhatsAppButton from "../WhatsAppIcon";
 import TextSlider from "../TextSlider";
@@ -69,18 +66,9 @@ const LandingPage = () => {
         </a>
       </CustomCarousel>
 
-      {/* secciones con fade-in puro al scrollear */}
-      <motion.section id="equipos" className="relative bg-white" {...revealProps}>
-        <Equipos />
-      </motion.section>
+      
 
-      <motion.section id="utileria" className="relative bg-gray-50" {...revealProps}>
-        <Utileria />
-      </motion.section>
-
-      <motion.section id="nosotros" className="relative bg-white" {...revealProps}>
-        <Nosotros />
-      </motion.section>
+    
 
       <motion.section id="contacto" className="relative bg-gray-50" {...revealProps}>
         <Contacto />

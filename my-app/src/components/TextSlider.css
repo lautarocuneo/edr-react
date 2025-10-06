@@ -9,5 +9,5 @@
 
 .animate-slide-slow {
   display: flex;
-  animation: slide-slow 40s linear infinite; /* 👈 más lento */
+  animation: slide-slow 120s linear infinite; /* 👈 más lento */
 }
