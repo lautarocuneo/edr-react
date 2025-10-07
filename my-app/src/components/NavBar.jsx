@@ -27,7 +27,7 @@ const NavBar = () => {
           href={href}
           onClick={onClick}
           className="group relative inline-block cursor-pointer"
-          style={{ ["--edr"]: EDR }}
+          style={{ "--edr": EDR }}  {/* 🔧 corregido */}
         >
           {/* Texto: se pinta EDR con delay para coincidir con el final del barrido */}
           <span
