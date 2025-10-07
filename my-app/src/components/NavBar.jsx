@@ -1,4 +1,3 @@
-// src/components/NavBar.jsx
 import React, { useState, useEffect } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
@@ -27,15 +26,13 @@ const NavBar = () => {
           href={href}
           onClick={onClick}
           className="group relative inline-block cursor-pointer"
-          style={{ "--edr": EDR }}  {/* 🔧 corregido */}
+          style={{ "--edr": EDR }}
         >
           {/* Texto: se pinta EDR con delay para coincidir con el final del barrido */}
           <span
             className={[
               "relative z-10 select-none",
-              // base en blanco
               isActive ? "text-[color:var(--edr)]" : "text-white",
-              // transición de color; en hover aplicamos EDR con delay 300ms
               "transition-colors duration-200",
               !isActive ? "group-hover:text-[color:var(--edr)] delay-[300ms]" : ""
             ].join(" ")}
