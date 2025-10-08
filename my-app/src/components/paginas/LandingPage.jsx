@@ -12,6 +12,7 @@ import ProyectosEDR from "../ProyectosEDR"
  import PromoBanner from "../PromoBanner"
 import CustomCarousel from "../CustomCarousel";
 import ProductCarousel from "../ProductCarousel";
+import CaptionBannerEDR from "../CaptionBannerEDR";
 
 
 const LandingPage = () => {
@@ -51,6 +52,13 @@ const LandingPage = () => {
       <motion.section {...revealProps}>
         <PromoBanner />
       </motion.section>
+      <motion.section {...revealProps}>
+        <BrandSlider showTitle={false} />
+      </motion.section>
+
+      <motion.section {...revealProps}>
+        <CaptionBannerEDR />
+      </motion.section>
        <motion.section {...revealProps}>
         <ProductCarousel />
       </motion.section>
@@ -67,7 +75,7 @@ const LandingPage = () => {
         <ProyectosEDR />
       </motion.section>
       <motion.section {...revealProps}>
-        <BrandSlider />
+        <BrandSlider showTitle={true} />
       </motion.section>
 
     

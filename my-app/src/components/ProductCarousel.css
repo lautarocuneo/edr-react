@@ -1,89 +1,106 @@
-.carousel-wrapper {
+/* Wrapper para posicionar flechas: permitir que salgan hacia afuera */
+.pc-wrapper {
   position: relative;
-  width: 100%;
-  overflow: hidden;
+  overflow: visible; /* <— clave para que las flechas puedan ir fuera del carrusel */
 }
 
-.carousel-track {
+/* Flechas */
+.pc-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30; /* por encima de las cards */
+  background: rgba(0,0,0,0.6);
+  border: none;
+  outline: none;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+}
+.pc-arrow:hover {
+  background: rgba(0,0,0,0.8);
+  transform: translateY(-50%) scale(1.06);
+}
+
+/* Posición por defecto (mobile/tablet): lo más al borde posible */
+.pc-left  { left: 6px; }
+.pc-right { right: 6px; }
+
+/* Desktop: empujar las flechas por fuera para que no tapen los productos */
+@media (min-width: 768px) {
+  .pc-left  { left: -28px; }   /* mueve hacia afuera del contenedor */
+  .pc-right { right: -28px; }
+  .pc-arrow { width: 44px; height: 44px; }
+}
+
+/* Pantallas grandes: todavía más afuera */
+@media (min-width: 1280px) {
+  .pc-left  { left: -36px; }
+  .pc-right { right: -36px; }
+}
+
+/* Resto del CSS (igual que tenías) */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.pc-track {
   display: flex;
-  gap: 2rem;
-  animation: scroll 35s linear infinite;
+  gap: 1.25rem;
+  overflow-x: scroll;
+  scroll-behavior: auto;
+  padding-bottom: 0.5rem;
 }
 
-.carousel-item {
+.pc-item {
   position: relative;
   flex: 0 0 auto;
   width: 280px;
-  aspect-ratio: 3/4;
-  border-radius: 12px;
+  aspect-ratio: 3 / 4;
+  border-radius: 16px;
   overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.4s ease;
+  background: #111;
+  transition: transform 0.35s ease;
 }
+.pc-item:hover { transform: scale(1.04); }
 
-.carousel-item:hover {
-  transform: scale(1.03);
-}
-
-.carousel-image {
+.pc-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity 0.3s ease;
+  transition: transform 0.5s ease;
 }
+.pc-item:hover .pc-img { transform: scale(1.08); }
 
-.carousel-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  transition: opacity 0.4s ease;
-  opacity: 0;
+.pc-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.55);
+  opacity: 0; transition: opacity .3s ease;
 }
+.pc-item:hover .pc-overlay { opacity: 1; }
 
-.carousel-item:hover .carousel-overlay {
-  opacity: 1;
+.pc-text {
+  position: absolute; bottom: 1rem; left: 0; width: 100%;
+  text-align: center; pointer-events: none; transition: opacity .25s ease;
 }
+.pc-item:hover .pc-text { opacity: 0; }
 
-.carousel-text {
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  z-index: 2;
+.pc-hover {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  opacity: 0; pointer-events: none; transition: opacity .25s ease;
 }
+.pc-item:hover .pc-hover { opacity: 1; }
 
-.carousel-hover {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 3;
+/* Ajustes responsive de tamaño de cards y flechas */
+@media (min-width: 768px) {
+  .pc-item { width: 300px; }
 }
-
-.carousel-item:hover .carousel-hover {
-  opacity: 1;
-}
-
-/* Animación infinita */
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-/* Responsive */
 @media (max-width: 768px) {
-  .carousel-item {
-    width: 200px;
-  }
-  .carousel-track {
-    gap: 1rem;
-    animation-duration: 25s;
-  }
+  .pc-item { width: 200px; }
+  .pc-arrow { width: 36px; height: 36px; }
 }

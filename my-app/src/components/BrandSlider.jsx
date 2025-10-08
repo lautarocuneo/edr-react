@@ -6,6 +6,9 @@ import React from "react";
  * - Logos blancos (idealmente PNG/SVG ya blancos)
  * - Scroll horizontal continuo (infinite loop)
  * - Respetando estética EDR
+ *
+ * Props:
+ * - showTitle (boolean): si es true muestra el título; si es false, solo el carrusel
  */
 
 const brands = [
@@ -20,15 +23,17 @@ const brands = [
   { img: "/brands/mercadolibre.png", alt: "Mercado Libre" },
 ];
 
-const BrandSlider = () => {
+const BrandSlider = ({ showTitle = true }) => {
   return (
-    <section className="bg-[#0B0B0C] py-16 overflow-hidden">
-      {/* 🔵 Título */}
-      <div className="max-w-[1440px] mx-auto text-center mb-10 px-6">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-wide text-white py-2">
-          <span className="text-[#2A86E2]">Trabajaron</span> con nosotros
-        </h2>
-      </div>
+    <section className="bg-[#0B0B0C] py-0 overflow-hidden pb-14">
+      {/* 🔵 Título opcional */}
+      {showTitle && (
+        <div className="max-w-[1440px] mx-auto text-center mb-10 px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-wide text-white py-2">
+            <span className="text-[#2A86E2]">Trabajaron</span> con nosotros
+          </h2>
+        </div>
+      )}
 
       {/* 🔁 Carrusel infinito */}
       <div className="relative w-full overflow-hidden py-10">

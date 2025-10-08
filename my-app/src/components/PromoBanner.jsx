@@ -3,9 +3,9 @@ import React from "react";
 const PromoBanner = () => {
   return (
     <section className="bg-[#0B0B0C] text-white py-14">
-      <div className="max-w-[1440px] mx-auto px-6 text-center">
+      <div className="max-w-[1440px] mx-auto px-6 py-10 text-center">
         {/* 🏷️ Título principal */}
-        <h2 className="text-2xl md:text-3xl font-extrabold mb-6 leading-tight">
+        <h2 className="text-2xl md:text-3xl font-extrabold mb-6 leading-tight pb-10">
           Todos los equipos a{" "}
           <span className="text-[#2A86E2]">50% OFF</span> todo el mes de
           noviembre

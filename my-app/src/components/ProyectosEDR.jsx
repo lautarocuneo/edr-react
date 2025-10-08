@@ -1,34 +1,38 @@
 import React from "react";
-import "./ProyectosEDR.css";
+import "./ProyectosEDR.css"; // usa clases pedr-* para evitar conflictos
 
 const proyectos = [
   {
-    image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80",
     title: "Videoclips",
     subtitle: "Producción audiovisual integral",
     link: "/videoclips",
   },
   {
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
     title: "Películas",
     subtitle: "Rodajes en estudio y exteriores",
     link: "/peliculas",
   },
   {
-    image: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=800&q=80",
     title: "Series",
     subtitle: "Iluminación y cámara profesional",
     link: "/series",
   },
   {
-    image: "https://images.unsplash.com/photo-1517602302552-471fe67acf66?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1517602302552-471fe67acf66?auto=format&fit=crop&w=800&q=80",
     title: "Documentales",
     subtitle: "Cobertura de producción completa",
     link: "/documentales",
   },
 ];
 
-// 🔵 Carrusel de fotos de proyectos
+// Carrusel de fotos de proyectos (miniaturas)
 const fotosProyectos = [
   "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=400&q=60",
   "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=400&q=60",
@@ -48,7 +52,7 @@ const ProyectosEDR = () => {
           PROYECTOS REALIZADOS
         </h2>
 
-        {/* 🧱 Grilla principal (4 rectángulos verticales) */}
+        {/* Grilla principal (4 rectángulos verticales) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-20">
           {proyectos.map((p, i) => (
             <a
@@ -65,7 +69,7 @@ const ProyectosEDR = () => {
                 />
               </div>
 
-              {/* Overlay */}
+              {/* Overlay + textos */}
               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
                 <div className="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
                   <h3 className="text-white text-2xl font-bold mb-1">{p.title}</h3>
@@ -76,11 +80,11 @@ const ProyectosEDR = () => {
           ))}
         </div>
 
-        {/* 🎞 Carrusel infinito de miniaturas cuadradas */}
-        <div className="carousel-container">
-          <div className="carousel-track">
+        {/* Carrusel infinito de miniaturas cuadradas (namespaced pedr-*) */}
+        <div className="pedr-container">
+          <div className="pedr-track">
             {[...fotosProyectos, ...fotosProyectos].map((foto, idx) => (
-              <div key={idx} className="carousel-item">
+              <div key={idx} className="pedr-item">
                 <img src={foto} alt={`Proyecto ${idx + 1}`} draggable="false" />
               </div>
             ))}

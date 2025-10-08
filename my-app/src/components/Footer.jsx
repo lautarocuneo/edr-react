@@ -3,7 +3,7 @@ import { GiSteampunkGoggles } from 'react-icons/gi';
 
 const Footer = () => {
   return (
-    <footer className="bg-[var(--color-bg-dark)] text-gray-300 py-12 border-t border-[#2A86E2]/10">
+    <footer className="bg-[var(--color-bg-dark)] text-gray-300 py-12 border-t border-[#2A86E2]/10 ">
       <div className="max-w-[1240px] mx-auto px-6 text-center">
         {/* Logo */}
         <img
