@@ -4,23 +4,32 @@ import { ContactUs } from "./ContactUs";
 
 const Contacto = () => {
   return (
-    <div className='bg-gradient-to-r  from-[#181818] via-[#1a1a1a] to-[#181818]  text-white'>
-      <div className='flex flex-col items-center text-center py-8'>
-        <p className='text-[#2A86E2] text-xl font-semibold'>CONTACTO</p>
-        <h1 className='md:text-4xl sm:text-3xl text-2xl font-bold py-4'>
+    // Fondo global unificado
+    <div className="bg-[var(--color-bg-dark)] text-white py-16">
+      {/* Encabezado */}
+      <div className="flex flex-col items-center text-center mb-10">
+        <p className="text-[#2A86E2] text-sm md:text-base font-semibold tracking-widest">
+          CONTACTO
+        </p>
+        <h1 className="md:text-4xl sm:text-3xl text-2xl font-bold mt-4">
           Hacenos tu pedido y lo presupuestamos
         </h1>
       </div>
-      <div className='max-w-[1240px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-4 py-8 '>
-        <div className='flex flex-col items-center p-8 rounded-lg bg-[#2a2a2a]'>
-          <div className='w-full rounded-lg overflow-hidden '>
+
+      {/* Contenedor principal */}
+      <div className="max-w-[1240px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-6">
+        {/* Mapa */}
+        <div className="flex flex-col items-center p-6 rounded-xl bg-[#111113] shadow-[0_0_20px_rgba(0,0,0,0.4)]">
+          <div className="w-full rounded-lg overflow-hidden border border-[#1BB4B4]/10">
             <Map />
           </div>
-          <p className='text-sm md:text-lg pt-4'>
-            Chorroarin 486 - Agronomía - Capital Federal
+          <p className="text-sm md:text-lg mt-4 text-gray-300">
+            Chorroarín 486 – Agronomía – CABA
           </p>
         </div>
-        <div className='flex items-center justify-center p-8 bg-[#2a2a2a] rounded-lg'>
+
+        {/* Formulario */}
+        <div className="flex items-center justify-center p-6 bg-[#111113] rounded-xl shadow-[0_0_20px_rgba(0,0,0,0.4)]">
           <ContactUs />
         </div>
       </div>

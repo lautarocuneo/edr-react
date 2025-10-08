@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
@@ -7,56 +7,60 @@ const EDR = "#2A86E2";
 const NavBar = () => {
   const [nav, setNav] = useState(false);
   const [activeLink, setActiveLink] = useState("home");
-  // Eliminamos el estado atTop ya que no lo vamos a usar
-  // const [atTop, setAtTop] = useState(true); 
+  const [showNav, setShowNav] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const handleNav = () => setNav(!nav);
 
-  // Eliminamos el useEffect que manejaba el scroll
-  // useEffect(() => {
-  //   const onScroll = () => setAtTop(window.scrollY <= 0);
-  //   window.addEventListener("scroll", onScroll, { passive: true });
-  //   return () => window.removeEventListener("scroll", onScroll);
-  // }, []);
+  // 👉 efecto tipo Shopify: oculta el navbar al scrollear hacia abajo, lo muestra al subir
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+      if (currentScroll > lastScrollY && currentScroll > 100) {
+        setShowNav(false); // bajando → ocultar
+      } else {
+        setShowNav(true); // subiendo → mostrar
+      }
+      setLastScrollY(currentScroll);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   const LinkItem = ({ href, section, children, onClick }) => {
     const isActive = activeLink === section;
-
     return (
       <li>
         <a
           href={href}
           onClick={onClick}
-          className="group relative inline-block cursor-pointer"
+          className="group relative inline-block cursor-pointer tracking-wide"
           style={{ "--edr": EDR }}
         >
-          {/* Texto: se pinta EDR con delay para coincidir con el final del barrido */}
           <span
             className={[
-              "relative z-10 select-none",
+              "relative z-10 select-none uppercase text-sm font-medium",
               isActive ? "text-[color:var(--edr)]" : "text-white",
               "transition-colors duration-200",
-              !isActive ? "group-hover:text-[color:var(--edr)] delay-[300ms]" : ""
+              !isActive ? "group-hover:text-[color:var(--edr)] delay-[300ms]" : "",
             ].join(" ")}
           >
             {children}
           </span>
 
-          {/* Barra blanca (debajo) que hace el barrido */}
           <span
             className={[
-              "pointer-events-none absolute left-0 -bottom-1 h-[2px] w-full origin-left bg-white",
+              "pointer-events-none absolute left-0 -bottom-1 h-[1px] w-full origin-left bg-white",
               "transition-transform duration-300",
-              isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+              isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
             ].join(" ")}
           />
-
-          {/* Barra azul EDR (encima) que aparece cuando termina el barrido */}
           <span
             className={[
-              "pointer-events-none absolute left-0 -bottom-1 h-[2px] w-full bg-[color:var(--edr)]",
+              "pointer-events-none absolute left-0 -bottom-1 h-[1px] w-full bg-[color:var(--edr)]",
               "transition-opacity duration-200",
-              isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100 delay-[300ms]"
+              isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100 delay-[300ms]",
             ].join(" ")}
           />
         </a>
@@ -66,66 +70,100 @@ const NavBar = () => {
 
   return (
     <div
-      className={`fixed left-0 w-full z-50 
-        top-0  // Aquí forzamos que siempre esté en top-0
-        bg-[#070808]/90 backdrop-blur-md`}
+      className={`fixed left-0 w-full z-50 bg-[#070808]/75 backdrop-blur-md transition-transform duration-500 ${
+        showNav ? "translate-y-0" : "-translate-y-full"
+      }`}
     >
-      <div className="flex justify-between items-center h-20 max-w-[1240px] mx-auto px-6 text-white">
-
-        {/* Logo + Links */}
-        <div className="flex items-center space-x-6">
+      <div className="flex justify-between items-center h-20 max-w-[1320px] mx-auto px-10 text-white">
+        {/* Logo */}
+        <div className="flex items-center gap-8">
           <img
             src={`${process.env.PUBLIC_URL}/logos/edr-logo-2.svg`}
-            alt="Logoedr"
-            className="h-20 w-auto"
+            alt="Logo EDR"
+            className="h-16 w-auto"
           />
-          <ul className="hidden md:flex space-x-6 font-medium">
-            <LinkItem href="#home" section="home" onClick={() => setActiveLink("home")}>
-              Inicio
-            </LinkItem>
-            <LinkItem href="#catalogo" section="catalogo" onClick={() => setActiveLink("catalogo")}>
-              Catálogo
-            </LinkItem>
-            <LinkItem href="#contacto" section="contacto" onClick={() => setActiveLink("contacto")}>
-              Contacto
-            </LinkItem>
-            <LinkItem href="#nosotros" section="nosotros" onClick={() => setActiveLink("nosotros")}>
-              Sobre nosotros
-            </LinkItem>
-          </ul>
         </div>
 
+        {/* Links desktop */}
+        <ul className="hidden md:flex space-x-10 font-light tracking-wide">
+          <LinkItem href="#home" section="home" onClick={() => setActiveLink("home")}>
+            Inicio
+          </LinkItem>
+          <LinkItem href="#catalogo" section="catalogo" onClick={() => setActiveLink("catalogo")}>
+            Catálogo
+          </LinkItem>
+          <LinkItem href="#rental" section="rental" onClick={() => setActiveLink("rental")}>
+            Rental de equipos
+          </LinkItem>
+          <LinkItem href="#nosotros" section="nosotros" onClick={() => setActiveLink("nosotros")}>
+            Nosotros
+          </LinkItem>
+          <LinkItem href="#contacto" section="contacto" onClick={() => setActiveLink("contacto")}>
+            Contacto
+          </LinkItem>
+        </ul>
+
         {/* Redes */}
-        <div className="hidden md:flex items-center space-x-6 text-xl">
-          <a href="https://facebook.com" target="_blank" rel="noreferrer" className="hover:text-[#1877F2]">
+        <div className="hidden md:flex items-center gap-5 text-xl">
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-[#1877F2] transition-colors"
+          >
             <FaFacebookF />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-[#E1306C]">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-[#E1306C] transition-colors"
+          >
             <FaInstagram />
           </a>
-          <a href="https://wa.me/5491139457426" target="_blank" rel="noreferrer" className="hover:text-[#25D366]">
+          <a
+            href="https://wa.me/5491139457426"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-[#25D366] transition-colors"
+          >
             <FaWhatsapp />
           </a>
         </div>
 
         {/* Hamburguesa */}
         <div onClick={handleNav} className="block md:hidden z-50 cursor-pointer">
-          {nav ? <AiOutlineClose size={28}/> : <AiOutlineMenu size={28}/>}
+          {nav ? <AiOutlineClose size={28} /> : <AiOutlineMenu size={28} />}
         </div>
 
         {/* Menú mobile */}
-        <div className={`fixed top-0 left-0 h-screen w-[70%] bg-[#181A1B]/95 backdrop-blur-md transform transition-transform duration-500 ${nav ? 'translate-x-0' : '-translate-x-full'}`}>
-          <ul className="uppercase p-6 text-lg space-y-4">
-            <LinkItem href="#home" section="home" onClick={() => { setActiveLink("home"); handleNav(); }}>Inicio</LinkItem>
-            <LinkItem href="#catalogo" section="catalogo" onClick={() => { setActiveLink("catalogo"); handleNav(); }}>Catálogo</LinkItem>
-            <LinkItem href="#contacto" section="contacto" onClick={() => { setActiveLink("contacto"); handleNav(); }}>Contacto</LinkItem>
-            <LinkItem href="#nosotros" section="nosotros" onClick={() => { setActiveLink("nosotros"); handleNav(); }}>Sobre nosotros</LinkItem>
+        <div
+          className={`fixed top-0 left-0 h-screen w-[70%] bg-[#181A1B]/95 backdrop-blur-md transform transition-transform duration-500 ${
+            nav ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
+          <ul className="uppercase p-6 text-lg space-y-6 tracking-wide">
+            <LinkItem href="#home" section="home" onClick={() => { setActiveLink("home"); handleNav(); }}>
+              Inicio
+            </LinkItem>
+            <LinkItem href="#catalogo" section="catalogo" onClick={() => { setActiveLink("catalogo"); handleNav(); }}>
+              Catálogo
+            </LinkItem>
+            <LinkItem href="#rental" section="rental" onClick={() => { setActiveLink("rental"); handleNav(); }}>
+              Rental de equipos
+            </LinkItem>
+            <LinkItem href="#nosotros" section="nosotros" onClick={() => { setActiveLink("nosotros"); handleNav(); }}>
+              Nosotros
+            </LinkItem>
+            <LinkItem href="#contacto" section="contacto" onClick={() => { setActiveLink("contacto"); handleNav(); }}>
+              Contacto
+            </LinkItem>
           </ul>
 
-          <div className="flex space-x-6 mt-6 text-2xl px-6">
-            <FaFacebookF className="hover:text-[#1877F2] cursor-pointer"/>
-            <FaInstagram className="hover:text-[#E1306C] cursor-pointer"/>
-            <FaWhatsapp className="hover:text-[#25D366] cursor-pointer"/>
+          <div className="flex gap-6 mt-8 text-2xl px-6">
+            <FaFacebookF className="hover:text-[#1877F2] cursor-pointer" />
+            <FaInstagram className="hover:text-[#E1306C] cursor-pointer" />
+            <FaWhatsapp className="hover:text-[#25D366] cursor-pointer" />
           </div>
         </div>
       </div>

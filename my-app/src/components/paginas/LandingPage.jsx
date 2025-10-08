@@ -1,15 +1,17 @@
 // src/components/paginas/LandingPage.jsx
 import React from "react";
 import { motion } from "framer-motion";
-
+import BrandSlider from "../BrandSlider";
 import NavBar from "../NavBar";
 import Footer from "../Footer";
 import Contacto from "../Contacto";
 import WhatsAppButton from "../WhatsAppIcon";
-
+import HeroVideo from "../HeroVideo";
+import CaracteristicasEDR from "../CaracteristicasEDR";
+import ProyectosEDR from "../ProyectosEDR"
+ import PromoBanner from "../PromoBanner"
 import CustomCarousel from "../CustomCarousel";
-import Nosotros from "../Nosotros";
-import Servicios from "../Servicios";
+import ProductCarousel from "../ProductCarousel";
 
 
 const LandingPage = () => {
@@ -44,16 +46,34 @@ const LandingPage = () => {
 
       <div className="h-20" />
 
-      <CustomCarousel slides={slides} />
-      
+      <HeroVideo src={`${process.env.PUBLIC_URL}/videos/intro.mp4`} />
+
       <motion.section {...revealProps}>
-        <Servicios />
+        <PromoBanner />
+      </motion.section>
+       <motion.section {...revealProps}>
+        <ProductCarousel />
       </motion.section>
 
+      
 
-      <motion.section id="nosotros" {...revealProps}>
-        <Nosotros />
+      <CustomCarousel slides={slides} />
+
+      <motion.section {...revealProps}>
+        <CaracteristicasEDR />
       </motion.section>
+
+      <motion.section {...revealProps}>
+        <ProyectosEDR />
+      </motion.section>
+      <motion.section {...revealProps}>
+        <BrandSlider />
+      </motion.section>
+
+    
+      
+  
+
 
       <motion.section id="contacto" className="relative bg-gray-800" {...revealProps}>
         <Contacto />
