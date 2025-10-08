@@ -7,15 +7,17 @@ const EDR = "#2A86E2";
 const NavBar = () => {
   const [nav, setNav] = useState(false);
   const [activeLink, setActiveLink] = useState("home");
-  const [atTop, setAtTop] = useState(true);
+  // Eliminamos el estado atTop ya que no lo vamos a usar
+  // const [atTop, setAtTop] = useState(true); 
 
   const handleNav = () => setNav(!nav);
 
-  useEffect(() => {
-    const onScroll = () => setAtTop(window.scrollY <= 0);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  // Eliminamos el useEffect que manejaba el scroll
+  // useEffect(() => {
+  //   const onScroll = () => setAtTop(window.scrollY <= 0);
+  //   window.addEventListener("scroll", onScroll, { passive: true });
+  //   return () => window.removeEventListener("scroll", onScroll);
+  // }, []);
 
   const LinkItem = ({ href, section, children, onClick }) => {
     const isActive = activeLink === section;
@@ -65,7 +67,7 @@ const NavBar = () => {
   return (
     <div
       className={`fixed left-0 w-full z-50 
-        ${atTop ? "top-8" : "top-0"} 
+        top-0  // Aquí forzamos que siempre esté en top-0
         bg-[#070808]/90 backdrop-blur-md`}
     >
       <div className="flex justify-between items-center h-20 max-w-[1240px] mx-auto px-6 text-white">
