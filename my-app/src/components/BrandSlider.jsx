@@ -2,30 +2,19 @@ import React from "react";
 
 /**
  * BrandSlider — Slider infinito de logos “Marcas que trabajaron con nosotros”
- * - Fondo negro uniforme
- * - Logos blancos (idealmente PNG/SVG ya blancos)
- * - Scroll horizontal continuo (infinite loop)
- * - Respetando estética EDR
- *
- * Props:
- * - showTitle (boolean): si es true muestra el título; si es false, solo el carrusel
+ * - Mantiene clases originales
+ * - Scroll continuo sin cortes
+ * - Logos más grandes y con proporción uniforme
  */
 
-const brands = [
-  { img: "/brands/rapsodia.png", alt: "Rapsodia" },
-  { img: "/brands/glaciar.png", alt: "Glaciar" },
-  { img: "/brands/cvs.png", alt: "CVS Pharmacy" },
-  { img: "/brands/icbc.png", alt: "ICBC" },
-  { img: "/brands/vw.png", alt: "Volkswagen" },
-  { img: "/brands/flow.png", alt: "Flow" },
-  { img: "/brands/netflix.png", alt: "Netflix" },
-  { img: "/brands/twitch.png", alt: "Twitch" },
-  { img: "/brands/mercadolibre.png", alt: "Mercado Libre" },
-];
+const brands = Array.from({ length: 10 }, (_, i) => ({
+  img: `/brands-logos/${i + 1}.svg`,
+  alt: `Brand logo ${i + 1}`,
+}));
 
 const BrandSlider = ({ showTitle = true }) => {
   return (
-    <section className="bg-[#0B0B0C] py-0 overflow-hidden pb-14">
+    <section className="bg-[#0B0B0C] overflow-hidden pb-14">
       {/* 🔵 Título opcional */}
       {showTitle && (
         <div className="max-w-[1440px] mx-auto text-center mb-10 px-6">
@@ -36,22 +25,16 @@ const BrandSlider = ({ showTitle = true }) => {
       )}
 
       {/* 🔁 Carrusel infinito */}
-      <div className="relative w-full overflow-hidden py-10">
-        <div className="flex animate-slide-slow whitespace-nowrap">
-          {[...Array(2)].map((_, setIndex) => (
-            <div
-              key={setIndex}
-              className="flex items-center gap-16 md:gap-28 px-10"
-            >
-              {brands.map((brand, i) => (
-                <img
-                  key={`${setIndex}-${i}`}
-                  src={brand.img}
-                  alt={brand.alt}
-                  className="h-10 md:h-12 opacity-80 hover:opacity-100 transition-opacity duration-300 object-contain"
-                  draggable={false}
-                />
-              ))}
+      <div className="relative w-full overflow-hidden py-10 group">
+        <div className="flex animate-slide-slow whitespace-nowrap group-hover:[animation-play-state:paused]">
+          {[...brands, ...brands].map((brand, i) => (
+            <div key={i} className="px-14 flex-shrink-0">
+              <img
+                src={brand.img}
+                alt={brand.alt}
+                className="h-20 sm:h-24 md:h-28 max-h-[120px] w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
+                draggable={false}
+              />
             </div>
           ))}
         </div>
