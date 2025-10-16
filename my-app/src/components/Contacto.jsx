@@ -40,7 +40,6 @@ const Contacto = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
                   <Info icon={<FiMapPin />} title="Estamos en" text="Chorroarín 486, Agronomía – CABA" />
-                  <Info icon={<FiMail />} title="Mail" text="contacto@equiposderodaje.com" href="mailto:contacto@equiposderodaje.com" />
                   <Info icon={<FiPhone />} title="WhatsApp" text="+54 9 11 6298 3716" href="https://wa.me/5491162983716" />
                   <Info icon={<FiInstagram />} title="Instagram" text="@equiposderodaje" href="https://www.instagram.com/equiposderodaje/" />
                 </div>

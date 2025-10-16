@@ -75,7 +75,7 @@ const LandingPage = () => {
         <ProyectosEDR />
       </motion.section>
       <motion.section {...revealProps}>
-        <BrandSlider showTitle={true} />
+        <BrandSlider showTitle={false} />
       </motion.section>
 
     
