@@ -8,7 +8,7 @@ import React from "react";
  */
 const CaptionBannerEDR = () => {
   return (
-    <section className="relative overflow-hidden bg-[#0B0B0C] text-gray-200 py-20 md:py-24">
+    <section className="relative overflow-hidden bg-[#0B0B0C] text-gray-200 md:py-10">
       {/* Halos dentro del viewport (sin blur) */}
       <span
         aria-hidden
