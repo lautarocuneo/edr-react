@@ -13,14 +13,17 @@ function formatCurrencyARS(value) {
 /**
  * CatalogItem
  * Props:
- * - item: { id, title, image, price, inStock, category, brand?, tags?, addedAt? }
+ * - item: { id, title, image, price, inStock, category, brand?, tags?, addedAt?, discountPct? }
  * - discountPct?: number (opcional, 0-100). Si viene, pisa a item.discountPct.
  * - onClick?: () => void
  */
 const CatalogItem = ({ item, discountPct, onClick }) => {
-  const pct = typeof discountPct === "number"
-    ? discountPct
-    : (typeof item.discountPct === "number" ? item.discountPct : 0);
+  const pct =
+    typeof discountPct === "number"
+      ? discountPct
+      : typeof item.discountPct === "number"
+      ? item.discountPct
+      : 0;
 
   const hasDiscount = pct > 0;
   const discountedPrice = hasDiscount
@@ -81,9 +84,7 @@ const CatalogItem = ({ item, discountPct, onClick }) => {
         </div>
 
         {hasDiscount && (
-          <p className="mt-1 text-xs text-emerald-600 font-medium">
-            -{pct}% de descuento
-          </p>
+          <p className="mt-1 text-xs text-emerald-600 font-medium">-{pct}% de descuento</p>
         )}
       </div>
     </motion.article>
