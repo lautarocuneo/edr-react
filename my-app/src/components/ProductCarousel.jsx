@@ -5,31 +5,31 @@ import "./ProductCarousel.css";
 const products = [
   {
     image:
-      "https://images.unsplash.com/photo-1616469829510-733d9d89d5fa?auto=format&fit=crop&w=1400&q=80",
+      "fotos-product-carrousel/camaras.png",
     title: "Cámaras",
     link: "#camaras",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1581093808360-1e7b89c2c8d1?auto=format&fit=crop&w=1400&q=80",
+      "fotos-product-carrousel/luces.png",
     title: "Luces",
     link: "#luces",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1617005081984-388a564d42e2?auto=format&fit=crop&w=1400&q=80",
+      "fotos-product-carrousel/grip.png",
     title: "Grip",
     link: "#grip",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1621803172688-2d4a7f6d0d1a?auto=format&fit=crop&w=1400&q=80",
+      "fotos-product-carrousel/tripodes.png",
     title: "Trípodes",
     link: "#tripodes",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1606813902873-3f75f3d44384?auto=format&fit=crop&w=1400&q=80",
+      "fotos-product-carrousel/opticas.png",
     title: "Ópticas",
     link: "#opticas",
   },
@@ -89,7 +89,7 @@ const ProductCarousel = () => {
   return (
     <section className="bg-[#0B0B0C] py-16">
       <div className="max-w-[1440px] mx-auto text-center mb-10 px-6">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#FFFFFF] pb-12 tracking-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#FFFFFF] pb-0 tracking-tight">
           EQUIPOS
         </h2>
       </div>
