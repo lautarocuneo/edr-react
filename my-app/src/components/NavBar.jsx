@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { Link } from "react-router-dom"; // ✅ agregado
 
 const EDR = "#2A86E2";
 
@@ -28,42 +29,61 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  const LinkItem = ({ href, section, children, onClick }) => {
+  const LinkItem = ({ href, section, children, onClick, isRouterLink = false }) => {
     const isActive = activeLink === section;
+
+    const baseClasses = [
+      "group relative inline-block cursor-pointer tracking-wide",
+    ].join(" ");
+
+    const textClasses = [
+      "relative z-10 select-none uppercase text-sm font-medium",
+      isActive ? "text-[color:var(--edr)]" : "text-white",
+      "transition-colors duration-200",
+      !isActive ? "group-hover:text-[color:var(--edr)] delay-[300ms]" : "",
+    ].join(" ");
+
+    const underline1 = [
+      "pointer-events-none absolute left-0 -bottom-1 h-[1px] w-full origin-left bg-white",
+      "transition-transform duration-300",
+      isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
+    ].join(" ");
+
+    const underline2 = [
+      "pointer-events-none absolute left-0 -bottom-1 h-[1px] w-full bg-[color:var(--edr)]",
+      "transition-opacity duration-200",
+      isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100 delay-[300ms]",
+    ].join(" ");
+
+    const linkContent = (
+      <>
+        <span className={textClasses}>{children}</span>
+        <span className={underline1} />
+        <span className={underline2} />
+      </>
+    );
+
     return (
       <li>
-        <a
-          href={href}
-          onClick={onClick}
-          className="group relative inline-block cursor-pointer tracking-wide"
-          style={{ "--edr": EDR }}
-        >
-          <span
-            className={[
-              "relative z-10 select-none uppercase text-sm font-medium",
-              isActive ? "text-[color:var(--edr)]" : "text-white",
-              "transition-colors duration-200",
-              !isActive ? "group-hover:text-[color:var(--edr)] delay-[300ms]" : "",
-            ].join(" ")}
+        {isRouterLink ? (
+          <Link
+            to={href}
+            onClick={onClick}
+            className={baseClasses}
+            style={{ "--edr": EDR }}
           >
-            {children}
-          </span>
-
-          <span
-            className={[
-              "pointer-events-none absolute left-0 -bottom-1 h-[1px] w-full origin-left bg-white",
-              "transition-transform duration-300",
-              isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
-            ].join(" ")}
-          />
-          <span
-            className={[
-              "pointer-events-none absolute left-0 -bottom-1 h-[1px] w-full bg-[color:var(--edr)]",
-              "transition-opacity duration-200",
-              isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100 delay-[300ms]",
-            ].join(" ")}
-          />
-        </a>
+            {linkContent}
+          </Link>
+        ) : (
+          <a
+            href={href}
+            onClick={onClick}
+            className={baseClasses}
+            style={{ "--edr": EDR }}
+          >
+            {linkContent}
+          </a>
+        )}
       </li>
     );
   };
@@ -89,9 +109,17 @@ const NavBar = () => {
           <LinkItem href="#home" section="home" onClick={() => setActiveLink("home")}>
             Inicio
           </LinkItem>
-          <LinkItem href="#catalogo" section="catalogo" onClick={() => setActiveLink("catalogo")}>
+
+          {/* ✅ Catálogo ahora redirige a /catalogo */}
+          <LinkItem
+            href="/catalogo"
+            section="catalogo"
+            onClick={() => setActiveLink("catalogo")}
+            isRouterLink
+          >
             Catálogo
           </LinkItem>
+
           <LinkItem href="#rental" section="rental" onClick={() => setActiveLink("rental")}>
             Rental de equipos
           </LinkItem>
@@ -146,9 +174,17 @@ const NavBar = () => {
             <LinkItem href="#home" section="home" onClick={() => { setActiveLink("home"); handleNav(); }}>
               Inicio
             </LinkItem>
-            <LinkItem href="#catalogo" section="catalogo" onClick={() => { setActiveLink("catalogo"); handleNav(); }}>
+
+            {/* ✅ Catálogo en menú mobile redirige a /catalogo */}
+            <LinkItem
+              href="/catalogo"
+              section="catalogo"
+              onClick={() => { setActiveLink("catalogo"); handleNav(); }}
+              isRouterLink
+            >
               Catálogo
             </LinkItem>
+
             <LinkItem href="#rental" section="rental" onClick={() => { setActiveLink("rental"); handleNav(); }}>
               Rental de equipos
             </LinkItem>
