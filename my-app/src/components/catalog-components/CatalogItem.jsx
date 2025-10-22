@@ -1,6 +1,5 @@
 import React from "react";
 import { Badge } from "flowbite-react";
-import { motion } from "framer-motion";
 
 function formatCurrencyARS(value) {
   return value.toLocaleString("es-AR", {
@@ -31,13 +30,8 @@ const CatalogItem = ({ item, discountPct, onClick }) => {
     : item.price;
 
   return (
-    <motion.article
-      layout
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 16 }}
-      transition={{ duration: 0.35, ease: "easeOut" }}
-      className="rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100"
+    <article
+      className="rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 cursor-pointer"
       onClick={onClick}
       role="button"
     >
@@ -87,7 +81,7 @@ const CatalogItem = ({ item, discountPct, onClick }) => {
           <p className="mt-1 text-xs text-emerald-600 font-medium">-{pct}% de descuento</p>
         )}
       </div>
-    </motion.article>
+    </article>
   );
 };
 

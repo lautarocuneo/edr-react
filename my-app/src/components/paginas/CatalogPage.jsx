@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from "react";
 import { Sidebar, TextInput, Checkbox, Label, Select, Badge } from "flowbite-react";
-import { motion, AnimatePresence } from "framer-motion";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import CatalogItem from "../catalog-components/CatalogItem";
 
@@ -10,7 +9,7 @@ const ALL_ITEMS = [
   { id: "p2",  title: "Amber Ring",            image: "/catalog/amber-ring.jpg",     price: 42600, inStock: true,  category: "Ring",     discountPct: 0,  addedAt: "2025-09-10" },
   { id: "p3",  title: "Cloud Spinner",         image: "/catalog/cloud-spinner.jpg",  price: 34500, inStock: true,  category: "Spinner",  addedAt: "2025-08-20" },
   { id: "p4",  title: "Ghost Coin V2",         image: "/catalog/ghost-coin.jpg",     price: 38999, inStock: false, category: "Coins",    discountPct: 5,  addedAt: "2025-07-01" },
-  { id: "p5",  title: "Mini Multitool K1",     image: "/catalog/multitool.jpg",       price: 52999, inStock: true,  category: "Multitool",addedAt: "2025-09-30" },
+  { id: "p5",  title: "Mini Multitool K1",     image: "/catalog/multitool.jpg",      price: 52999, inStock: true,  category: "Multitool",addedAt: "2025-09-30" },
   { id: "p6",  title: "Orbit Ring",            image: "/catalog/orbit-ring.jpg",     price: 39999, inStock: true,  category: "Ring",     addedAt: "2025-09-05" },
   { id: "p7",  title: "Neo Slider Matte",      image: "/catalog/neo-slider.jpg",     price: 41999, inStock: true,  category: "Slider",   discountPct: 15, addedAt: "2025-10-01" },
   { id: "p8",  title: "Wave Spinner",          image: "/catalog/wave-spinner.jpg",   price: 36999, inStock: false, category: "Spinner",  addedAt: "2025-09-25" },
@@ -26,31 +25,21 @@ const CATEGORIES = ["Coins", "Multitool", "Otro", "Ring", "Slider", "Spinner"];
 function normalize(s) {
   return s.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
 }
-
 function safeDate(d) {
   const t = Date.parse(d);
   return Number.isNaN(t) ? 0 : t;
 }
-
 function applyFiltersAndSort(items, { q, selectedCats, onlyStock, priceMin, priceMax, sortKey }) {
   let data = [...items];
 
-  // texto
   if (q) {
     const nq = normalize(q);
     data = data.filter((it) => normalize(it.title).includes(nq) || normalize(it.category).includes(nq));
   }
-
-  // categorías
   if (selectedCats.size > 0) data = data.filter((it) => selectedCats.has(it.category));
-
-  // stock
   if (onlyStock) data = data.filter((it) => it.inStock);
-
-  // precio
   data = data.filter((it) => it.price >= priceMin && it.price <= priceMax);
 
-  // orden
   data.sort((a, b) => {
     switch (sortKey) {
       case "az":        return a.title.localeCompare(b.title, "es");
@@ -61,7 +50,6 @@ function applyFiltersAndSort(items, { q, selectedCats, onlyStock, priceMin, pric
       default:          return 0;
     }
   });
-
   return data;
 }
 
@@ -74,7 +62,6 @@ const CatalogPage = () => {
   const [priceMin, setPriceMin] = useState(30000);
   const [priceMax, setPriceMax] = useState(60000);
 
-  // mantener coherencia (que min <= max)
   const min = Math.min(priceMin, priceMax);
   const max = Math.max(priceMin, priceMax);
 
@@ -140,7 +127,6 @@ const CatalogPage = () => {
           {/* Sidebar filtros */}
           <aside className="lg:col-span-3">
             <Sidebar aria-label="Filtros de catálogo" className="rounded-xl shadow-sm">
-              {/* ¡Sin Sidebar.Items / ItemGroup! */}
               <div className="px-2 py-2">
                 <p className="text-sm font-semibold text-gray-900">Filtrar:</p>
               </div>
@@ -230,33 +216,21 @@ const CatalogPage = () => {
 
           {/* Grilla de productos */}
           <section className="lg:col-span-9">
-            <AnimatePresence mode="popLayout">
-              {results.length === 0 ? (
-                <motion.div
-                  key="empty"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="text-center py-24 text-gray-500"
-                >
-                  No se encontraron productos con esos filtros.
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="grid"
-                  layout
-                  className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"
-                >
-                  {results.map((item) => (
-                    <CatalogItem
-                      key={item.id}
-                      item={item}
-                      onClick={() => console.log("Ver producto:", item.id)}
-                    />
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {results.length === 0 ? (
+              <div className="text-center py-24 text-gray-500">
+                No se encontraron productos con esos filtros.
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                {results.map((item) => (
+                  <CatalogItem
+                    key={item.id}
+                    item={item}
+                    onClick={() => console.log("Ver producto:", item.id)}
+                  />
+                ))}
+              </div>
+            )}
           </section>
         </div>
       </section>
