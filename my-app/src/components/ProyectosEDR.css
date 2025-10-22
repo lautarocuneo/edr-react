@@ -1,6 +1,5 @@
 /* ================================
-   Proyectos EDR — Mini Carrusel
-   Namespaced con prefijo pedr-
+   Proyectos EDR — Carrusel infinito real
    ================================ */
 
 .pedr-container {
@@ -10,20 +9,31 @@
   padding: 10px 0;
 }
 
+/* Track animado por distancia en px (variable) */
 .pedr-track {
   display: flex;
+  flex-wrap: nowrap;
   gap: 1.5rem;
-  animation: pedr-scroll-mini 40s linear infinite; /* subí este valor para bajar la velocidad */
+  /* Variables CSS controladas desde React */
+  --pedr-distance: 1000px;  /* fallback */
+  --pedr-duration: 8s;      /* fallback rápido */
+  animation: pedr-marquee var(--pedr-duration) linear infinite;
+}
+
+/* Un set = bloque de items contiguos que se repite */
+.pedr-set {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
 }
 
 .pedr-item {
   flex: 0 0 auto;
   width: 180px;
-  aspect-ratio: 1 / 1;
+  height: 180px;
   border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.4s ease;
-  cursor: pointer;
+  transition: transform 0.25s ease;
 }
 
 .pedr-item:hover {
@@ -34,21 +44,33 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-/* Animación de scroll infinito (duplicar array para empalme) */
-@keyframes pedr-scroll-mini {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+/* La animación mueve EXACTAMENTE el ancho del primer set */
+@keyframes pedr-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* desplazamos exactamente el ancho del primer set */
+    transform: translateX(calc(var(--pedr-distance) * -1));
+  }
+}
+
+/* Pausa con hover (opcional) */
+.pedr-container:hover .pedr-track {
+  animation-play-state: paused;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .pedr-item {
     width: 130px;
+    height: 130px;
   }
-  .pedr-track {
+  .pedr-track,
+  .pedr-set {
     gap: 1rem;
-    animation-duration: 25s; /* un poquito más rápido en mobile */
   }
 }
