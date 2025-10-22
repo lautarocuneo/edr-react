@@ -3,29 +3,25 @@ import "./ProyectosEDR.css"; // usa clases pedr-*
 
 const proyectos = [
   {
-    image:
-      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80",
+    image: "/fotos-proyectos-landing/3.png",
     title: "Videoclips",
     subtitle: "Producción audiovisual integral",
     link: "/videoclips",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
+    image: "/fotos-proyectos-landing/1.png",
     title: "Películas",
     subtitle: "Rodajes en estudio y exteriores",
     link: "/peliculas",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=800&q=80",
+    image: "/fotos-proyectos-landing/2.png",
     title: "Series",
     subtitle: "Iluminación y cámara profesional",
     link: "/series",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1517602302552-471fe67acf66?auto=format&fit=crop&w=800&q=80",
+    image: "/fotos-proyectos-landing/4.png",
     title: "Junkets",
     subtitle: "Dirección cinematográfica",
     link: "/junkets",
