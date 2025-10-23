@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import React from "react";
+import { motion } from "framer-motion";
 import NavBar from "../NavBar";
 import Footer from "../Footer";
 import WhatsAppButton from "../WhatsAppIcon";
@@ -8,116 +7,61 @@ import WhatsAppButton from "../WhatsAppIcon";
 // ===================== DATA =====================
 const PROJECTS = {
   Cine: [
-    {
-      id: 1,
-      title: "El Eternauta",
-      subtitle: "Alquiler de utilería",
-      images: ["/proyectos/eternauta1.jpg", "/proyectos/eternauta2.jpg"],
-    },
-    {
-      id: 2,
-      title: "Argentina, 1985",
-      subtitle: "Rental de cámaras y luces",
-      images: ["/proyectos/arg1985a.jpg", "/proyectos/arg1985b.jpg"],
-    },
-    {
-      id: 3,
-      title: "El secreto de sus ojos",
-      subtitle: "Rental de cámaras y luces",
-      images: ["/proyectos/arg1985a.jpg", "/proyectos/arg1985b.jpg"],
-    },
+    { title: "El Eternauta", subtitle: "Alquiler de utilería", img: "https://images.unsplash.com/photo-1517602302552-471fe67acf66" },
+    { title: "Argentina, 1985", subtitle: "Rental de cámaras y luces", img: "https://images.unsplash.com/photo-1602526432604-b24fef89c246" },
+    { title: "El secreto de sus ojos", subtitle: "Soporte de cámara", img: "https://images.unsplash.com/photo-1582719478181-b5f49c8c3c95" },
+    { title: "La Odisea de los Giles", subtitle: "Producción técnica", img: "https://images.unsplash.com/photo-1615397349754-452dc83a66ef" },
   ],
   Videoclips: [
-    {
-      id: 3,
-      title: "Feel Me?? – Trueno",
-      subtitle: "Producción y cámara",
-      images: ["/proyectos/trueno1.jpg", "/proyectos/trueno2.jpg"],
-    },
-    {
-      id: 4,
-      title: "Quiénes Son – Lali Espósito",
-      subtitle: "Asistencia de rodaje",
-      images: ["/proyectos/lali1.jpg", "/proyectos/lali2.jpg"],
-    },
+    { title: "Feel Me?? – Trueno", subtitle: "Producción y cámara", img: "https://images.unsplash.com/photo-1558365918-43d8291d3cc5" },
+    { title: "Quiénes Son – Lali Espósito", subtitle: "Asistencia de rodaje", img: "https://images.unsplash.com/photo-1619454563733-ef6a78c6b8f2" },
+    { title: "Flow – Duki", subtitle: "Dirección de arte", img: "https://images.unsplash.com/photo-1535223289827-42f1e9919769" },
   ],
   Series: [
-    {
-      id: 5,
-      title: "El Reino",
-      subtitle: "Grip y soporte de cámara",
-      images: ["/proyectos/reino1.jpg", "/proyectos/reino2.jpg"],
-    },
-    {
-      id: 6,
-      title: "División Palermo",
-      subtitle: "Alquiler de luces y video assist",
-      images: ["/proyectos/palermo1.jpg", "/proyectos/palermo2.jpg"],
-    },
+    { title: "El Reino", subtitle: "Grip y soporte de cámara", img: "https://images.unsplash.com/photo-1579547621706-1a9c79d5c1c6" },
+    { title: "División Palermo", subtitle: "Alquiler de luces y video assist", img: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f" },
+    { title: "Monzón", subtitle: "Montaje y utilería", img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c" },
   ],
   Junkets: [
-    {
-      id: 7,
-      title: "Netflix – Stranger Things",
-      subtitle: "Montaje y cámara",
-      images: ["/proyectos/netflix1.jpg", "/proyectos/netflix2.jpg"],
-    },
-    {
-      id: 8,
-      title: "Disney+ – Loki",
-      subtitle: "Producción técnica completa",
-      images: ["/proyectos/loki1.jpg", "/proyectos/loki2.jpg"],
-    },
+    { title: "Netflix – Stranger Things", subtitle: "Montaje y cámara", img: "https://images.unsplash.com/photo-1602526432604-b24fef89c246" },
+    { title: "Disney+ – Loki", subtitle: "Producción técnica completa", img: "https://images.unsplash.com/photo-1603791452906-bb7b1a4cebb3" },
+    { title: "HBO – Euphoria", subtitle: "Dirección de fotografía", img: "https://images.unsplash.com/photo-1532635241-17e820acc59b" },
   ],
 };
 
-// ===================== CARRUSEL =====================
-const Carousel = ({ project }) => {
-  const [index, setIndex] = useState(0);
-  const next = () => setIndex((i) => (i + 1) % project.images.length);
-  const prev = () => setIndex((i) => (i - 1 + project.images.length) % project.images.length);
+// ===================== TIRA INFINITA =====================
+const InfiniteStrip = ({ projects, reverse = false, speed = 40 }) => {
+  const imgs = [...projects, ...projects];
 
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 shadow-lg">
-      <div className="aspect-[16/9] w-full overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={index}
-            src={project.images[index]}
-            alt={project.title}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.5 }}
-            className="w-full h-full object-cover"
-          />
-        </AnimatePresence>
-      </div>
-
-      {/* Info */}
-      <div className="absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent p-4">
-        <h3 className="text-xl font-semibold">{project.title}</h3>
-        <p className="text-gray-300 text-sm">{project.subtitle}</p>
-      </div>
-
-      {/* Controles */}
-      <button
-        onClick={prev}
-        className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 p-2 rounded-full"
+    <div className="overflow-hidden relative w-full">
+      <motion.div
+        className="flex gap-3"
+        animate={{ x: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }}
+        transition={{ repeat: Infinity, ease: "linear", duration: speed }}
       >
-        <ChevronLeftIcon className="w-5 h-5 text-white" />
-      </button>
-      <button
-        onClick={next}
-        className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 p-2 rounded-full"
-      >
-        <ChevronRightIcon className="w-5 h-5 text-white" />
-      </button>
+        {imgs.map((p, i) => (
+          <div
+            key={i}
+            className="relative flex-shrink-0 rounded-xl overflow-hidden aspect-[16/9] w-[320px] sm:w-[420px] lg:w-[480px]"
+          >
+            <img
+              src={p.img}
+              alt={p.title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-3">
+              <h3 className="text-base sm:text-lg font-semibold">{p.title}</h3>
+              <p className="text-gray-300 text-xs sm:text-sm">{p.subtitle}</p>
+            </div>
+          </div>
+        ))}
+      </motion.div>
     </div>
   );
 };
 
-// ===================== COMPONENTE PRINCIPAL =====================
+// ===================== PÁGINA =====================
 const ProyectosPage = () => {
   return (
     <div className="bg-[#0B0B0C] min-h-screen text-white">
@@ -126,20 +70,19 @@ const ProyectosPage = () => {
       <div className="h-20" />
 
       <main className="max-w-[1400px] mx-auto px-6 pt-12 pb-20 space-y-24">
-        {Object.entries(PROJECTS).map(([category, items]) => (
+        {Object.entries(PROJECTS).map(([category, projects], idx) => (
           <section key={category}>
-            <div className="text-center mb-10">
-              <h2 className="text-4xl font-extrabold uppercase tracking-wide text-[#2A86E2] mb-2">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-extrabold uppercase tracking-wide text-[#2A86E2] mb-2">
                 {category}
               </h2>
               <div className="mx-auto w-20 h-[3px] bg-[#2A86E2]/60 rounded" />
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {items.map((p) => (
-                <Carousel key={p.id} project={p} />
-              ))}
-            </div>
+            <InfiniteStrip
+              projects={projects}
+              reverse={idx % 2 === 1}
+              speed={idx % 2 === 0 ? 45 : 35}
+            />
           </section>
         ))}
       </main>
