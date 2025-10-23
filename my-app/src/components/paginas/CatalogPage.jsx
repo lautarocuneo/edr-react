@@ -1,7 +1,18 @@
 import React, { useMemo, useState } from "react";
-import { Sidebar, TextInput, Checkbox, Label, Select, Badge } from "flowbite-react";
+import {
+  Sidebar,
+  TextInput,
+  Checkbox,
+  Label,
+  Select,
+  Badge,
+  Button,
+  Drawer,
+  DrawerHeader,
+  DrawerItems
+} from "flowbite-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon, FunnelIcon } from "@heroicons/react/24/outline";
 import CatalogItem from "../catalog-components/CatalogItem";
 
 // Reutilizamos tus componentes de la landing
@@ -38,22 +49,23 @@ function safeDate(d) {
 function applyFiltersAndSort(items, { q, selectedCats, onlyStock, priceMin, priceMax, sortKey }) {
   let data = [...items];
 
-  // texto
   if (q) {
     const nq = normalize(q);
-    data = data.filter((it) => normalize(it.title).includes(nq) || normalize(it.category).includes(nq));
+    data = data.filter((it) =>
+      normalize(it.title).includes(nq) || normalize(it.category).includes(nq)
+    );
   }
 
-  // categorías
-  if (selectedCats.size > 0) data = data.filter((it) => selectedCats.has(it.category));
+  if (selectedCats.size > 0) {
+    data = data.filter((it) => selectedCats.has(it.category));
+  }
 
-  // stock
-  if (onlyStock) data = data.filter((it) => it.inStock);
+  if (onlyStock) {
+    data = data.filter((it) => it.inStock);
+  }
 
-  // precio
   data = data.filter((it) => it.price >= priceMin && it.price <= priceMax);
 
-  // orden
   data.sort((a, b) => {
     switch (sortKey) {
       case "az":        return a.title.localeCompare(b.title, "es");
@@ -76,37 +88,148 @@ const CatalogPage = () => {
   const [sortKey, setSortKey] = useState("az");
   const [priceMin, setPriceMin] = useState(30000);
   const [priceMax, setPriceMax] = useState(60000);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  // mantener coherencia (que min <= max)
   const min = Math.min(priceMin, priceMax);
   const max = Math.max(priceMin, priceMax);
 
   const results = useMemo(
-    () => applyFiltersAndSort(ALL_ITEMS, { q, selectedCats, onlyStock, priceMin: min, priceMax: max, sortKey }),
+    () =>
+      applyFiltersAndSort(ALL_ITEMS, {
+        q,
+        selectedCats,
+        onlyStock,
+        priceMin: min,
+        priceMax: max,
+        sortKey,
+      }),
     [q, selectedCats, onlyStock, min, max, sortKey]
   );
 
   const toggleCat = (cat) => {
     setSelectedCats((prev) => {
       const next = new Set(prev);
-      if (next.has(cat)) next.delete(cat); else next.add(cat);
+      if (next.has(cat)) next.delete(cat);
+      else next.add(cat);
       return next;
     });
   };
 
+  const FilterContent = (
+    <Sidebar
+      aria-label="Filtros de catálogo"
+      className="rounded-xl shadow-sm bg-gray-900/80 backdrop-blur border border-gray-800 p-2"
+    >
+      <div className="px-4 py-3">
+        <p className="text-sm font-semibold">Filtrar</p>
+      </div>
+
+      <div className="px-4 py-2">
+        <p className="text-sm font-medium text-gray-300 mb-2">
+          Tipo de fidget
+        </p>
+        <div className="space-y-2">
+          {CATEGORIES.map((cat) => (
+            <label key={cat} className="flex items-center gap-2">
+              <Checkbox
+                checked={selectedCats.has(cat)}
+                onChange={() => toggleCat(cat)}
+                className="rounded border-gray-600"
+              />
+              <span className="text-sm">{cat}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div className="px-4 py-2">
+        <p className="text-sm font-medium text-gray-300 mb-2">
+          Disponibilidad
+        </p>
+        <label className="flex items-center gap-2">
+          <Checkbox
+            checked={onlyStock}
+            onChange={() => setOnlyStock((v) => !v)}
+            className="rounded border-gray-600"
+          />
+          <span className="text-sm">En stock</span>
+        </label>
+      </div>
+
+      <div className="px-4 py-2">
+        <div className="flex items-center justify-between">
+          <p className="text-sm font-medium text-gray-300">Precio</p>
+          <Badge className="text-xs bg-[#2A86E2] text-white border-0">
+            ARS
+          </Badge>
+        </div>
+
+        <div className="mt-3">
+          <Label htmlFor="min" className="text-gray-300">
+            Mínimo
+          </Label>
+          <TextInput
+            id="min"
+            type="number"
+            value={priceMin}
+            onChange={(e) => setPriceMin(Number(e.target.value || 0))}
+            min={0}
+            className="bg-gray-900 border-gray-700 text-white placeholder-gray-400"
+          />
+        </div>
+        <div className="mt-3">
+          <Label htmlFor="max" className="text-gray-300">
+            Máximo
+          </Label>
+          <TextInput
+            id="max"
+            type="number"
+            value={priceMax}
+            onChange={(e) => setPriceMax(Number(e.target.value || 0))}
+            min={0}
+            className="bg-gray-900 border-gray-700 text-white placeholder-gray-400"
+          />
+        </div>
+
+        <div className="mt-4 space-y-3">
+          <Label className="block text-gray-300">Rango rápido (mín.)</Label>
+          <input
+            type="range"
+            min={30000}
+            max={60000}
+            step={1000}
+            value={priceMin}
+            onChange={(e) => setPriceMin(Number(e.target.value))}
+            className="w-full accent-[#2A86E2]"
+          />
+          <Label className="block text-gray-300">Rango rápido (máx.)</Label>
+          <input
+            type="range"
+            min={30000}
+            max={60000}
+            step={1000}
+            value={priceMax}
+            onChange={(e) => setPriceMax(Number(e.target.value))}
+            className="w-full accent-[#2A86E2]"
+          />
+        </div>
+      </div>
+    </Sidebar>
+  );
+
   return (
     <div className="bg-[#0B0B0C] min-h-screen text-white">
-      {/* Top fixed UI igual que en la landing */}
       <WhatsAppButton />
       <NavBar />
       <div className="h-20" />
 
       <main className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-10">
-        {/* Título y barra de herramientas */}
         <div className="flex items-start justify-between gap-6">
           <div>
             <h1 className="text-4xl sm:text-5xl font-extrabold">Productos</h1>
-            <p className="text-gray-300 mt-2">Catálogo completo • {results.length} resultados</p>
+            <p className="text-gray-300 mt-2">
+              Catálogo completo • {results.length} resultados
+            </p>
           </div>
 
           <div className="hidden md:flex items-center gap-3 w-[520px]">
@@ -131,128 +254,27 @@ const CatalogPage = () => {
           </div>
         </div>
 
-        {/* Toolbar en mobile */}
-        <div className="mt-4 md:hidden grid grid-cols-1 gap-3">
-          <TextInput
-            icon={MagnifyingGlassIcon}
-            placeholder="Buscar por nombre o categoría…"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            className="bg-gray-900 border-gray-700 text-white placeholder-gray-400"
-          />
-          <Select
-            value={sortKey}
-            onChange={(e) => setSortKey(e.target.value)}
-            className="bg-gray-900 border-gray-700 text-white"
+        {/* Botón filtros en mobile */}
+        <div className="mt-6 flex items-center justify-between md:hidden">
+          <Button
+            onClick={() => setIsFilterOpen(true)}
+            className="flex items-center gap-2 bg-gray-900 px-4 py-2 rounded-lg border border-gray-700"
           >
-            <option value="az">Alfabéticamente, A–Z</option>
-            <option value="za">Alfabéticamente, Z–A</option>
-            <option value="priceAsc">Precio: menor a mayor</option>
-            <option value="priceDesc">Precio: mayor a menor</option>
-            <option value="newest">Más recientes</option>
-          </Select>
+            <FunnelIcon className="w-5 h-5 text-[#2A86E2]" />
+            <span className="text-sm text-gray-200">Filtrar y ordenar</span>
+          </Button>
+          <p className="text-sm text-gray-400">{results.length} productos</p>
         </div>
 
+        <Drawer open={isFilterOpen} onClose={() => setIsFilterOpen(false)} position="left">
+          <DrawerHeader title="Filtros" />
+          <DrawerItems>{FilterContent}</DrawerItems>
+        </Drawer>
+
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Sidebar filtros */}
-          <aside className="lg:col-span-3">
-            <Sidebar
-              aria-label="Filtros de catálogo"
-              className="rounded-xl shadow-sm bg-gray-900/70 backdrop-blur border border-gray-800"
-            >
-              {/* ¡Sin Sidebar.Items / ItemGroup! */}
-              <div className="px-4 py-3">
-                <p className="text-sm font-semibold">Filtrar</p>
-              </div>
+          {/* Sidebar visible solo en desktop */}
+          <aside className="hidden lg:block lg:col-span-3">{FilterContent}</aside>
 
-              {/* Tipo de fidget */}
-              <div className="px-4 py-2">
-                <p className="text-sm font-medium text-gray-300 mb-2">Tipo de fidget</p>
-                <div className="space-y-2">
-                  {CATEGORIES.map((cat) => (
-                    <label key={cat} className="flex items-center gap-2">
-                      <Checkbox
-                        checked={selectedCats.has(cat)}
-                        onChange={() => toggleCat(cat)}
-                        className="rounded border-gray-600"
-                      />
-                      <span className="text-sm">{cat}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Disponibilidad */}
-              <div className="px-4 py-2">
-                <p className="text-sm font-medium text-gray-300 mb-2">Disponibilidad</p>
-                <label className="flex items-center gap-2">
-                  <Checkbox
-                    checked={onlyStock}
-                    onChange={() => setOnlyStock((v) => !v)}
-                    className="rounded border-gray-600"
-                  />
-                  <span className="text-sm">En stock</span>
-                </label>
-              </div>
-
-              {/* Precio */}
-              <div className="px-4 py-2">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium text-gray-300">Precio</p>
-                  <Badge className="text-xs bg-[#2A86E2] text-white border-0">ARS</Badge>
-                </div>
-
-                <div className="mt-3">
-                  <Label htmlFor="min" className="text-gray-300">Mínimo</Label>
-                  <TextInput
-                    id="min"
-                    type="number"
-                    value={priceMin}
-                    onChange={(e) => setPriceMin(Number(e.target.value || 0))}
-                    min={0}
-                    className="bg-gray-900 border-gray-700 text-white placeholder-gray-400"
-                  />
-                </div>
-                <div className="mt-3">
-                  <Label htmlFor="max" className="text-gray-300">Máximo</Label>
-                  <TextInput
-                    id="max"
-                    type="number"
-                    value={priceMax}
-                    onChange={(e) => setPriceMax(Number(e.target.value || 0))}
-                    min={0}
-                    className="bg-gray-900 border-gray-700 text-white placeholder-gray-400"
-                  />
-                </div>
-
-                {/* Rango rápido (inputs nativos) */}
-                <div className="mt-4 space-y-3">
-                  <Label className="block text-gray-300">Rango rápido (mín.)</Label>
-                  <input
-                    type="range"
-                    min={30000}
-                    max={60000}
-                    step={1000}
-                    value={priceMin}
-                    onChange={(e) => setPriceMin(Number(e.target.value))}
-                    className="w-full accent-[#2A86E2]"
-                  />
-                  <Label className="block text-gray-300">Rango rápido (máx.)</Label>
-                  <input
-                    type="range"
-                    min={30000}
-                    max={60000}
-                    step={1000}
-                    value={priceMax}
-                    onChange={(e) => setPriceMax(Number(e.target.value))}
-                    className="w-full accent-[#2A86E2]"
-                  />
-                </div>
-              </div>
-            </Sidebar>
-          </aside>
-
-          {/* Grilla de productos */}
           <section className="lg:col-span-9">
             <AnimatePresence mode="popLayout">
               {results.length === 0 ? (
@@ -267,10 +289,10 @@ const CatalogPage = () => {
                 </motion.div>
               ) : (
                 <motion.div
-                      key="grid"
-                      layout="position"
-                      className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"
-                    >
+                  key="grid"
+                  layout="position"
+                  className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"
+                >
                   {results.map((item) => (
                     <CatalogItem
                       key={item.id}
@@ -285,7 +307,6 @@ const CatalogPage = () => {
         </div>
       </main>
 
-      {/* Footer igual que la landing */}
       <footer className="relative bg-black text-white">
         <Footer />
       </footer>
