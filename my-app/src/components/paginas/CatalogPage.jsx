@@ -833,10 +833,6 @@ const CATEGORIES = [
 function normalize(s) {
   return s.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
 }
-function safeDate(d) {
-  const t = Date.parse(d);
-  return Number.isNaN(t) ? 0 : t;
-}
 function applyFiltersAndSort(items, { q, selectedCats, onlyStock, sortKey }) {
   let data = [...items];
   if (q) {
@@ -862,7 +858,7 @@ function applyFiltersAndSort(items, { q, selectedCats, onlyStock, sortKey }) {
 const CatalogPage = () => {
   const [q, setQ] = useState("");
   const [selectedCats, setSelectedCats] = useState(new Set());
-  const [onlyStock, setOnlyStock] = useState(false);
+  const [onlyStock] = useState(false);
   const [sortKey, setSortKey] = useState("az");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1); // 👈 página actual
