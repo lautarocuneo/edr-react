@@ -1,7 +1,7 @@
 import React from "react";
 import Map from "./Map";
 import ContactUs from "./ContactUs";
-import { FiPhone, FiMail, FiInstagram, FiMapPin } from "react-icons/fi";
+import { FiPhone, FiInstagram, FiMapPin } from "react-icons/fi";
 
 const Contacto = () => {
   return (

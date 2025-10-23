@@ -102,11 +102,6 @@ function useMarqueeDistance() {
 const ProyectosEDR = () => {
   const { containerRef, firstSetRef, distance } = useMarqueeDistance();
 
-  // Duplicamos el set para loop continuo
-  const items = useMemo(
-    () => [...fotosProyectos, ...fotosProyectos],
-    []
-  );
 
   // Velocidad: cuanto más chico el número, más rápido (px/s)
   const SPEED_PX_PER_SEC = 70; // podés subir/bajar a gusto
