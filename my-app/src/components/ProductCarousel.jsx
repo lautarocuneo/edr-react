@@ -24,7 +24,7 @@ const products = [
   {
     image:
       "fotos-product-carrousel/tripodes.png",
-    title: "Trípodes",
+    title: "Trípodes y cabezales",
     link: "#tripodes",
   },
   {
