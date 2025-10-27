@@ -59,13 +59,10 @@ const Footer = () => {
             </h6>
             <ul className="flex items-center justify-center gap-6">
               <li className="text-sm hover:text-[#2A86E2] transition-colors duration-300">
-                <a href="#equipos">Rodaje</a>
+                <a href="#equipos">Proyectos</a>
               </li>
               <li className="text-sm hover:text-[#2A86E2] transition-colors duration-300">
-                <a href="#utileria">Utilería</a>
-              </li>
-              <li className="text-sm hover:text-[#2A86E2] transition-colors duration-300">
-                <a href="#nosotros">Nosotros</a>
+                <a href="#nosotros">Catálogo</a>
               </li>
               <li className="text-sm hover:text-[#2A86E2] transition-colors duration-300">
                 <a href="#contacto">Contacto</a>

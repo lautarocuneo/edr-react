@@ -30,7 +30,7 @@ const ALL_ITEMS = [
     stock: true,
     image: "",
     category: "camara",
-    discountPct: 15   // 👈 esto activa el descuento automáticamente
+    
 
   },
   {
@@ -67,6 +67,7 @@ const ALL_ITEMS = [
     price: "$570.000 por jornada",
     image: "",
     category: "camara",
+    discountPct: 50  
   },
   {
     id: "p7",
@@ -158,6 +159,7 @@ const ALL_ITEMS = [
     price: "$250.000 por jornada",
     image: "",
     category: "camara",
+    discountPct: 50 
   },
   {
     id: "p20",

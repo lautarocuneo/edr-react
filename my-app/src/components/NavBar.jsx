@@ -31,6 +31,7 @@ const NavBar = () => {
 
   const handleNav = () => setNav(!nav);
 
+  // 🔹 Detecta ruta activa
   useEffect(() => {
     if (location.pathname === "/catalogo") {
       setActiveLink("catalogo");
@@ -41,6 +42,7 @@ const NavBar = () => {
     }
   }, [location.pathname]);
 
+  // 🔹 Oculta navbar al hacer scroll hacia abajo
   useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.scrollY;
@@ -51,6 +53,7 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  // 🔹 Scroll hacia el inicio
   const goHome = () => {
     if (location.pathname !== "/") {
       navigate("/");
@@ -60,6 +63,22 @@ const NavBar = () => {
     }
   };
 
+  // 🔹 Scroll hacia la sección "Contacto"
+  const goToContact = () => {
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        const section = document.getElementById("contacto");
+        if (section) section.scrollIntoView({ behavior: "smooth" });
+      }, 500);
+    } else {
+      const section = document.getElementById("contacto");
+      if (section) section.scrollIntoView({ behavior: "smooth" });
+    }
+    setNav(false);
+  };
+
+  // 🔹 Ir a categoría específica
   const goToCatalogCategory = (cat) => {
     navigate(`/catalogo?cat=${cat}`);
     setShowDropdown(false);
@@ -68,7 +87,15 @@ const NavBar = () => {
 
   const toggleDropdown = () => setShowDropdown((prev) => !prev);
 
-  const LinkItem = ({ href, section, children, onClick, isRouterLink = false, isDropdown = false }) => {
+  // ======= COMPONENTE LINK ITEM =======
+  const LinkItem = ({
+    href,
+    section,
+    children,
+    onClick,
+    isRouterLink = false,
+    isDropdown = false,
+  }) => {
     const isActive = activeLink === section;
     const baseClasses = "group relative inline-block cursor-pointer tracking-wide";
     const textClasses = [
@@ -91,13 +118,23 @@ const NavBar = () => {
     return (
       <li className="relative">
         {isRouterLink ? (
-          <Link to={href} onClick={onClick} className={baseClasses} style={{ "--edr": EDR }}>
+          <Link
+            to={href}
+            onClick={onClick}
+            className={baseClasses}
+            style={{ "--edr": EDR }}
+          >
             <span className={textClasses}>{children}</span>
             <span className={underline1} />
             <span className={underline2} />
           </Link>
         ) : (
-          <a href={href} onClick={onClick} className={baseClasses} style={{ "--edr": EDR }}>
+          <a
+            href={href}
+            onClick={onClick}
+            className={baseClasses}
+            style={{ "--edr": EDR }}
+          >
             <span className={textClasses}>{children}</span>
             <span className={underline1} />
             <span className={underline2} />
@@ -169,24 +206,36 @@ const NavBar = () => {
             Proyectos
           </LinkItem>
 
-          <LinkItem href="#nosotros" section="nosotros">
-            Nosotros
-          </LinkItem>
-
-          <LinkItem href="#contacto" section="contacto">
+          {/* 🔹 Scroll a ContactUs */}
+          <LinkItem href="#contacto" section="contacto" onClick={goToContact}>
             Contacto
           </LinkItem>
         </ul>
 
         {/* === ICONOS REDES === */}
         <div className="hidden md:flex items-center gap-5 text-xl">
-          <a href="https://facebook.com" target="_blank" rel="noreferrer" className="hover:text-[#1877F2] transition-colors">
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-[#1877F2] transition-colors"
+          >
             <FaFacebookF />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-[#E1306C] transition-colors">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-[#E1306C] transition-colors"
+          >
             <FaInstagram />
           </a>
-          <a href="https://wa.me/5491139457426" target="_blank" rel="noreferrer" className="hover:text-[#25D366] transition-colors">
+          <a
+            href="https://wa.me/5491139457426"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-[#25D366] transition-colors"
+          >
             <FaWhatsapp />
           </a>
         </div>
@@ -199,9 +248,7 @@ const NavBar = () => {
 
       {/* === DROPDOWN MOBILE === */}
       {nav && (
-        <div
-          className="fixed top-20 left-0 w-full bg-[#0F0F10]/95 text-white transition-all duration-300 ease-out transform origin-top z-40"
-        >
+        <div className="fixed top-20 left-0 w-full bg-[#0F0F10]/95 text-white transition-all duration-300 ease-out transform origin-top z-40">
           <ul className="flex flex-col items-start p-6 space-y-4 text-lg">
             <li onClick={goHome} className="cursor-pointer hover:text-[color:var(--edr)]">
               Inicio
@@ -213,10 +260,7 @@ const NavBar = () => {
 
             {showDropdown && (
               <ul className="ml-4 mt-2 space-y-2 text-sm text-gray-300 animate-fadeIn">
-                <li
-                  onClick={() => navigate("/catalogo")}
-                  className="cursor-pointer hover:text-white"
-                >
+                <li onClick={() => navigate("/catalogo")} className="cursor-pointer hover:text-white">
                   Catálogo Completo
                 </li>
                 {CATEGORIES.map((cat) => (
@@ -234,10 +278,9 @@ const NavBar = () => {
             <li onClick={() => navigate("/proyectos")} className="cursor-pointer hover:text-[color:var(--edr)]">
               Proyectos
             </li>
-            <li onClick={() => navigate("/#nosotros")} className="cursor-pointer hover:text-[color:var(--edr)]">
-              Nosotros
-            </li>
-            <li onClick={() => navigate("/#contacto")} className="cursor-pointer hover:text-[color:var(--edr)]">
+
+            {/* 🔹 Scroll a ContactUs en mobile */}
+            <li onClick={goToContact} className="cursor-pointer hover:text-[color:var(--edr)]">
               Contacto
             </li>
           </ul>
