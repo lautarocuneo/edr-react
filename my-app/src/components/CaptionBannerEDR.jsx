@@ -2,11 +2,11 @@ import React from "react";
 
 const CaptionBannerEDR = () => {
   return (
-    <section className="relative overflow-hidden bg-[#0B0B0C] text-gray-200 py-10 sm:py-12 md:py-14">
-      {/* Halos reducidos */}
+    <section className="relative overflow-visible bg-[#0B0B0C] text-gray-200 py-10 sm:py-12 md:py-14">
+      {/* Halos (desbordan la sección sin cortarse) */}
       <span
         aria-hidden
-        className="pointer-events-none absolute -top-20 -left-20 w-[16rem] sm:w-[20rem] h-[16rem] sm:h-[20rem] rounded-full opacity-70"
+        className="pointer-events-none absolute -top-20 -left-20 z-0 w-[16rem] sm:w-[20rem] h-[16rem] sm:h-[20rem] rounded-full opacity-70"
         style={{
           background:
             "radial-gradient(circle at center, rgba(42,134,226,0.18), transparent 60%)",
@@ -14,7 +14,7 @@ const CaptionBannerEDR = () => {
       />
       <span
         aria-hidden
-        className="pointer-events-none absolute -bottom-20 -right-20 w-[18rem] sm:w-[22rem] h-[18rem] sm:h-[22rem] rounded-full opacity-60"
+        className="pointer-events-none absolute -bottom-20 -right-20 z-0 w-[18rem] sm:w-[22rem] h-[18rem] sm:h-[22rem] rounded-full opacity-60"
         style={{
           background:
             "radial-gradient(circle at center, rgba(34,211,238,0.12), transparent 60%)",
@@ -22,7 +22,7 @@ const CaptionBannerEDR = () => {
       />
 
       {/* Contenido */}
-      <div className="relative max-w-[900px] mx-auto px-4 sm:px-6 md:px-8">
+      <div className="relative z-10 max-w-[900px] mx-auto px-4 sm:px-6 md:px-8">
         <div
           className="rounded-xl p-[1px]"
           style={{
@@ -52,18 +52,12 @@ const CaptionBannerEDR = () => {
                   cámaras, luces, grip, ópticas, audio, energía y utilería
                 </span>{" "}
                 con{" "}
-                <span className="text-[#2A86E2] font-semibold">
-                  asistencia técnica
-                </span>
-                , testeo previo y logística.
+                <span className="text-[#2A86E2] font-semibold">asistencia técnica</span>, testeo previo y logística.
               </p>
 
               <p>
                 Armamos{" "}
-                <span className="text-white font-semibold">
-                  paquetes a medida
-                </span>
-                , presupuestos claros y soporte en set para que todo sea{" "}
+                <span className="text-white font-semibold">paquetes a medida</span>, presupuestos claros y soporte en set para que todo sea{" "}
                 <span className="text-white font-semibold">plug &amp; play</span>{" "}
                 desde el primer cuadro.
               </p>

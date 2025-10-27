@@ -87,7 +87,7 @@ const ProductCarousel = () => {
   };
 
   return (
-    <section className="bg-[#0B0B0C] py-16">
+    <section className="bg-[#0B0B0C] py-4 pb-12">
       <div className="max-w-[1440px] mx-auto text-center mb-10 px-6">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#FFFFFF] pb-0 tracking-tight">
           EQUIPOS

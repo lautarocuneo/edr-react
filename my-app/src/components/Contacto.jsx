@@ -7,17 +7,30 @@ const Contacto = () => {
   return (
     <section
       className="
-        relative isolate overflow-clip
+        relative overflow-visible
         bg-[#0B0B0C] text-white
-        before:content-[''] before:absolute before:-top-24 before:-left-24
-        before:w-[28rem] before:h-[28rem]
-        before:bg-[radial-gradient(circle_at_center,rgba(42,134,226,0.18),transparent_60%)]
-        after:content-[''] after:absolute after:-bottom-28 after:-right-24
-        after:w-[38rem] after:h-[38rem]
-        after:bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.12),transparent_60%)]
       "
     >
-      <div className="max-w-[1240px] mx-auto px-6 py-20">
+      {/* Halos (desbordan la sección sin cortarse) */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -top-24 -left-24 z-0 w-[28rem] h-[28rem] rounded-full opacity-70"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(42,134,226,0.18), transparent 60%)",
+        }}
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -bottom-28 -right-24 z-0 w-[38rem] h-[38rem] rounded-full opacity-60"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(34,211,238,0.12), transparent 60%)",
+        }}
+      />
+
+      {/* Contenido (siempre por encima de los halos) */}
+      <div className="relative z-10 max-w-[1240px] mx-auto px-6 py-20">
         {/* Encabezado */}
         <div className="text-center mb-12">
           <h2 className="text-[#2A86E2] font-semibold tracking-widest">CONTACTO</h2>
@@ -47,10 +60,8 @@ const Contacto = () => {
             </div>
           </div>
 
-          {/* Columna derecha: Formulario con glow seguro */}
+          {/* Columna derecha: Formulario */}
           <div className="relative overflow-hidden isolate rounded-2xl">
-            {/* Glow sin blur (no rompe ancho) */}
-            
             <div className="rounded-2xl p-[1px] bg-gradient-to-br from-[#2A86E2] via-white/10 to-[#2A86E2]/50">
               <div className="rounded-2xl bg-[#0B0B0C] p-6 md:p-8">
                 <h3 className="text-xl font-semibold mb-4">Decinos qué necesitás</h3>

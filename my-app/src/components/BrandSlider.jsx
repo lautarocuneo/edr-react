@@ -14,7 +14,7 @@ const brands = Array.from({ length: 10 }, (_, i) => ({
 
 const BrandSlider = ({ showTitle = true }) => {
   return (
-    <section className="bg-[#0B0B0C] overflow-hidden pb-14">
+    <section className="bg-[#0B0B0C] overflow-hidden pb-0">
       {/* 🔵 Título opcional */}
       {showTitle && (
         <div className="max-w-[1440px] mx-auto text-center mb-10 px-6">
@@ -25,7 +25,7 @@ const BrandSlider = ({ showTitle = true }) => {
       )}
 
       {/* 🔁 Carrusel infinito */}
-      <div className="relative w-full overflow-hidden py-10 group">
+      <div className="relative w-full overflow-hidden py-4 group">
         <div className="flex animate-slide-slow whitespace-nowrap group-hover:[animation-play-state:paused]">
           {[...brands, ...brands].map((brand, i) => (
             <div key={i} className="px-14 flex-shrink-0">
