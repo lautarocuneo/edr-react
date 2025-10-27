@@ -1070,7 +1070,6 @@ function applyFiltersAndSort(items, { q, selectedCats, sortKey }) {
           .replace(/[^0-9,]+/g, "")        // ✅ deja solo números y coma decimal
           .replace(",", ".")               // ✅ cambia coma por punto si hay
       ) || 0;
-
     return { ...it, price: numericPrice };
   });
 
