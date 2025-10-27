@@ -13,7 +13,7 @@ function formatCurrencyARS(value) {
 /**
  * CatalogItem
  * Props:
- * - item: { id, title, image, price, inStock, category, brand?, tags?, addedAt?, discountPct? }
+ * - item: { id, title, image, price, category, brand?, tags?, addedAt?, discountPct? }
  * - discountPct?: number (opcional, 0-100). Si viene, pisa a item.discountPct.
  * - onClick?: () => void
  */
@@ -42,7 +42,7 @@ const CatalogItem = ({ item, discountPct, onClick }) => {
       role="button"
     >
       <div className="relative">
-        {/* Relación 3:4 fija, estilo catálogo */}
+        {/* Imagen con relación 3:4 */}
         <div className="aspect-[3/4] bg-gray-900">
           <img
             src={item.image}
@@ -53,18 +53,14 @@ const CatalogItem = ({ item, discountPct, onClick }) => {
           />
         </div>
 
-        <div className="absolute top-3 left-3 flex gap-2">
-          {hasDiscount && (
+        {/* Badge de oferta */}
+        {hasDiscount && (
+          <div className="absolute top-3 left-3">
             <Badge className="rounded-full px-3 py-1 text-xs bg-[#2A86E2] text-white border-0">
               Oferta
             </Badge>
-          )}
-          {!item.inStock && (
-            <Badge className="rounded-full px-3 py-1 text-xs bg-gray-700 text-gray-200 border-0">
-              Sin stock
-            </Badge>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       <div className="p-4">
@@ -78,13 +74,14 @@ const CatalogItem = ({ item, discountPct, onClick }) => {
             </span>
           )}
           <span className="text-lg font-bold text-white">
-            {formatCurrencyARS(discountedPrice)} {hasDiscount && "ARS"}
+            {formatCurrencyARS(discountedPrice)} ARS
           </span>
-          {!hasDiscount && <span className="text-lg font-bold text-white">ARS</span>}
         </div>
 
         {hasDiscount && (
-          <p className="mt-1 text-xs text-emerald-400 font-medium">-{pct}% de descuento</p>
+          <p className="mt-1 text-xs text-emerald-400 font-medium">
+            -{pct}% de descuento
+          </p>
         )}
       </div>
     </motion.article>

@@ -27,6 +27,7 @@ const ALL_ITEMS = [
     id: "p1",
     title: "ARRI Alexa Mini LF",
     price: "$1.400.000 por jornada",
+    stock: true,
     image: "",
     category: "camara",
   },
@@ -1038,7 +1039,7 @@ const CATEGORIES = [
 function normalize(s) {
   return s.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
 }
-function applyFiltersAndSort(items, { q, selectedCats, onlyStock, sortKey }) {
+function applyFiltersAndSort(items, { q, selectedCats, sortKey }) {
   let data = [...items];
   if (q) {
     const nq = normalize(q);
@@ -1063,7 +1064,7 @@ function applyFiltersAndSort(items, { q, selectedCats, onlyStock, sortKey }) {
 const CatalogPage = () => {
   const [q, setQ] = useState("");
   const [selectedCats, setSelectedCats] = useState(new Set());
-  const [onlyStock] = useState(false);
+  
   const [sortKey, setSortKey] = useState("az");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1); // 👈 página actual
@@ -1083,8 +1084,8 @@ const CatalogPage = () => {
 
 
   const results = useMemo(
-    () => applyFiltersAndSort(ALL_ITEMS, { q, selectedCats, onlyStock, sortKey }),
-    [q, selectedCats, onlyStock, sortKey]
+    () => applyFiltersAndSort(ALL_ITEMS, { q, selectedCats, sortKey }),
+    [q, selectedCats, sortKey]
   );
 
   // 👇 paginación
