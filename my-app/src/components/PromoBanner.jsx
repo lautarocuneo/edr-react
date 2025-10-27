@@ -23,14 +23,20 @@ const PromoBanner = () => {
           </picture>
 
           {/* 🔘 Botón elegante */}
-          <div className="absolute left-1/2 bottom-[28%] -translate-x-1/2">
+          <div
+            className="
+              absolute left-1/2 bottom-[34%] sm:bottom-[28%] -translate-x-1/2
+            "
+          >
             <button
               aria-label="Ver más"
-              className="relative group select-none uppercase tracking-widest text-white/95 
-                         text-xs sm:text-sm md:text-base 
-                         px-6 sm:px-7 md:px-8 py-2 sm:py-2.5 md:py-3 
-                         rounded-full bg-transparent cursor-pointer 
-                         transition-[filter] duration-300 hover:brightness-110 focus:outline-none"
+              className="
+                relative group select-none uppercase tracking-widest text-white/95 
+                text-[10px] sm:text-sm md:text-base 
+                px-4 sm:px-7 md:px-8 py-1.5 sm:py-2.5 md:py-3 
+                rounded-full bg-transparent cursor-pointer 
+                transition-[filter] duration-300 hover:brightness-110 focus:outline-none
+              "
             >
               <span className="relative z-10">Ver más</span>
 

@@ -9,18 +9,16 @@
   padding: 10px 0;
 }
 
-/* Track animado por distancia en px (variable) */
+/* Track animado */
 .pedr-track {
   display: flex;
   flex-wrap: nowrap;
   gap: 1.5rem;
-  /* Variables CSS controladas desde React */
-  --pedr-distance: 1000px;  /* fallback */
-  --pedr-duration: 8s;      /* fallback rápido */
+  --pedr-distance: 1000px;
+  --pedr-duration: 8s;
   animation: pedr-marquee var(--pedr-duration) linear infinite;
 }
 
-/* Un set = bloque de items contiguos que se repite */
 .pedr-set {
   display: flex;
   flex-wrap: nowrap;
@@ -47,23 +45,57 @@
   display: block;
 }
 
-/* La animación mueve EXACTAMENTE el ancho del primer set */
 @keyframes pedr-marquee {
   0% {
     transform: translateX(0);
   }
   100% {
-    /* desplazamos exactamente el ancho del primer set */
     transform: translateX(calc(var(--pedr-distance) * -1));
   }
 }
 
-/* Pausa con hover (opcional) */
 .pedr-container:hover .pedr-track {
   animation-play-state: paused;
 }
 
-/* Responsive */
+/* ===== GRID principal ===== */
+.proyectos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+/* desktop igual que antes */
+@media (min-width: 640px) {
+  .proyectos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 768px) {
+  .proyectos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .proyectos-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ===== SOLO mobile: 2 columnas ===== */
+@media (max-width: 640px) {
+  .proyectos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+  }
+
+  .proyectos-grid a {
+    border-radius: 14px;
+  }
+}
+
+/* Responsive carrusel */
 @media (max-width: 768px) {
   .pedr-item {
     width: 130px;
