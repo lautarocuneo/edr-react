@@ -1,7 +1,25 @@
-import { FaFacebookSquare, FaInstagram } from 'react-icons/fa';
-import { GiSteampunkGoggles } from 'react-icons/gi';
+import { FaFacebookSquare, FaInstagram } from "react-icons/fa";
+import { GiSteampunkGoggles } from "react-icons/gi";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // 🔹 Función para hacer scroll suave a una sección del home
+  const scrollToSection = (id) => {
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        const section = document.getElementById(id);
+        if (section) section.scrollIntoView({ behavior: "smooth" });
+      }, 500);
+    } else {
+      const section = document.getElementById(id);
+      if (section) section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <footer className="bg-[var(--color-bg-dark)] text-gray-300 py-12 border-t border-[#2A86E2]/10 ">
       <div className="max-w-[1240px] mx-auto px-6 text-center">
@@ -9,7 +27,8 @@ const Footer = () => {
         <img
           src={`${process.env.PUBLIC_URL}/logoedr.png`}
           alt="Logo EDR"
-          className="mx-auto h-20 w-auto mb-6 opacity-90 hover:opacity-100 transition-opacity duration-300"
+          className="mx-auto h-20 w-auto mb-6 opacity-90 hover:opacity-100 transition-opacity duration-300 cursor-pointer"
+          onClick={() => scrollToSection("top")}
         />
 
         {/* Redes sociales */}
@@ -49,23 +68,28 @@ const Footer = () => {
         {/* Navegación */}
         <div className="flex justify-center">
           <div>
-            <h6 className="font-semibold text-white mb-3 tracking-wide">
-              <a
-                href="#top"
-                className="hover:text-[#2A86E2] transition-colors duration-300"
-              >
-                Home
-              </a>
+            <h6 className="font-semibold text-white mb-3 tracking-wide cursor-pointer hover:text-[#2A86E2] transition-colors duration-300"
+                onClick={() => scrollToSection("top")}>
+              Home
             </h6>
             <ul className="flex items-center justify-center gap-6">
-              <li className="text-sm hover:text-[#2A86E2] transition-colors duration-300">
-                <a href="#equipos">Proyectos</a>
+              <li
+                className="text-sm hover:text-[#2A86E2] transition-colors duration-300 cursor-pointer"
+                onClick={() => navigate("/proyectos")}
+              >
+                Proyectos
               </li>
-              <li className="text-sm hover:text-[#2A86E2] transition-colors duration-300">
-                <a href="#nosotros">Catálogo</a>
+              <li
+                className="text-sm hover:text-[#2A86E2] transition-colors duration-300 cursor-pointer"
+                onClick={() => navigate("/catalogo")}
+              >
+                Catálogo
               </li>
-              <li className="text-sm hover:text-[#2A86E2] transition-colors duration-300">
-                <a href="#contacto">Contacto</a>
+              <li
+                className="text-sm hover:text-[#2A86E2] transition-colors duration-300 cursor-pointer"
+                onClick={() => scrollToSection("contacto")}
+              >
+                Contacto
               </li>
             </ul>
           </div>
