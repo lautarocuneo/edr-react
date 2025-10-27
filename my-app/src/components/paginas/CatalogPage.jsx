@@ -30,6 +30,8 @@ const ALL_ITEMS = [
     stock: true,
     image: "",
     category: "camara",
+    discountPct: 15   // 👈 esto activa el descuento automáticamente
+
   },
   {
     id: "p2",
@@ -1015,12 +1017,10 @@ const ALL_ITEMS = [
 }
 
 ];
-
 // =============================================================
 // === FUNCIONES Y COMPONENTE PRINCIPAL =========================
 // =============================================================
-// === FUNCIONES Y COMPONENTE PRINCIPAL =========================
-const ITEMS_PER_PAGE = 24; // 👈 cantidad de ítems por página
+const ITEMS_PER_PAGE = 24;
 
 const CATEGORIES = [
   "camara",
@@ -1036,18 +1036,45 @@ const CATEGORIES = [
   "otros",
 ];
 
+// 🔧 Normaliza texto (quita tildes y pasa a minúsculas)
 function normalize(s) {
   return s.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
 }
+
+// 🔧 Aplica filtros y ordenamiento
 function applyFiltersAndSort(items, { q, selectedCats, sortKey }) {
   let data = [...items];
+
+  // 🔍 Filtro por búsqueda
   if (q) {
     const nq = normalize(q);
     data = data.filter(
-      (it) => normalize(it.title).includes(nq) || normalize(it.category).includes(nq)
+      (it) =>
+        normalize(it.title).includes(nq) || normalize(it.category).includes(nq)
     );
   }
-  if (selectedCats.size > 0) data = data.filter((it) => selectedCats.has(it.category));
+
+  // 🏷️ Filtro por categoría
+  if (selectedCats.size > 0)
+    data = data.filter((it) => selectedCats.has(it.category));
+
+  // 🔢 Conversión de precios a número (por si vienen con texto)
+  data = data.map((it) => {
+    const numericPrice =
+  typeof it.price === "number"
+    ? it.price
+    : parseFloat(
+        it.price
+          .toString()
+          .replace(/\./g, "")              // ✅ borra los puntos de miles
+          .replace(/[^0-9,]+/g, "")        // ✅ deja solo números y coma decimal
+          .replace(",", ".")               // ✅ cambia coma por punto si hay
+      ) || 0;
+
+    return { ...it, price: numericPrice };
+  });
+
+  // 🔤 Ordenamiento alfabético
   data.sort((a, b) => {
     switch (sortKey) {
       case "az":
@@ -1058,19 +1085,20 @@ function applyFiltersAndSort(items, { q, selectedCats, sortKey }) {
         return 0;
     }
   });
+
   return data;
 }
 
 const CatalogPage = () => {
   const [q, setQ] = useState("");
   const [selectedCats, setSelectedCats] = useState(new Set());
-  
   const [sortKey, setSortKey] = useState("az");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1); // 👈 página actual
+  const [currentPage, setCurrentPage] = useState(1);
 
   const location = useLocation();
 
+  // 🔁 Detecta categoría desde la URL (?cat=)
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const cat = params.get("cat");
@@ -1082,13 +1110,13 @@ const CatalogPage = () => {
     setCurrentPage(1);
   }, [location.search]);
 
-
+  // 🔍 Calcula los resultados filtrados y ordenados
   const results = useMemo(
     () => applyFiltersAndSort(ALL_ITEMS, { q, selectedCats, sortKey }),
     [q, selectedCats, sortKey]
   );
 
-  // 👇 paginación
+  // 📄 Paginación
   const totalPages = Math.ceil(results.length / ITEMS_PER_PAGE);
   const paginatedResults = results.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
@@ -1102,7 +1130,7 @@ const CatalogPage = () => {
       else next.add(cat);
       return next;
     });
-    setCurrentPage(1); // reset al cambiar filtros
+    setCurrentPage(1);
   };
 
   const goToPage = (page) => {
@@ -1110,6 +1138,7 @@ const CatalogPage = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // 🧩 Sidebar de filtros
   const FilterContent = (
     <Sidebar className="rounded-xl shadow-sm bg-gray-900/80 backdrop-blur border border-gray-800 p-2">
       <div className="px-4 py-3">
@@ -1137,13 +1166,18 @@ const CatalogPage = () => {
       <div className="h-20" />
 
       <main className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-10">
+        {/* 🔹 Encabezado */}
         <div className="flex items-start justify-between gap-6">
           <div>
-            <h1 className="text-4xl sm:text-5xl font-extrabold">Catálogo de Equipos</h1>
+            <h1 className="text-4xl sm:text-5xl font-extrabold">
+              Catálogo de Equipos
+            </h1>
             <p className="text-gray-300 mt-2">
               Equipos disponibles • {results.length} resultados
             </p>
           </div>
+
+          {/* 🔍 Buscador y orden (desktop) */}
           <div className="hidden md:flex items-center gap-3 w-[520px]">
             <TextInput
               icon={MagnifyingGlassIcon}
@@ -1163,7 +1197,7 @@ const CatalogPage = () => {
           </div>
         </div>
 
-        {/* Botón filtros en mobile */}
+        {/* 🔹 Filtros mobile */}
         <div className="mt-6 flex items-center justify-between md:hidden">
           <Button
             onClick={() => setIsFilterOpen(true)}
@@ -1175,13 +1209,20 @@ const CatalogPage = () => {
           <p className="text-sm text-gray-400">{results.length} productos</p>
         </div>
 
-        <Drawer open={isFilterOpen} onClose={() => setIsFilterOpen(false)} position="left">
+        <Drawer
+          open={isFilterOpen}
+          onClose={() => setIsFilterOpen(false)}
+          position="left"
+        >
           <DrawerHeader title="Filtros" />
           <DrawerItems>{FilterContent}</DrawerItems>
         </Drawer>
 
+        {/* 🔹 Grilla principal */}
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <aside className="hidden lg:block lg:col-span-3">{FilterContent}</aside>
+          <aside className="hidden lg:block lg:col-span-3">
+            {FilterContent}
+          </aside>
 
           <section className="lg:col-span-9">
             <AnimatePresence mode="popLayout">
@@ -1205,14 +1246,16 @@ const CatalogPage = () => {
                     <CatalogItem
                       key={item.id}
                       item={item}
-                      onClick={() => console.log("Ver producto:", item.id)}
+                      onClick={() =>
+                        console.log("Ver producto:", item.id)
+                      }
                     />
                   ))}
                 </motion.div>
               )}
             </AnimatePresence>
 
-            {/* PAGINACIÓN */}
+            {/* 🔹 Paginación */}
             {totalPages > 1 && (
               <div className="flex justify-center items-center mt-10 gap-3">
                 <Button
