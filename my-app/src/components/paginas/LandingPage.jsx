@@ -47,7 +47,7 @@ const LandingPage = () => {
 
       <div className="h-20" />
 
-      <HeroVideo src={`${process.env.PUBLIC_URL}/videos/intro.mp4`} />
+      <HeroVideo src={`${process.env.PUBLIC_URL}/videos/video-edr-portada.mp4`} />
 
       <motion.section {...revealProps}>
         <PromoBanner />
