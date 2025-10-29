@@ -5,7 +5,6 @@ import {
   FaLightbulb,
   FaCogs,
   FaQuestionCircle,
-  FaTruck,
 } from "react-icons/fa";
 
 /**
