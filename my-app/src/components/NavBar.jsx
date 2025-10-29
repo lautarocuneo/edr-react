@@ -78,6 +78,22 @@ const NavBar = () => {
     setNav(false);
   };
 
+
+  // 🔹 Scroll hacia la sección "FAQ"
+  const goToFaq = () => {
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        const section = document.getElementById("faq");
+        if (section) section.scrollIntoView({ behavior: "smooth" });
+      }, 500);
+    } else {
+      const section = document.getElementById("faq");
+      if (section) section.scrollIntoView({ behavior: "smooth" });
+    }
+    setNav(false);
+  };
+
   // 🔹 Ir a categoría específica
   const goToCatalogCategory = (cat) => {
     navigate(`/catalogo?cat=${cat}`);
@@ -210,6 +226,10 @@ const NavBar = () => {
           <LinkItem href="#contacto" section="contacto" onClick={goToContact}>
             Contacto
           </LinkItem>
+
+          <LinkItem href="#faq" section="faq" onClick={goToFaq}>
+            FAQ
+          </LinkItem>
         </ul>
 
         {/* === ICONOS REDES === */}
@@ -282,6 +302,9 @@ const NavBar = () => {
             {/* 🔹 Scroll a ContactUs en mobile */}
             <li onClick={goToContact} className="cursor-pointer hover:text-[color:var(--edr)]">
               Contacto
+            </li>
+            <li onClick={goToFaq} className="cursor-pointer hover:text-[color:var(--edr)]">
+              FAQ
             </li>
           </ul>
         </div>

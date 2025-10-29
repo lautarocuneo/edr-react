@@ -8,19 +8,35 @@ import Contacto from "../Contacto";
 import WhatsAppButton from "../WhatsAppIcon";
 import HeroVideo from "../HeroVideo";
 import CaracteristicasEDR from "../CaracteristicasEDR";
-import ProyectosEDR from "../ProyectosEDR"
- import PromoBanner from "../PromoBanner"
+import ProyectosEDR from "../ProyectosEDR";
+import PromoBanner from "../PromoBanner";
 import CustomCarousel from "../CustomCarousel";
 import ProductCarousel from "../ProductCarousel";
 import CaptionBannerEDR from "../CaptionBannerEDR";
-
+import Faq from "../Faq"; // 🔹 nueva importación
 
 const LandingPage = () => {
   const slides = [
-    { image: `${process.env.PUBLIC_URL}/fotos-carusel/1.png`, alt: "RED Komodo-X", link: "/productos/komodo-x" },
-    { image: `${process.env.PUBLIC_URL}/fotos-carusel/2.png`, alt: "Alexa Mini LF", link: "/productos/zeiss-set" },
-    { image: `${process.env.PUBLIC_URL}/fotos-carusel/3.png`, alt: "Luces Arri", link: "/productos/aputure" },
-    { image: `${process.env.PUBLIC_URL}/fotos-carusel/4.png`, alt: "Ópticas", link: "/productos/grip" },
+    {
+      image: `${process.env.PUBLIC_URL}/fotos-carusel/1.png`,
+      alt: "RED Komodo-X",
+      link: "/productos/komodo-x",
+    },
+    {
+      image: `${process.env.PUBLIC_URL}/fotos-carusel/2.png`,
+      alt: "Alexa Mini LF",
+      link: "/productos/zeiss-set",
+    },
+    {
+      image: `${process.env.PUBLIC_URL}/fotos-carusel/3.png`,
+      alt: "Luces Arri",
+      link: "/productos/aputure",
+    },
+    {
+      image: `${process.env.PUBLIC_URL}/fotos-carusel/4.png`,
+      alt: "Ópticas",
+      link: "/productos/grip",
+    },
   ];
 
   const fadeIn = {
@@ -28,7 +44,7 @@ const LandingPage = () => {
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.6, ease: [0.2, 0.7, 0.3, 1] }
+      transition: { duration: 0.6, ease: [0.2, 0.7, 0.3, 1] },
     },
   };
 
@@ -41,17 +57,19 @@ const LandingPage = () => {
 
   return (
     <div id="top" className="bg-gray-900">
-      
       <WhatsAppButton />
       <NavBar />
 
       <div className="h-20" />
 
+      {/* === VIDEO HERO === */}
       <HeroVideo src={`${process.env.PUBLIC_URL}/videos/video-edr-portada.mp4`} />
 
+      {/* === SECCIONES === */}
       <motion.section {...revealProps}>
         <PromoBanner />
       </motion.section>
+
       <motion.section {...revealProps}>
         <BrandSlider showTitle={false} />
       </motion.section>
@@ -59,11 +77,10 @@ const LandingPage = () => {
       <motion.section {...revealProps}>
         <CaptionBannerEDR />
       </motion.section>
-       <motion.section {...revealProps}>
+
+      <motion.section {...revealProps}>
         <ProductCarousel />
       </motion.section>
-
-      
 
       <CustomCarousel slides={slides} />
 
@@ -74,20 +91,33 @@ const LandingPage = () => {
       <motion.section {...revealProps}>
         <ProyectosEDR />
       </motion.section>
+
+         {/* 🔹 NUEVA SECCIÓN FAQ */}
+      <motion.section {...revealProps}>
+        <Faq />
+      </motion.section>
+
       <motion.section {...revealProps}>
         <BrandSlider showTitle={false} />
       </motion.section>
 
-    
-      
-  
+   
 
-
-      <motion.section id="contacto" className="relative bg-gray-800" {...revealProps}>
+      {/* === CONTACTO === */}
+      <motion.section
+        id="contacto"
+        className="relative bg-gray-800"
+        {...revealProps}
+      >
         <Contacto />
       </motion.section>
 
-      <motion.section id="footer" className="relative bg-black text-white" {...revealProps}>
+      {/* === FOOTER === */}
+      <motion.section
+        id="footer"
+        className="relative bg-black text-white"
+        {...revealProps}
+      >
         <Footer />
       </motion.section>
     </div>
