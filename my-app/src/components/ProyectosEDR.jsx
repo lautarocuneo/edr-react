@@ -1,4 +1,6 @@
+// src/components/ProyectosEDR.jsx
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./ProyectosEDR.css";
 
 const proyectos = [
@@ -6,25 +8,25 @@ const proyectos = [
     image: "/fotos-proyectos-landing/3.png",
     title: "Videoclips",
     subtitle: "Producción audiovisual integral",
-    link: "/videoclips",
+    link: "videoclips",
   },
   {
     image: "/fotos-proyectos-landing/1.png",
-    title: "Películas",
+    title: "Cine",
     subtitle: "Rodajes en estudio y exteriores",
-    link: "/peliculas",
+    link: "cine",
   },
   {
     image: "/fotos-proyectos-landing/2.png",
     title: "Series",
     subtitle: "Iluminación y cámara profesional",
-    link: "/series",
+    link: "series",
   },
   {
     image: "/fotos-proyectos-landing/4.png",
     title: "Junkets",
     subtitle: "Dirección cinematográfica",
-    link: "/junkets",
+    link: "junkets",
   },
 ];
 
@@ -66,9 +68,15 @@ function useMarqueeDistance() {
 }
 
 const ProyectosEDR = () => {
+  const navigate = useNavigate();
   const { containerRef, firstSetRef, distance } = useMarqueeDistance();
   const SPEED_PX_PER_SEC = 70;
   const durationSec = distance > 0 ? distance / SPEED_PX_PER_SEC : 8;
+
+  const handleClick = (anchor) => {
+    // Navegamos a /proyectos y pasamos el destino en estado
+    navigate("/proyectos", { state: { scrollTo: anchor } });
+  };
 
   return (
     <section className="bg-[#0B0B0C] text-gray-200 py-12 overflow-hidden">
@@ -80,9 +88,9 @@ const ProyectosEDR = () => {
         {/* Globos de categorías */}
         <div className="proyectos-grid">
           {proyectos.map((p, i) => (
-            <a
+            <div
               key={i}
-              href={p.link}
+              onClick={() => handleClick(p.link)}
               className="group relative overflow-hidden rounded-2xl cursor-pointer"
             >
               <div className="aspect-[3/4] w-full overflow-hidden">
@@ -102,7 +110,7 @@ const ProyectosEDR = () => {
                   </p>
                 </div>
               </div>
-            </a>
+            </div>
           ))}
         </div>
 

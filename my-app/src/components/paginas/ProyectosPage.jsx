@@ -1,5 +1,7 @@
-import React from "react";
+// src/components/paginas/ProyectosPage.jsx
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 import NavBar from "../NavBar";
 import Footer from "../Footer";
 import WhatsAppButton from "../WhatsAppIcon";
@@ -68,6 +70,30 @@ const InfiniteStrip = ({ projects, reverse = false, speed = 40 }) => {
 
 // ===================== PÁGINA =====================
 const ProyectosPage = () => {
+  const location = useLocation();
+
+  // Scroll a la categoría indicada (via state.scrollTo o hash) con offset por navbar fijo
+  useEffect(() => {
+    const target =
+      location.state?.scrollTo ||
+      (location.hash ? location.hash.replace("#", "") : null);
+
+    if (!target) return;
+
+    const scrollToAnchor = () => {
+      const el = document.getElementById(target.toLowerCase());
+      if (!el) return;
+      const yOffset = -80; // navbar fijo (~h-20 = 80px)
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    };
+
+    // Asegura layout listo (RAF) + fallback por imágenes
+    requestAnimationFrame(scrollToAnchor);
+    const t = setTimeout(scrollToAnchor, 300);
+    return () => clearTimeout(t);
+  }, [location]);
+
   return (
     <div className="bg-[#0B0B0C] min-h-screen text-white">
       <WhatsAppButton />
@@ -76,7 +102,7 @@ const ProyectosPage = () => {
 
       <main className="max-w-[1400px] mx-auto px-6 pt-12 pb-20 space-y-24">
         {Object.entries(PROJECTS).map(([category, projects], idx) => (
-          <section key={category}>
+          <section key={category} id={category.toLowerCase()}>
             <div className="text-center mb-8">
               <h2 className="text-3xl font-extrabold uppercase tracking-wide text-[#2A86E2] mb-2">
                 {category}
