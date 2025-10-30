@@ -7,25 +7,30 @@ import WhatsAppButton from "../WhatsAppIcon";
 // ===================== DATA =====================
 const PROJECTS = {
   Cine: [
-    { title: "El Eternauta", subtitle: "Alquiler de utilería", img: "https://images.unsplash.com/photo-1517602302552-471fe67acf66" },
-    { title: "Argentina, 1985", subtitle: "Rental de cámaras y luces", img: "https://images.unsplash.com/photo-1602526432604-b24fef89c246" },
-    { title: "El secreto de sus ojos", subtitle: "Soporte de cámara", img: "https://images.unsplash.com/photo-1582719478181-b5f49c8c3c95" },
-    { title: "La Odisea de los Giles", subtitle: "Producción técnica", img: "https://images.unsplash.com/photo-1615397349754-452dc83a66ef" },
+    { title: "Argentina, 1985", subtitle: "Alquiler de utilería", img: "/fotos-proyectos/argentina-1985.png" },
+    { title: "Belen", subtitle: "Alquiler de utilería", img: "/fotos-proyectos/belen.png" },
+    { title: "27 Noches", subtitle: "Alquiler de utilería", img: "/fotos-proyectos/27-noches.png" },
+    { title: "El Vecino Alemán", subtitle: "Alquiler de utilería", img: "/fotos-proyectos/vecino-aleman.png" },
   ],
   Videoclips: [
-    { title: "Feel Me?? – Trueno", subtitle: "Producción y cámara", img: "https://images.unsplash.com/photo-1558365918-43d8291d3cc5" },
-    { title: "Quiénes Son – Lali Espósito", subtitle: "Asistencia de rodaje", img: "https://images.unsplash.com/photo-1619454563733-ef6a78c6b8f2" },
-    { title: "Flow – Duki", subtitle: "Dirección de arte", img: "https://images.unsplash.com/photo-1535223289827-42f1e9919769" },
+    { title: "Change – Lit Killah", subtitle: "Alquiler de equipos y Direccion de Fotografía", img: "/fotos-proyectos/lit-killah.png" },
+    { title: "YaMeFui – Bizarrap x Duki x Nicki Nicole", subtitle: "Alquiler de equipos", img: "/fotos-proyectos/nicki-duki.png" },
+    { title: "Party en el barrio - Duki x Paulo Londra", subtitle: "Alquiler de utilería", img: "/fotos-proyectos/duki-atc.png" },
   ],
   Series: [
-    { title: "El Reino", subtitle: "Grip y soporte de cámara", img: "https://images.unsplash.com/photo-1579547621706-1a9c79d5c1c6" },
-    { title: "División Palermo", subtitle: "Alquiler de luces y video assist", img: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f" },
-    { title: "Monzón", subtitle: "Montaje y utilería", img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c" },
+    { title: "El Eternauta", subtitle: "Alquiler de utilería", img: "/fotos-proyectos/eternauta.png" },
+    { title: "Santa Evita", subtitle: "Alquiler de utilería", img: "/fotos-proyectos/evita.png" },
+    { title: "Ayrton Senna", subtitle: "Alquiler de utilería", img: "/fotos-proyectos/ayrton-senna.png" },
+    { title: "Maradona", subtitle: "Alquiler de utilería", img: "/fotos-proyectos/maradona.png" },
+    { title: "Coppola", subtitle: "Alquiler de utilería", img: "/fotos-proyectos/copola.png" },
+    { title: "Menem", subtitle: "Alquiler de utilería", img: "/fotos-proyectos/menem.png" },
   ],
   Junkets: [
-    { title: "Netflix – Stranger Things", subtitle: "Montaje y cámara", img: "https://images.unsplash.com/photo-1602526432604-b24fef89c246" },
-    { title: "Disney+ – Loki", subtitle: "Producción técnica completa", img: "https://images.unsplash.com/photo-1603791452906-bb7b1a4cebb3" },
-    { title: "HBO – Euphoria", subtitle: "Dirección de fotografía", img: "https://images.unsplash.com/photo-1532635241-17e820acc59b" },
+    { title: "Homo Argentum", subtitle: "Alquiler de equipos y Direccion de Fotografía", img: "/fotos-proyectos/homo-argentum.png" },
+    { title: "Fast and Furious X", subtitle: "Alquiler de equipos y Direccion de Fotografía", img: "/fotos-proyectos/fast-and-furious.png" },
+    { title: "El Fin del Amor", subtitle: "Alquiler de equipos y Direccion de Fotografía", img: "/fotos-proyectos/lali.png" },
+    { title: "Mazel Tov", subtitle: "Alquiler de equipos y Direccion de Fotografía", img: "/fotos-proyectos/mazel-tov.png" },
+    { title: "Belen", subtitle: "Alquiler de equipos y Direccion de Fotografía", img: "/fotos-proyectos/belen-junket.png" },
   ],
 };
 
