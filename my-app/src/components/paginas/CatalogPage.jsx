@@ -137,6 +137,7 @@ const ALL_ITEMS = [
     price: "$125.000 por jornada",
     image: "/fotos-catalogo/p58.png",
     category: "opticas",
+    discountPct: 50  
   },
   {
     id: "p59",
@@ -144,6 +145,7 @@ const ALL_ITEMS = [
     price: "$630.000 por jornada",
     image: "/fotos-catalogo/p59.png",
     category: "opticas",
+    discountPct: 50  
   },
   {
     id: "p60",
@@ -151,6 +153,7 @@ const ALL_ITEMS = [
     price: "$125.000 por jornada",
     image: "/fotos-catalogo/p60.png",
     category: "opticas",
+    discountPct: 50  
   },
   {
     id: "p61",
@@ -158,6 +161,7 @@ const ALL_ITEMS = [
     price: "$630.000 por jornada",
     image: "/fotos-catalogo/p61.png",
     category: "opticas",
+    discountPct: 50  
   },
   {
     id: "p62",
@@ -165,6 +169,7 @@ const ALL_ITEMS = [
     price: "$700.000 por jornada",
     image: "/fotos-catalogo/p62.png",
     category: "opticas",
+    discountPct: 50  
   },
   {
     id: "p63",
@@ -172,6 +177,7 @@ const ALL_ITEMS = [
     price: "$450.000 por jornada",
     image: "/fotos-catalogo/p63.png",
     category: "opticas",
+    discountPct: 50  
   },
   {
     id: "p64",
@@ -179,6 +185,7 @@ const ALL_ITEMS = [
     price: "$450.000 por jornada",
     image: "/fotos-catalogo/p64.png",
     category: "opticas",
+    discountPct: 50  
   },
   {
     id: "p67",
@@ -193,6 +200,7 @@ const ALL_ITEMS = [
     price: "$215.000 por jornada",
     image: "/fotos-catalogo/p68.png",
     category: "opticas",
+    discountPct: 50  
   },
     {
     id: "p65",
@@ -200,6 +208,7 @@ const ALL_ITEMS = [
     price: "$180.000 por jornada",
     image: "/fotos-catalogo/p65.png",
     category: "opticas",
+    discountPct: 50  
   },
   {
     id: "p69",
@@ -207,6 +216,7 @@ const ALL_ITEMS = [
     price: "$108.000 por jornada",
     image: "/fotos-catalogo/p69.png",
     category: "tripodes",
+    discountPct: 50  
   },
     {
     id: "p150",
@@ -214,6 +224,7 @@ const ALL_ITEMS = [
     price: "$108.000 por jornada",
     image: "/fotos-catalogo/p150.png",
     category: "tripodes",
+    discountPct: 50  
   },
   {
     id: "p71",
@@ -221,6 +232,7 @@ const ALL_ITEMS = [
     price: "$64.000 por jornada",
     image: "/fotos-catalogo/p71.png",
     category: "tripodes",
+    discountPct: 50  
   },
   {
     id: "p72",
@@ -228,6 +240,7 @@ const ALL_ITEMS = [
     price: "$56.000 por jornada",
     image: "/fotos-catalogo/p72.png",
     category: "tripodes",
+    discountPct: 50  
   },
   {
     id: "p77",
@@ -235,6 +248,7 @@ const ALL_ITEMS = [
     price: "$120.000 por jornada",
     image: "/fotos-catalogo/p77.png",
     category: "generadores",
+    discountPct: 50  
   },
   {
     id: "p78",
@@ -242,6 +256,7 @@ const ALL_ITEMS = [
     price: "$85.000 por jornada",
     image: "/fotos-catalogo/p78.png",
     category: "generadores",
+    discountPct: 50  
   },
   {
     id: "p81",
@@ -249,6 +264,7 @@ const ALL_ITEMS = [
     price: "$180.000 por jornada",
     image: "/fotos-catalogo/p81.png",
     category: "luces",
+    discountPct: 50  
   },
   {
     id: "p82",
@@ -256,6 +272,7 @@ const ALL_ITEMS = [
     price: "$115.000 por jornada",
     image: "/fotos-catalogo/p82.png",
     category: "luces",
+    discountPct: 50  
   },
   {
     id: "p83",
@@ -277,6 +294,7 @@ const ALL_ITEMS = [
     price: "$114.000 por jornada",
     image: "/fotos-catalogo/p85.png",
     category: "luces",
+    discountPct: 50  
   },
   {
     id: "p162",
@@ -284,6 +302,7 @@ const ALL_ITEMS = [
     price: "$47.000 por jornada",
     image: "/fotos-catalogo/p162.png",
     category: "luces",
+    discountPct: 50  
   },
   {
     id: "p88",
@@ -298,6 +317,7 @@ const ALL_ITEMS = [
     price: "$162.000 por jornada",
     image: "/fotos-catalogo/p89.png",
     category: "luces",
+    discountPct: 50  
   },
   {
     id: "p90",
@@ -305,6 +325,7 @@ const ALL_ITEMS = [
     price: "$265.000 por jornada",
     image: "/fotos-catalogo/p90.png",
     category: "luces",
+    discountPct: 50  
   },
   {
     id: "p91",
@@ -312,6 +333,7 @@ const ALL_ITEMS = [
     price: "$82.000 por jornada",
     image: "/fotos-catalogo/p91.png",
     category: "luces",
+    discountPct: 50  
   },
   {
     id: "p92",
@@ -319,6 +341,7 @@ const ALL_ITEMS = [
     price: "$60.000 por jornada",
     image: "/fotos-catalogo/p92.png",
     category: "luces",
+    discountPct: 50  
   },
   {
     id: "p93",
@@ -326,6 +349,7 @@ const ALL_ITEMS = [
     price: "$90.000 por jornada",
     image: "/fotos-catalogo/p93.png",
     category: "videoassist",
+    discountPct: 50  
   },
   {
     id: "p94",
@@ -333,6 +357,7 @@ const ALL_ITEMS = [
     price: "$100.000 por jornada",
     image: "/fotos-catalogo/p94.png",
     category: "videoassist",
+    discountPct: 50  
   },
   {
     id: "p95",
@@ -340,6 +365,7 @@ const ALL_ITEMS = [
     price: "$36.000 por jornada",
     image: "/fotos-catalogo/p95.png",
     category: "videoassist",
+    discountPct: 50  
   },
   {
     id: "p96",
@@ -347,6 +373,7 @@ const ALL_ITEMS = [
     price: "$68.000 por jornada",
     image: "/fotos-catalogo/p96.png",
     category: "videoassist",
+    discountPct: 50  
   },
   {
     id: "p98",
@@ -368,6 +395,7 @@ const ALL_ITEMS = [
     price: "$144.000 por jornada",
     image: "/fotos-catalogo/p100.png",
     category: "estabilizadores",
+    discountPct: 50  
   },
   {
     id: "p102",
@@ -375,6 +403,7 @@ const ALL_ITEMS = [
     price: "$100.000 por jornada",
     image: "/fotos-catalogo/p102.png",
     category: "estabilizadores",
+    discountPct: 50  
   },
   {
     id: "p107",
@@ -389,6 +418,7 @@ const ALL_ITEMS = [
     price: "$62.000 por jornada",
     image: "/fotos-catalogo/p108.png",
     category: "otros",
+    discountPct: 50  
   },
   {
     id: "p110",
@@ -396,6 +426,7 @@ const ALL_ITEMS = [
     price: "$70.000 por jornada",
     image: "/fotos-catalogo/p108.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p111",
@@ -403,6 +434,7 @@ const ALL_ITEMS = [
     price: "$50.000 por jornada",
     image: "/fotos-catalogo/p111.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p112",
@@ -410,6 +442,7 @@ const ALL_ITEMS = [
     price: "$24.000 por jornada",
     image: "/fotos-catalogo/p112.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p113",
@@ -417,6 +450,7 @@ const ALL_ITEMS = [
     price: "$3.500 por jornada",
     image: "/fotos-catalogo/p113.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p114",
@@ -424,6 +458,7 @@ const ALL_ITEMS = [
     price: "$5.000 por jornada",
     image: "/fotos-catalogo/p114.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p116",
@@ -431,6 +466,7 @@ const ALL_ITEMS = [
     price: "$14.000 por jornada",
     image: "/fotos-catalogo/p116.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p117",
@@ -438,6 +474,7 @@ const ALL_ITEMS = [
     price: "$4.000 por jornada",
     image: "/fotos-catalogo/p117.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p119",
@@ -445,6 +482,7 @@ const ALL_ITEMS = [
     price: "$3.500 por jornada",
     image: "/fotos-catalogo/p119.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p122",
@@ -452,6 +490,7 @@ const ALL_ITEMS = [
     price: "$68.000 por jornada",
     image: "/fotos-catalogo/p122.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p123",
@@ -459,6 +498,7 @@ const ALL_ITEMS = [
     price: "$50.000 por jornada",
     image: "/fotos-catalogo/p123.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p124",
@@ -466,6 +506,7 @@ const ALL_ITEMS = [
     price: "$36.000 por jornada",
     image: "/fotos-catalogo/p124.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p127",
@@ -473,6 +514,7 @@ const ALL_ITEMS = [
     price: "$17.000 por jornada",
     image: "/fotos-catalogo/p127.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p128",
@@ -480,6 +522,7 @@ const ALL_ITEMS = [
     price: "$11.000 por jornada",
     image: "/fotos-catalogo/p128.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p129",
@@ -487,6 +530,7 @@ const ALL_ITEMS = [
     price: "$5.500 por jornada",
     image: "/fotos-catalogo/p129.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p130",
@@ -494,6 +538,7 @@ const ALL_ITEMS = [
     price: "$21.000 por jornada",
     image: "/fotos-catalogo/p130.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p131",
@@ -501,6 +546,7 @@ const ALL_ITEMS = [
     price: "$15.000 por jornada",
     image: "/fotos-catalogo/p131.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p132",
@@ -508,6 +554,7 @@ const ALL_ITEMS = [
     price: "$6.500 por jornada",
     image: "/fotos-catalogo/p132.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p134",
@@ -515,6 +562,7 @@ const ALL_ITEMS = [
     price: "$15.000 por jornada",
     image: "/fotos-catalogo/p134.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p135",
@@ -522,6 +570,7 @@ const ALL_ITEMS = [
     price: "$12.500 por jornada",
     image: "/fotos-catalogo/p135.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p137",
@@ -529,6 +578,7 @@ const ALL_ITEMS = [
     price: "$13.500 por jornada",
     image: "/fotos-catalogo/p137.png",
     category: "griperia",
+    discountPct: 50  
   },
   {
     id: "p138",
@@ -536,6 +586,7 @@ const ALL_ITEMS = [
     price: "$4.250 por jornada",
     image: "/fotos-catalogo/p138.png",
     category: "griperia",
+    discountPct: 50  
   },
     {
     id: "p142",
@@ -543,6 +594,7 @@ const ALL_ITEMS = [
     price: "$31.000,00",
     image: "/fotos-catalogo/p142.png",
     category: "filtros",
+    discountPct: 50  
   },
 {
   id: "p143",
@@ -550,6 +602,7 @@ const ALL_ITEMS = [
   price: "$25.000,00",
   image: "/fotos-catalogo/p143.png",
   category: "filtros",
+  discountPct: 50  
 },
 {
   id: "p144",
@@ -557,6 +610,7 @@ const ALL_ITEMS = [
   price: "$25.000,00",
   image: "/fotos-catalogo/p144.png",
   category: "filtros",
+  discountPct: 50  
 },
 {
   id: "p145",
@@ -564,6 +618,7 @@ const ALL_ITEMS = [
   price: "$20.000,00",
   image: "/fotos-catalogo/p145.png",
   category: "filtros",
+  discountPct: 50  
 },
 {
   id: "p146",
@@ -571,6 +626,7 @@ const ALL_ITEMS = [
   price: "$20.000,00",
   image: "/fotos-catalogo/p146.png",
   category: "filtros",
+  discountPct: 50  
 },
 {
   id: "p147",
@@ -578,6 +634,7 @@ const ALL_ITEMS = [
   price: "$17.500,00",
   image: "/fotos-catalogo/p147.png",
   category: "filtros",
+  discountPct: 50  
 },
 {
   id: "p149",
@@ -585,6 +642,7 @@ const ALL_ITEMS = [
   price: "$68.000,00",
   image: "/fotos-catalogo/p151.png",
   category: "filtros",
+  discountPct: 50  
 },
 {
   id: "p151",
@@ -592,6 +650,7 @@ const ALL_ITEMS = [
   price: "$50.000,00",
   image: "/fotos-catalogo/p151.png",
   category: "filtros",
+  discountPct: 50  
 },
 {
   id: "p152",
@@ -599,6 +658,7 @@ const ALL_ITEMS = [
   price: "$285.000,00",
   image: "/fotos-catalogo/p152.png",
   category: "iluminacion",
+  discountPct: 50  
 },
 {
   id: "p153",
@@ -606,6 +666,7 @@ const ALL_ITEMS = [
   price: "$250.000,00",
   image: "/fotos-catalogo/p153.png",
   category: "iluminacion",
+  discountPct: 50  
 },
 {
   id: "p154",
@@ -613,6 +674,7 @@ const ALL_ITEMS = [
   price: "$195.000,00",
   image: "/fotos-catalogo/p154.png",
   category: "iluminacion",
+  discountPct: 50  
 },
 {
   id: "p156",
@@ -620,6 +682,7 @@ const ALL_ITEMS = [
   price: "$180.000,00",
   image: "/fotos-catalogo/p156.png",
   category: "iluminacion",
+  discountPct: 50  
 },
 {
   id: "p159",
@@ -627,6 +690,7 @@ const ALL_ITEMS = [
   price: "$95.000,00",
   image: "/fotos-catalogo/p159.png",
   category: "iluminacion",
+  discountPct: 50  
 },
 {
   id: "p160",
@@ -634,6 +698,7 @@ const ALL_ITEMS = [
   price: "$120.000,00",
   image: "/fotos-catalogo/p160.png",
   category: "iluminacion",
+  discountPct: 50  
 },
 {
   id: "p161",
@@ -641,6 +706,7 @@ const ALL_ITEMS = [
   price: "$88.000,00",
   image: "/fotos-catalogo/p161.png",
   category: "iluminacion",
+  discountPct: 50  
 },
 
 ];
