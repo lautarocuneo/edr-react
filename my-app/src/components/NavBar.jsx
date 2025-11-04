@@ -31,12 +31,14 @@ const NavBar = () => {
 
   const handleNav = () => setNav(!nav);
 
-  // 🔹 Detecta ruta activa
+  // 🔹 Detecta ruta activa (incluye /utileria)
   useEffect(() => {
     if (location.pathname === "/catalogo") {
       setActiveLink("catalogo");
     } else if (location.pathname === "/proyectos") {
       setActiveLink("proyectos");
+    } else if (location.pathname === "/utileria") {
+      setActiveLink("utileria");
     } else {
       setActiveLink("home");
     }
@@ -63,6 +65,15 @@ const NavBar = () => {
     }
   };
 
+  // 🔹 Ir a Utilería (landing dedicada)
+  const goToUtileria = () => {
+    if (location.pathname !== "/utileria") {
+      navigate("/utileria");
+    }
+    setShowDropdown(false);
+    setNav(false);
+  };
+
   // 🔹 Scroll hacia la sección "Contacto"
   const goToContact = () => {
     if (location.pathname !== "/") {
@@ -77,7 +88,6 @@ const NavBar = () => {
     }
     setNav(false);
   };
-
 
   // 🔹 Scroll hacia la sección "FAQ"
   const goToFaq = () => {
@@ -94,7 +104,7 @@ const NavBar = () => {
     setNav(false);
   };
 
-  // 🔹 Ir a categoría específica
+  // 🔹 Ir a categoría específica en catálogo
   const goToCatalogCategory = (cat) => {
     navigate(`/catalogo?cat=${cat}`);
     setShowDropdown(false);
@@ -113,7 +123,8 @@ const NavBar = () => {
     isDropdown = false,
   }) => {
     const isActive = activeLink === section;
-    const baseClasses = "group relative inline-block cursor-pointer tracking-wide";
+    const baseClasses =
+      "group relative inline-block cursor-pointer tracking-wide";
     const textClasses = [
       "relative z-10 select-none uppercase text-sm font-medium",
       isActive ? "text-[color:var(--edr)]" : "text-white",
@@ -157,7 +168,7 @@ const NavBar = () => {
           </a>
         )}
 
-        {/* === DROPDOWN === */}
+        {/* === DROPDOWN CATÁLOGO === */}
         {isDropdown && showDropdown && (
           <ul
             className="absolute left-0 mt-2 bg-[#111]/95 text-white rounded-lg shadow-lg w-48 z-50 overflow-hidden
@@ -220,6 +231,11 @@ const NavBar = () => {
 
           <LinkItem href="/proyectos" section="proyectos" isRouterLink>
             Proyectos
+          </LinkItem>
+
+          {/* 🔸 NUEVO: Utilería (landing dedicada) */}
+          <LinkItem href="/utileria" section="utileria" isRouterLink onClick={() => setShowDropdown(false)}>
+            Utilería
           </LinkItem>
 
           {/* 🔹 Scroll a ContactUs */}
@@ -294,6 +310,15 @@ const NavBar = () => {
                 ))}
               </ul>
             )}
+
+            <li
+              onClick={() => {
+                goToUtileria();
+              }}
+              className="cursor-pointer hover:text-[color:var(--edr)]"
+            >
+              Utilería
+            </li>
 
             <li onClick={() => navigate("/proyectos")} className="cursor-pointer hover:text-[color:var(--edr)]">
               Proyectos
