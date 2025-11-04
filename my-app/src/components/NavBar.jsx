@@ -194,9 +194,9 @@ const NavBar = () => {
         {/* LOGO */}
         <div className="flex items-center gap-8">
           <img
-            src={`${process.env.PUBLIC_URL}/logos/edr-logo-3.svg`}
+            src={`${process.env.PUBLIC_URL}/logos/edr-logo-5.svg`}
             alt="Logo EDR"
-            className="h-20 w-auto"
+            className="h-16 w-auto"
             onClick={goHome}
             style={{ cursor: "pointer" }}
           />
