@@ -1,37 +1,33 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "./ProductCarousel.css";
 
 const products = [
   {
-    image:
-      "fotos-product-carrousel/camaras.png",
+    image: "fotos-product-carrousel/camaras.png",
     title: "Cámaras",
-    link: "#camaras",
+    cat: "camara", // debe coincidir con CatalogPage
   },
   {
-    image:
-      "fotos-product-carrousel/luces.png",
+    image: "fotos-product-carrousel/luces.png",
     title: "Luces",
-    link: "#luces",
+    cat: "luces",
   },
   {
-    image:
-      "fotos-product-carrousel/grip.png",
+    image: "fotos-product-carrousel/grip.png",
     title: "Grip",
-    link: "#grip",
+    cat: "griperia",
   },
   {
-    image:
-      "fotos-product-carrousel/tripodes.png",
+    image: "fotos-product-carrousel/tripodes.png",
     title: "Trípodes y cabezales",
-    link: "#tripodes",
+    cat: "tripodes",
   },
   {
-    image:
-      "fotos-product-carrousel/opticas.png",
+    image: "fotos-product-carrousel/opticas.png",
     title: "Ópticas",
-    link: "#opticas",
+    cat: "opticas",
   },
 ];
 
@@ -40,13 +36,12 @@ const ProductCarousel = () => {
   const [paused, setPaused] = useState(false);
   const speed = 0.6; // px por frame
 
-  // Posicionamos el scroll en el “set” del medio para poder loopear sin cortes
+  // Posicionamos el scroll en el set del medio para loopear sin cortes
   useEffect(() => {
     const el = trackRef.current;
     const setStart = () => {
       if (!el) return;
-      // Tenemos 3 sets idénticos concatenados; el ancho de 1 set es scrollWidth/3
-      el.scrollLeft = el.scrollWidth / 3;
+      el.scrollLeft = el.scrollWidth / 3; // 3 sets concatenados
     };
     const onLoad = () => setTimeout(setStart, 0);
     setStart();
@@ -58,7 +53,7 @@ const ProductCarousel = () => {
     };
   }, []);
 
-  // Autoscroll infinito con corrección de bordes (sin “saltos” ni cortes)
+  // Autoscroll infinito con corrección de bordes
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
@@ -67,8 +62,7 @@ const ProductCarousel = () => {
     const tick = () => {
       if (!paused) {
         el.scrollLeft += speed;
-        const setW = el.scrollWidth / 3; // ancho de un set
-        // si nos pasamos del segundo set, volvemos al primero equivalente
+        const setW = el.scrollWidth / 3;
         if (el.scrollLeft >= setW * 2) el.scrollLeft -= setW;
         if (el.scrollLeft <= 0) el.scrollLeft += setW;
       }
@@ -102,11 +96,14 @@ const ProductCarousel = () => {
         {/* Pista con 3 copias para loopear */}
         <div ref={trackRef} className="pc-track no-scrollbar">
           {[...products, ...products, ...products].map((item, i) => (
-            <a
+            <Link
               key={i}
-              href={item.link}
+              to={`/catalogo?cat=${encodeURIComponent(item.cat)}`}
               className="pc-item group"
               draggable="false"
+              aria-label={`Ver ${item.title} en el catálogo`}
+              onMouseDown={() => setPaused(true)} // mejora UX si el user arrastra
+              onMouseUp={() => setPaused(false)}
             >
               <img src={item.image} alt={item.title} className="pc-img" />
               <div className="pc-overlay" />
@@ -120,7 +117,7 @@ const ProductCarousel = () => {
                   Ver más →
                 </p>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
 
