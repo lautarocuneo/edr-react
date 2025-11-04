@@ -8,7 +8,6 @@ import {
   
   Button,
   Drawer,
-  DrawerHeader,
   DrawerItems,
 } from "flowbite-react";
 import { motion, AnimatePresence } from "framer-motion";
