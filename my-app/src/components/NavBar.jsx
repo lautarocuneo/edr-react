@@ -243,7 +243,7 @@ const NavBar = () => {
             <FaFacebookF />
           </a>
           <a
-            href="https://instagram.com"
+            href="https://instagram.com/equiposderodaje"
             target="_blank"
             rel="noreferrer"
             className="hover:text-[#E1306C] transition-colors"
@@ -251,7 +251,7 @@ const NavBar = () => {
             <FaInstagram />
           </a>
           <a
-            href="https://wa.me/5491139457426"
+            href="https://wa.me/5491162983716"
             target="_blank"
             rel="noreferrer"
             className="hover:text-[#25D366] transition-colors"

@@ -10,25 +10,68 @@ function formatCurrencyARS(value) {
   });
 }
 
+function toNumber(val) {
+  if (typeof val === "number") return val;
+  if (val == null) return NaN;
+  return parseFloat(
+    val
+      .toString()
+      .replace(/\./g, "")
+      .replace(/[^0-9,]+/g, "")
+      .replace(",", ".")
+  );
+}
+
+function toNumberPct(val) {
+  if (typeof val === "number") return val;
+  if (val == null) return NaN;
+  return parseFloat(val.toString().replace("%", "").replace(",", "."));
+}
+
 /**
  * CatalogItem
  * Props:
- * - item: { id, title, image, price, category, brand?, tags?, addedAt?, discountPct? }
+ * - item: { id, title, image, price, category, compareAtPrice?, salePrice?, discountPct?, discount?, onSale?, sale? }
  * - discountPct?: number (opcional, 0-100). Si viene, pisa a item.discountPct.
  * - onClick?: () => void
  */
 const CatalogItem = ({ item, discountPct, onClick }) => {
-  const pct =
+  const price = toNumber(item.price);
+  const compareAt = toNumber(item.compareAtPrice);
+  const salePrice = toNumber(item.salePrice);
+
+  // Prioridad del %:
+  // 1) prop discountPct
+  // 2) item.discountPct
+  // 3) derivado de compareAtPrice / salePrice
+  let pct =
     typeof discountPct === "number"
       ? discountPct
-      : typeof item.discountPct === "number"
-      ? item.discountPct
-      : 0;
+      : toNumberPct(item.discountPct);
 
-  const hasDiscount = pct > 0;
-  const discountedPrice = hasDiscount
-    ? Math.round(item.price * (1 - pct / 100))
-    : item.price;
+  if ((isNaN(pct) || pct <= 0) && !isNaN(compareAt) && compareAt > price && price > 0) {
+    pct = Math.round((1 - price / compareAt) * 100);
+  }
+  if ((isNaN(pct) || pct <= 0) && !isNaN(salePrice) && salePrice > 0 && salePrice < price) {
+    pct = Math.round((1 - salePrice / price) * 100);
+  }
+
+  const flagSale = item.discount === true || item.onSale === true || item.sale === true;
+
+  // Determinar si hay descuento (por % o por precios/flags)
+  const hasPct = !isNaN(pct) && pct > 0;
+  const hasDiscount = hasPct || (!isNaN(compareAt) && compareAt > price) || (!isNaN(salePrice) && salePrice < price) || flagSale;
+
+  // Precio a mostrar
+  let finalPrice = price;
+  if (hasPct) {
+    finalPrice = Math.round(price * (1 - pct / 100));
+  } else if (!isNaN(salePrice) && salePrice < price) {
+    finalPrice = salePrice;
+  }
+
+  // ¿Mostrar tachado?
+  const showStrikethrough = hasDiscount && finalPrice < price;
 
   return (
     <motion.article
@@ -68,17 +111,17 @@ const CatalogItem = ({ item, discountPct, onClick }) => {
         <p className="text-sm text-gray-400">{item.category}</p>
 
         <div className="mt-3 flex items-end gap-2">
-          {hasDiscount && (
+          {showStrikethrough && (
             <span className="text-sm text-gray-500 line-through">
-              {formatCurrencyARS(item.price)}
+              {formatCurrencyARS(price)}
             </span>
           )}
           <span className="text-lg font-bold text-white">
-            {formatCurrencyARS(discountedPrice)} ARS
+            {formatCurrencyARS(finalPrice)} ARS
           </span>
         </div>
 
-        {hasDiscount && (
+        {hasPct && (
           <p className="mt-1 text-xs text-emerald-400 font-medium">
             -{pct}% de descuento
           </p>

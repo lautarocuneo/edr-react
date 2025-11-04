@@ -47,7 +47,7 @@ const ALL_ITEMS = [
   {
     id: "p6",
     title: "RED Helium",
-    price: "$570.000 por jornada",
+    price: "$470.000 por jornada",
     image: "/fotos-catalogo/p6.png",
     category: "camara",
     discountPct: 50  
@@ -62,9 +62,10 @@ const ALL_ITEMS = [
   {
     id: "p8",
     title: "RED Epic W",
-    price: "$570.000 por jornada",
+    price: "$470.000 por jornada",
     image: "/fotos-catalogo/p8.png",
     category: "camara",
+    discountPct: 50  
   },
   {
     id: "p11",
@@ -97,7 +98,7 @@ const ALL_ITEMS = [
   {
     id: "p19",
     title: "SONY FS7 mk2 (con metabones)",
-    price: "$250.000 por jornada",
+    price: "$230.000 por jornada",
     image: "/fotos-catalogo/p19.png",
     category: "camara",
     discountPct: 50 
@@ -229,13 +230,6 @@ const ALL_ITEMS = [
     category: "tripodes",
   },
   {
-    id: "p73",
-    title: "Trípode de cámara gama MEDIA Manfrotto tipo 504",
-    price: "$28.000 por jornada",
-    image: "/fotos-catalogo/p73.png",
-    category: "tripodes",
-  },
-  {
     id: "p77",
     title: "HONDA EU65is/70is (5.2 kW)",
     price: "$120.000 por jornada",
@@ -280,8 +274,15 @@ const ALL_ITEMS = [
   {
     id: "p85",
     title: "LITEPANELS Gemini 2x1",
-    price: "$134.000 por jornada",
+    price: "$114.000 por jornada",
     image: "/fotos-catalogo/p85.png",
+    category: "luces",
+  },
+  {
+    id: "p162",
+    title: "LITEPANELS Gemini 1x1",
+    price: "$47.000 por jornada",
+    image: "/fotos-catalogo/p162.png",
     category: "luces",
   },
   {
@@ -317,7 +318,7 @@ const ALL_ITEMS = [
     title: "valija ASTERA bulb",
     price: "$60.000 por jornada",
     image: "/fotos-catalogo/p92.png",
-    category: "videoassist",
+    category: "luces",
   },
   {
     id: "p93",
@@ -328,7 +329,7 @@ const ALL_ITEMS = [
   },
   {
     id: "p94",
-    title: "Monitor 17'' SMALL HD 1703 o FLANDERS FSI 17",
+    title: "Monitor 17'' SMALL HD 1703",
     price: "$100.000 por jornada",
     image: "/fotos-catalogo/p94.png",
     category: "videoassist",
@@ -345,13 +346,6 @@ const ALL_ITEMS = [
     title: "Grabador on board ATOMOS Shogun 7",
     price: "$68.000 por jornada",
     image: "/fotos-catalogo/p96.png",
-    category: "videoassist",
-  },
-  {
-    id: "p97",
-    title: "Roland V-02HD",
-    price: "$40.000 por jornada",
-    image: "/fotos-catalogo/p97.png",
     category: "videoassist",
   },
   {
@@ -376,13 +370,6 @@ const ALL_ITEMS = [
     category: "estabilizadores",
   },
   {
-    id: "p101",
-    title: "DJI Ronin S2",
-    price: "$82.000 por jornada",
-    image: "/fotos-catalogo/p101.png",
-    category: "estabilizadores",
-  },
-  {
     id: "p102",
     title: "DJI Ronin S3",
     price: "$100.000 por jornada",
@@ -390,36 +377,8 @@ const ALL_ITEMS = [
     category: "estabilizadores",
   },
   {
-    id: "p103",
-    title: "Cargador Alta Velocidad + 4 Baterías 220 V",
-    price: "$106.000 por jornada",
-    image: "/fotos-catalogo/p103.png",
-    category: "otros",
-  },
-  {
-    id: "p104",
-    title: "Batería V-Mount C150 IDX/SWIT",
-    price: "$14.000 por jornada",
-    image: "/fotos-catalogo/p104.png",
-    category: "otros",
-  },
-  {
-    id: "p105",
-    title: "Proyector 3500/4000 Lumens",
-    price: "$64.000 por jornada",
-    image: "/fotos-catalogo/p105.png",
-    category: "otros",
-  },
-  {
-    id: "p106",
-    title: "Pantalla Proyector 100''",
-    price: "$22.000 por jornada",
-    image: "/fotos-catalogo/p106.png",
-    category: "otros",
-  },
-  {
     id: "p107",
-    title: "Máquina de humo 900 W",
+    title: "Máquina de humo 900 W Fogger",
     price: "$22.000 por jornada",
     image: "/fotos-catalogo/p107.png",
     category: "otros",
@@ -432,22 +391,15 @@ const ALL_ITEMS = [
     category: "otros",
   },
   {
-    id: "p109",
-    title: "Carro Magliner OX",
-    price: "$50.000 por jornada",
-    image: "/fotos-catalogo/p109.png",
-    category: "otros",
-  },
-  {
     id: "p110",
     title: "Trípode Cranck-O B150",
     price: "$70.000 por jornada",
-    image: "/fotos-catalogo/p110.png",
+    image: "/fotos-catalogo/p108.png",
     category: "griperia",
   },
   {
     id: "p111",
-    title: "Trípode Cranck-O B140/B100",
+    title: "Trípode Cranck-O B140",
     price: "$50.000 por jornada",
     image: "/fotos-catalogo/p111.png",
     category: "griperia",
@@ -461,23 +413,16 @@ const ALL_ITEMS = [
   },
   {
     id: "p113",
-    title: "Trípode Dexel / Manfrotto / Avenger comunes",
+    title: "Avenger araña (chico, mediano, grande)",
     price: "$3.500 por jornada",
     image: "/fotos-catalogo/p113.png",
     category: "griperia",
   },
   {
     id: "p114",
-    title: "Trípode Dexel / Manfrotto / Avenger COMBO",
+    title: "Avenger COMBO (chico, mediano, grande)",
     price: "$5.000 por jornada",
     image: "/fotos-catalogo/p114.png",
-    category: "griperia",
-  },
-  {
-    id: "p115",
-    title: "Kit x3 ruedas para trípode combo",
-    price: "$7.500 por jornada",
-    image: "/fotos-catalogo/p115.png",
     category: "griperia",
   },
   {
@@ -495,31 +440,10 @@ const ALL_ITEMS = [
     category: "griperia",
   },
   {
-    id: "p118",
-    title: "Sopapa Avenger",
-    price: "$12.500 por jornada",
-    image: "/fotos-catalogo/p118.png",
-    category: "griperia",
-  },
-  {
     id: "p119",
     title: "Marco ó bandera",
     price: "$3.500 por jornada",
     image: "/fotos-catalogo/p119.png",
-    category: "griperia",
-  },
-  {
-    id: "p120",
-    title: "Kit x10 banderas tela negra",
-    price: "$30.000 por jornada",
-    image: "/fotos-catalogo/p120.png",
-    category: "griperia",
-  },
-  {
-    id: "p121",
-    title: "Kit x6 NET Matthews",
-    price: "$36.000 por jornada",
-    image: "/fotos-catalogo/p121.png",
     category: "griperia",
   },
   {
@@ -541,20 +465,6 @@ const ALL_ITEMS = [
     title: "Tamiz AVENGER 2,40 mts con 3 telas",
     price: "$36.000 por jornada",
     image: "/fotos-catalogo/p124.png",
-    category: "griperia",
-  },
-  {
-    id: "p125",
-    title: "Tamiz 4x4 OX con juego de telas",
-    price: "$36.000 por jornada",
-    image: "/fotos-catalogo/p125.png",
-    category: "griperia",
-  },
-  {
-    id: "p126",
-    title: "Tamiz 2x2 OX con juego de telas",
-    price: "$26.000 por jornada",
-    image: "/fotos-catalogo/p126.png",
     category: "griperia",
   },
   {
@@ -600,13 +510,6 @@ const ALL_ITEMS = [
     category: "griperia",
   },
   {
-    id: "p133",
-    title: "Telas Especiales 4x4 - ULTRABOUNCE",
-    price: "$31.000 por jornada",
-    image: "/fotos-catalogo/p133.png",
-    category: "griperia",
-  },
-  {
     id: "p134",
     title: "Telas Especiales 4x4 - Grid Cloth",
     price: "$15.000 por jornada",
@@ -634,17 +537,116 @@ const ALL_ITEMS = [
     image: "/fotos-catalogo/p138.png",
     category: "griperia",
   },
-  {
-    id: "p141",
-    title: "Difusor 1x1 tipo silk",
-    price: "$4.250 por jornada",
-    image: "/fotos-catalogo/p141.png",
-    category: "griperia",
+    {
+    id: "p142",
+    title: "(Tiffen/Schneider) 6x6 - efectos y difusores",
+    price: "$31.000,00",
+    image: "/fotos-catalogo/p142.png",
+    category: "filtros",
   },
+{
+  id: "p143",
+  title: "(Tiffen/Schneider) 6x6 - ND y Pola",
+  price: "$25.000,00",
+  image: "/fotos-catalogo/p143.png",
+  category: "filtros",
+},
+{
+  id: "p144",
+  title: "(Tiffen/Schneider) 4x5.6 - efectos y difusores",
+  price: "$25.000,00",
+  image: "/fotos-catalogo/p144.png",
+  category: "filtros",
+},
+{
+  id: "p145",
+  title: "(Tiffen/Schneider) 4x5.6 - ND y Pola",
+  price: "$20.000,00",
+  image: "/fotos-catalogo/p145.png",
+  category: "filtros",
+},
+{
+  id: "p146",
+  title: "(Tiffen/Schneider) 4x4 - efectos y difusores",
+  price: "$20.000,00",
+  image: "/fotos-catalogo/p146.png",
+  category: "filtros",
+},
+{
+  id: "p147",
+  title: "(Tiffen/Schneider) 4x4 - ND y Pola",
+  price: "$17.500,00",
+  image: "/fotos-catalogo/p147.png",
+  category: "filtros",
+},
+{
+  id: "p149",
+  title: "Set lentillas aproximación SCHNEIDER de 138mm (+1 +2 +3)",
+  price: "$68.000,00",
+  image: "/fotos-catalogo/p151.png",
+  category: "filtros",
+},
+{
+  id: "p151",
+  title: "Set lentillas aproximación SCHNEIDER de 4½ (+1 +2 +3)",
+  price: "$50.000,00",
+  image: "/fotos-catalogo/p151.png",
+  category: "filtros",
+},
+{
+  id: "p152",
+  title: "HMI Par 6000w",
+  price: "$285.000,00",
+  image: "/fotos-catalogo/p152.png",
+  category: "iluminacion",
+},
+{
+  id: "p153",
+  title: "HMI M40",
+  price: "$250.000,00",
+  image: "/fotos-catalogo/p153.png",
+  category: "iluminacion",
+},
+{
+  id: "p154",
+  title: "HMI Par/Fresnel 4000w",
+  price: "$195.000,00",
+  image: "/fotos-catalogo/p154.png",
+  category: "iluminacion",
+},
+{
+  id: "p156",
+  title: "HMI M18",
+  price: "$180.000,00",
+  image: "/fotos-catalogo/p156.png",
+  category: "iluminacion",
+},
+{
+  id: "p159",
+  title: "HMI Par/Fresnel 575w",
+  price: "$95.000,00",
+  image: "/fotos-catalogo/p159.png",
+  category: "iluminacion",
+},
+{
+  id: "p160",
+  title: "HMI Par 400w Pocket",
+  price: "$120.000,00",
+  image: "/fotos-catalogo/p160.png",
+  category: "iluminacion",
+},
+{
+  id: "p161",
+  title: "HMI Par 200w",
+  price: "$88.000,00",
+  image: "/fotos-catalogo/p161.png",
+  category: "iluminacion",
+},
+
 ];
 
 // =============================================================
-// === FUNCIONES Y COMPONENTE PRINCIPAL =========================
+// === UTILIDADES ==============================================
 // =============================================================
 const ITEMS_PER_PAGE = 24;
 
@@ -662,16 +664,47 @@ const CATEGORIES = [
   "otros",
 ];
 
-// 🔧 Normaliza texto (quita tildes y pasa a minúsculas)
 function normalize(s) {
   return s.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
 }
 
-// 🔧 Aplica filtros y ordenamiento
-function applyFiltersAndSort(items, { q, selectedCats, sortKey }) {
+function toNumberPrice(val) {
+  if (typeof val === "number") return val;
+  if (val == null) return NaN;
+  return parseFloat(
+    val
+      .toString()
+      .replace(/\./g, "")
+      .replace(/[^0-9,]+/g, "")
+      .replace(",", ".")
+  );
+}
+
+function toNumberPct(val) {
+  if (typeof val === "number") return val;
+  if (val == null) return NaN;
+  return parseFloat(val.toString().replace("%", "").replace(",", "."));
+}
+
+// ¿El item está en descuento?
+function isDiscounted(it) {
+  const price = toNumberPrice(it.price);
+  const compareAt = toNumberPrice(it.compareAtPrice);
+  const salePrice = toNumberPrice(it.salePrice);
+  const pct = toNumberPct(it.discountPct);
+
+  if (!isNaN(pct) && pct > 0) return true;
+  if (!isNaN(compareAt) && !isNaN(price) && compareAt > price) return true;
+  if (!isNaN(salePrice) && !isNaN(price) && salePrice < price) return true;
+  if (it.discount === true || it.onSale === true || it.sale === true) return true;
+  return false;
+}
+
+// Aplica búsqueda / filtros / orden
+function applyFiltersAndSort(items, { q, selectedCats, sortKey, onlyDiscounted }) {
   let data = [...items];
 
-  // 🔍 Filtro por búsqueda
+  // búsqueda
   if (q) {
     const nq = normalize(q);
     data = data.filter(
@@ -680,26 +713,27 @@ function applyFiltersAndSort(items, { q, selectedCats, sortKey }) {
     );
   }
 
-  // 🏷️ Filtro por categoría
-  if (selectedCats.size > 0)
+  // categorías
+  if (selectedCats.size > 0) {
     data = data.filter((it) => selectedCats.has(it.category));
+  }
 
-  // 🔢 Conversión de precios a número (por si vienen con texto)
-  data = data.map((it) => {
-    const numericPrice =
-  typeof it.price === "number"
-    ? it.price
-    : parseFloat(
-        it.price
-          .toString()
-          .replace(/\./g, "")              // ✅ borra los puntos de miles
-          .replace(/[^0-9,]+/g, "")        // ✅ deja solo números y coma decimal
-          .replace(",", ".")               // ✅ cambia coma por punto si hay
-      ) || 0;
-    return { ...it, price: numericPrice };
-  });
+  // normalizar precios a number (no muta ALL_ITEMS original)
+  data = data.map((it) => ({
+    ...it,
+    price: toNumberPrice(it.price) || 0,
+    compareAtPrice:
+      it.compareAtPrice !== undefined ? toNumberPrice(it.compareAtPrice) : it.compareAtPrice,
+    salePrice:
+      it.salePrice !== undefined ? toNumberPrice(it.salePrice) : it.salePrice,
+  }));
 
-  // 🔤 Ordenamiento alfabético
+  // solo con descuento
+  if (onlyDiscounted) {
+    data = data.filter((it) => isDiscounted(it));
+  }
+
+  // orden
   data.sort((a, b) => {
     switch (sortKey) {
       case "az":
@@ -714,34 +748,40 @@ function applyFiltersAndSort(items, { q, selectedCats, sortKey }) {
   return data;
 }
 
+// =============================================================
+// === COMPONENTE PRINCIPAL ====================================
+// =============================================================
 const CatalogPage = () => {
   const [q, setQ] = useState("");
   const [selectedCats, setSelectedCats] = useState(new Set());
   const [sortKey, setSortKey] = useState("az");
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false); // drawer filtros (mobile)
+  const [isSearchOpen, setIsSearchOpen] = useState(false); // drawer búsqueda (mobile)
+  const [onlyDiscounted, setOnlyDiscounted] = useState(false); // filtro descuento
   const [currentPage, setCurrentPage] = useState(1);
 
   const location = useLocation();
 
-  // 🔁 Detecta categoría desde la URL (?cat=)
+  // Detectar cat desde ?cat=
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const cat = params.get("cat");
-    if (cat) {
-      setSelectedCats(new Set([cat.toLowerCase()]));
-    } else {
-      setSelectedCats(new Set());
-    }
+    if (cat) setSelectedCats(new Set([cat.toLowerCase()]));
+    else setSelectedCats(new Set());
     setCurrentPage(1);
   }, [location.search]);
 
-  // 🔍 Calcula los resultados filtrados y ordenados
   const results = useMemo(
-    () => applyFiltersAndSort(ALL_ITEMS, { q, selectedCats, sortKey }),
-    [q, selectedCats, sortKey]
+    () =>
+      applyFiltersAndSort(ALL_ITEMS, {
+        q,
+        selectedCats,
+        sortKey,
+        onlyDiscounted,
+      }),
+    [q, selectedCats, sortKey, onlyDiscounted]
   );
 
-  // 📄 Paginación
   const totalPages = Math.ceil(results.length / ITEMS_PER_PAGE);
   const paginatedResults = results.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
@@ -763,13 +803,30 @@ const CatalogPage = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // 🧩 Sidebar de filtros
+  // ====== Panel de Filtros ======
   const FilterContent = (
     <Sidebar className="rounded-xl shadow-sm bg-gray-900/80 backdrop-blur border border-gray-800 p-2">
-      <div className="px-4 py-3">
-        <p className="text-sm font-semibold">Filtrar por categoría</p>
+      <div className="px-4 py-3 border-b border-gray-800">
+        <p className="text-sm font-semibold">Filtros</p>
       </div>
+
+      {/* Solo con descuento */}
+      <div className="px-4 py-3 border-b border-gray-800">
+        <label className="flex items-center gap-2">
+          <Checkbox
+            checked={onlyDiscounted}
+            onChange={() => setOnlyDiscounted((v) => !v)}
+            className="rounded border-gray-600"
+          />
+        <span className="text-sm">Solo con descuento</span>
+        </label>
+      </div>
+
+      {/* Categorías */}
       <div className="px-4 py-2 space-y-2">
+        <p className="text-xs uppercase tracking-wide text-gray-400 mb-1">
+          Categorías
+        </p>
         {CATEGORIES.map((cat) => (
           <label key={cat} className="flex items-center gap-2">
             <Checkbox
@@ -788,10 +845,11 @@ const CatalogPage = () => {
     <div className="bg-[#0B0B0C] min-h-screen text-white">
       <WhatsAppButton />
       <NavBar />
+      {/* compensar navbar fijo */}
       <div className="h-20" />
 
       <main className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-10">
-        {/* 🔹 Encabezado */}
+        {/* Encabezado */}
         <div className="flex items-start justify-between gap-6">
           <div>
             <h1 className="text-4xl sm:text-5xl font-extrabold">
@@ -802,7 +860,7 @@ const CatalogPage = () => {
             </p>
           </div>
 
-          {/* 🔍 Buscador y orden (desktop) */}
+          {/* Buscador y orden (desktop) */}
           <div className="hidden md:flex items-center gap-3 w-[520px]">
             <TextInput
               icon={MagnifyingGlassIcon}
@@ -822,32 +880,57 @@ const CatalogPage = () => {
           </div>
         </div>
 
-        {/* 🔹 Filtros mobile */}
+        {/* Controles mobile (Filtros + Lupa) */}
         <div className="mt-6 flex items-center justify-between md:hidden">
-          <Button
-            onClick={() => setIsFilterOpen(true)}
-            className="flex items-center gap-2 bg-gray-900 px-4 py-2 rounded-lg border border-gray-700"
-          >
-            <FunnelIcon className="w-5 h-5 text-[#2A86E2]" />
-            <span className="text-sm text-gray-200">Filtrar</span>
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button
+              onClick={() => setIsFilterOpen(true)}
+              className="flex items-center gap-2 bg-gray-900 px-3 py-2 rounded-lg border border-gray-700"
+            >
+              <FunnelIcon className="w-5 h-5 text-[#2A86E2]" />
+              <span className="text-sm text-gray-200">Filtros</span>
+            </Button>
+
+            <Button
+              onClick={() => setIsSearchOpen(true)}
+              className="flex items-center justify-center bg-gray-900 p-2 rounded-lg border border-gray-700"
+              aria-label="Buscar"
+              title="Buscar"
+            >
+              <MagnifyingGlassIcon className="w-5 h-5 text-[#2A86E2]" />
+            </Button>
+          </div>
+
           <p className="text-sm text-gray-400">{results.length} productos</p>
         </div>
 
-        <Drawer
-          open={isFilterOpen}
-          onClose={() => setIsFilterOpen(false)}
-          position="left"
-        >
-          <DrawerHeader title="Filtros" />
-          <DrawerItems>{FilterContent}</DrawerItems>
+        {/* Drawer de búsqueda (mobile) — desplazado bajo el navbar */}
+        <Drawer open={isSearchOpen} onClose={() => setIsSearchOpen(false)} position="top">
+          <DrawerItems>
+            <div className="pt-20 p-4 bg-[#0B0B0C] border-b border-gray-800">
+              <h3 className="text-base font-semibold mb-3">Buscar</h3>
+              <TextInput
+                icon={MagnifyingGlassIcon}
+                placeholder="Buscar por nombre o categoría…"
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                autoFocus
+                className="w-full bg-gray-900 border-gray-700 text-white placeholder-gray-400"
+              />
+            </div>
+          </DrawerItems>
         </Drawer>
 
-        {/* 🔹 Grilla principal */}
+        {/* Drawer de filtros (mobile) — desplazado bajo el navbar */}
+        <Drawer open={isFilterOpen} onClose={() => setIsFilterOpen(false)} position="left">
+          <DrawerItems>
+            <div className="pt-20 p-2">{FilterContent}</div>
+          </DrawerItems>
+        </Drawer>
+
+        {/* Grilla principal (desktop igual que antes; mobile 2 col) */}
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <aside className="hidden lg:block lg:col-span-3">
-            {FilterContent}
-          </aside>
+          <aside className="hidden lg:block lg:col-span-3">{FilterContent}</aside>
 
           <section className="lg:col-span-9">
             <AnimatePresence mode="popLayout">
@@ -865,22 +948,20 @@ const CatalogPage = () => {
                 <motion.div
                   key="grid"
                   layout="position"
-                  className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"
+                  className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-6"
                 >
                   {paginatedResults.map((item) => (
                     <CatalogItem
                       key={item.id}
                       item={item}
-                      onClick={() =>
-                        console.log("Ver producto:", item.id)
-                      }
+                      onClick={() => console.log("Ver producto:", item.id)}
                     />
                   ))}
                 </motion.div>
               )}
             </AnimatePresence>
 
-            {/* 🔹 Paginación */}
+            {/* Paginación */}
             {totalPages > 1 && (
               <div className="flex justify-center items-center mt-10 gap-3">
                 <Button
