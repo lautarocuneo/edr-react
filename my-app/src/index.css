@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ================== */
+/* Variables y base   */
+/* ================== */
 :root {
   --color-bg-dark: #0B0B0C;
 }
@@ -14,24 +17,67 @@ html {
   scroll-behavior: smooth;
 }
 html, body {
-  overflow-x: hidden !important;
+  overflow-x: hidden !important; /* evita barra horizontal del layout */
 }
 
+/* ================== */
+/* Parallax           */
+/* ================== */
 .parallax-image {
   will-change: transform;
   transition: transform 0.2s ease-out;
 }
 
+/* ================== */
+/* Marquee / Slider   */
+/* ================== */
 @keyframes slide-slow {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
-
 .animate-slide-slow {
   display: flex;
   animation: slide-slow 40s linear infinite; /* 👈 más lento */
+}
+
+/* ========================= */
+/* Ocultar scrollbars (global)
+/* ========================= */
+*::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+* {
+  scrollbar-width: none;         /* Firefox */
+  -ms-overflow-style: none;      /* IE/Edge antiguo */
+}
+
+/* ===================================== */
+/* Utilidad opcional para usar por clase */
+/* ===================================== */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===================================== */
+/* Carrusel (si usás wrapper + track)    */
+/* ===================================== */
+.carousel-wrapper {
+  overflow: hidden; /* oculta cualquier overflow del track */
+}
+.carousel-track {
+  overflow-x: auto;     /* habilita swipe horizontal */
+  overflow-y: hidden;   /* evita barra vertical */
+  scroll-behavior: smooth;
+
+  /* oculta la barra del track */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.carousel-track::-webkit-scrollbar {
+  display: none;
 }
