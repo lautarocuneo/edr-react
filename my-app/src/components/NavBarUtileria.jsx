@@ -137,7 +137,7 @@ const NavBarUtileria = () => {
             <img
               src={`${process.env.PUBLIC_URL}/logos/ars-machina-logo.svg`}
               alt="Ars Machina"
-              className="h-12 w-auto"
+              className="h-20 w-auto"
               onClick={goHome}
               style={{ cursor: "pointer" }}
             />
@@ -188,7 +188,7 @@ const NavBarUtileria = () => {
               <FaFacebookF />
             </a>
             <a
-              href="https://instagram.com/ars_machina_argentina"
+              href="https://instagram.com/ars.machina.ar"
               target="_blank"
               rel="noreferrer"
               className="hover:text-[#E1306C] transition-colors"

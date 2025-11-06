@@ -49,7 +49,7 @@ const FooterUtileria = () => {
             <FaFacebookSquare size={28} />
           </a>
           <a
-            href="https://www.instagram.com/ars_machina_argentina/"
+            href="https://www.instagram.com/ars.machina.ar/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-[#E1306C] transition-colors duration-300"
