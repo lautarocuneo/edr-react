@@ -8,28 +8,14 @@ const ACCENT = "#b45309";        // óxido
 const MEDIA = (p) => `${process.env.PUBLIC_URL}${p}`;
 
 const SECTIONS = [
-  {
-    id: "galeria",
-    bg: MEDIA("/utileria/hero-poster.jpg"),
-    overlay:
-      "radial-gradient(60% 60% at 50% 40%, rgba(0,0,0,.35) 0%, rgba(0,0,0,.65) 60%, rgba(0,0,0,.8) 100%)",
-    slides: [
-      { type: "title", title: "GALERÍA" },
-      {
-        title: "Selección curada",
-        text:
-          "Televisores CRT, cámaras analógicas y piezas de laboratorio. Listo para cámara con look de época.",
-        cta: { label: "Ver catálogo", href: "/catalogo?cat=utileria" },
-      },
-    ],
-  },
+ 
   {
     id: "camara",
     bg: MEDIA("/utileria/antiguos-foto.jpg"),
     overlay:
       "linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.6) 70%, rgba(0,0,0,.85) 100%)",
     slides: [
-      { type: "title", title: "CÁMARAS" },
+      { type: "title", title: "CÁMARAS ANTIGUAS" },
       {
         title: "35mm, medio formato y Polaroid",
         text: "Disponibles con accesorios de época y rótulos personalizados según guion.",
@@ -43,11 +29,26 @@ const SECTIONS = [
     overlay:
       "linear-gradient(180deg, rgba(0,0,0,.2) 0%, rgba(0,0,0,.6) 65%, rgba(0,0,0,.85) 100%)",
     slides: [
-      { type: "title", title: "CIENCIA" },
+      { type: "title", title: "ARTEFACTOS CIENTÍFICOS" },
       {
         title: "Microscopios & instrumental",
         text: "Piezas científicas y medidores vintage; kits por continuidad.",
         cta: { label: "Explorar", href: "/catalogo?cat=utileria" },
+      },
+    ],
+  },
+   {
+    id: "galeria",
+    bg: MEDIA("/utileria/hero-poster.jpg"),
+    overlay:
+      "radial-gradient(60% 60% at 50% 40%, rgba(0,0,0,.35) 0%, rgba(0,0,0,.65) 60%, rgba(0,0,0,.8) 100%)",
+    slides: [
+      { type: "title", title: "GALERÍA" },
+      {
+        title: "Selección curada",
+        text:
+          "Televisores CRT, cámaras analógicas y piezas de laboratorio. Listo para cámara con look de época.",
+        cta: { label: "Ver catálogo", href: "/catalogo?cat=utileria" },
       },
     ],
   },

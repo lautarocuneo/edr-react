@@ -52,27 +52,7 @@ const CaptionBannerEDR = () => {
                   cámaras, luces, grip, ópticas, audio, energía y utilería
                 </span>{" "}
                 con{" "}
-                <span className="text-[#2A86E2] font-semibold">asistencia técnica</span>, testeo previo y logística.
-              </p>
-
-              <p>
-                Armamos{" "}
-                <span className="text-white font-semibold">paquetes a medida</span>, presupuestos claros y soporte en set para que todo sea{" "}
-                <span className="text-white font-semibold">plug &amp; play</span>{" "}
-                desde el primer cuadro.
-              </p>
-
-              <p>
-                Nuestra misión es{" "}
-                <span className="text-white font-semibold">
-                  facilitar la realización técnica
-                </span>{" "}
-                para que las ideas fluyan sin fricciones y la creatividad se
-                concentre en lo más importante:{" "}
-                <span className="text-[#2A86E2] font-semibold">
-                  contar historias que dejen huella
-                </span>
-                .
+                <span className="text-[#2A86E2] font-semibold">asistencia técnica y servicio de dirección de fotografía, </span> testeo previo y logística.
               </p>
             </div>
           </div>

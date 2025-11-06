@@ -63,6 +63,7 @@ const NavBar = () => {
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
+    setNav(false);
   };
 
   // 🔹 Ir a Utilería (landing dedicada)
@@ -177,6 +178,7 @@ const NavBar = () => {
             <li
               onClick={() => navigate("/catalogo")}
               className="font-semibold border-b border-gray-700 pb-1 mb-1 cursor-pointer hover:text-[color:var(--edr)] px-3 py-2"
+              style={{ "--edr": EDR }}
             >
               Catálogo Completo
             </li>
@@ -234,7 +236,12 @@ const NavBar = () => {
           </LinkItem>
 
           {/* 🔸 NUEVO: Utilería (landing dedicada) */}
-          <LinkItem href="/utileria" section="utileria" isRouterLink onClick={() => setShowDropdown(false)}>
+          <LinkItem
+            href="/utileria"
+            section="utileria"
+            isRouterLink
+            onClick={() => setShowDropdown(false)}
+          >
             Utilería
           </LinkItem>
 
@@ -248,7 +255,7 @@ const NavBar = () => {
           </LinkItem>
         </ul>
 
-        {/* === ICONOS REDES === */}
+        {/* === ICONOS REDES (DESKTOP) === */}
         <div className="hidden md:flex items-center gap-5 text-xl">
           <a
             href="https://facebook.com"
@@ -286,17 +293,28 @@ const NavBar = () => {
       {nav && (
         <div className="fixed top-20 left-0 w-full bg-[#0F0F10]/95 text-white transition-all duration-300 ease-out transform origin-top z-40">
           <ul className="flex flex-col items-start p-6 space-y-4 text-lg">
-            <li onClick={goHome} className="cursor-pointer hover:text-[color:var(--edr)]">
+            <li
+              onClick={goHome}
+              className="cursor-pointer hover:text-[color:var(--edr)]"
+              style={{ "--edr": EDR }}
+            >
               Inicio
             </li>
 
-            <li onClick={toggleDropdown} className="cursor-pointer hover:text-[color:var(--edr)]">
+            <li
+              onClick={toggleDropdown}
+              className="cursor-pointer hover:text-[color:var(--edr)]"
+              style={{ "--edr": EDR }}
+            >
               Catálogo
             </li>
 
             {showDropdown && (
               <ul className="ml-4 mt-2 space-y-2 text-sm text-gray-300 animate-fadeIn">
-                <li onClick={() => navigate("/catalogo")} className="cursor-pointer hover:text-white">
+                <li
+                  onClick={() => navigate("/catalogo")}
+                  className="cursor-pointer hover:text-white"
+                >
                   Catálogo Completo
                 </li>
                 {CATEGORIES.map((cat) => (
@@ -316,21 +334,65 @@ const NavBar = () => {
                 goToUtileria();
               }}
               className="cursor-pointer hover:text-[color:var(--edr)]"
+              style={{ "--edr": EDR }}
             >
               Utilería
             </li>
 
-            <li onClick={() => navigate("/proyectos")} className="cursor-pointer hover:text-[color:var(--edr)]">
+            <li
+              onClick={() => navigate("/proyectos")}
+              className="cursor-pointer hover:text-[color:var(--edr)]"
+              style={{ "--edr": EDR }}
+            >
               Proyectos
             </li>
 
             {/* 🔹 Scroll a ContactUs en mobile */}
-            <li onClick={goToContact} className="cursor-pointer hover:text-[color:var(--edr)]">
+            <li
+              onClick={goToContact}
+              className="cursor-pointer hover:text-[color:var(--edr)]"
+              style={{ "--edr": EDR }}
+            >
               Contacto
             </li>
-            <li onClick={goToFaq} className="cursor-pointer hover:text-[color:var(--edr)]">
+            <li
+              onClick={goToFaq}
+              className="cursor-pointer hover:text-[color:var(--edr)]"
+              style={{ "--edr": EDR }}
+            >
               FAQ
             </li>
+
+            {/* === ICONOS REDES (MOBILE) === */}
+            <div className="w-full pt-4 mt-2 border-t border-white/10 flex items-center gap-5 text-2xl">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-[#1877F2] transition-colors"
+                aria-label="Facebook"
+              >
+                <FaFacebookF />
+              </a>
+              <a
+                href="https://instagram.com/equiposderodaje"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-[#E1306C] transition-colors"
+                aria-label="Instagram"
+              >
+                <FaInstagram />
+              </a>
+              <a
+                href="https://wa.me/5491162983716"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-[#25D366] transition-colors"
+                aria-label="WhatsApp"
+              >
+                <FaWhatsapp />
+              </a>
+            </div>
           </ul>
         </div>
       )}

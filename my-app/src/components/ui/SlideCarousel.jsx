@@ -61,7 +61,7 @@ const SlideCarousel = ({ slides = [], accent = "#b45309" }) => {
                     className="font-black tracking-[0.15em] text-white"
                     style={{
                       textShadow: "0 8px 30px rgba(0,0,0,.5)",
-                      fontSize: "clamp(34px, 7vw, 88px)",
+                      fontSize: "clamp(34px, 7vw, 68px)",
                     }}
                   >
                     {s.title}
