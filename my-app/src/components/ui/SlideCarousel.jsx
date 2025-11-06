@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -11,10 +11,16 @@ const SlideCarousel = ({ slides = [], accent = "#b45309" }) => {
   const startX = useRef(null);
   const deltaX = useRef(0);
 
-  const go = (n) => setIdx((p) => Math.max(0, Math.min(slides.length - 1, n)));
-  const next = () => go(idx + 1);
-  const prev = () => go(idx - 1);
+  // ---- Navegación básica ----
+  const go = useCallback(
+    (n) => setIdx((p) => Math.max(0, Math.min(slides.length - 1, n))),
+    [slides.length]
+  );
 
+  const next = useCallback(() => go(idx + 1), [go, idx]);
+  const prev = useCallback(() => go(idx - 1), [go, idx]);
+
+  // ---- Teclas flecha izquierda/derecha ----
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "ArrowRight") next();
@@ -22,16 +28,19 @@ const SlideCarousel = ({ slides = [], accent = "#b45309" }) => {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [idx]);
+  }, [next, prev]);
 
+  // ---- Swipe táctil ----
   const onTouchStart = (e) => {
     startX.current = e.touches[0].clientX;
     deltaX.current = 0;
   };
+
   const onTouchMove = (e) => {
     if (startX.current == null) return;
     deltaX.current = e.touches[0].clientX - startX.current;
   };
+
   const onTouchEnd = () => {
     if (Math.abs(deltaX.current) > 60) {
       if (deltaX.current < 0) next();
@@ -43,6 +52,7 @@ const SlideCarousel = ({ slides = [], accent = "#b45309" }) => {
 
   return (
     <div className="relative w-full h-full select-none">
+      {/* --- Contenedor de slides --- */}
       <div
         className="h-full w-full overflow-hidden"
         onTouchStart={onTouchStart}
@@ -55,19 +65,21 @@ const SlideCarousel = ({ slides = [], accent = "#b45309" }) => {
         >
           {slides.map((s, i) => (
             <div key={i} className="w-full h-full flex-shrink-0">
+              {/* --- Slide tipo título grande --- */}
               {s.type === "title" ? (
                 <div className="h-full w-full flex items-center justify-center text-center px-6">
                   <h2
                     className="font-black tracking-[0.15em] text-white"
                     style={{
                       textShadow: "0 8px 30px rgba(0,0,0,.5)",
-                      fontSize: "clamp(34px, 7vw, 68px)",
+                      fontSize: "clamp(28px, 5.5vw, 64px)",
                     }}
                   >
                     {s.title}
                   </h2>
                 </div>
               ) : (
+                // --- Slide con texto y botón ---
                 <div className="h-full w-full flex items-center">
                   <div className="max-w-[1100px] px-6 sm:px-10">
                     <h3
@@ -106,6 +118,7 @@ const SlideCarousel = ({ slides = [], accent = "#b45309" }) => {
         </div>
       </div>
 
+      {/* --- Flechas --- */}
       {slides.length > 1 && (
         <>
           <button
@@ -127,6 +140,7 @@ const SlideCarousel = ({ slides = [], accent = "#b45309" }) => {
         </>
       )}
 
+      {/* --- Bullets --- */}
       {slides.length > 1 && (
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
           {slides.map((_, i) => (
