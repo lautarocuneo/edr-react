@@ -91,7 +91,7 @@ const ALL_ITEMS = [
     id: "p163",
     title: "SONY FX6",
     price: "$300.000 por jornada",
-    image: "/fotos-catalogo/p16.png",
+    image: "/fotos-catalogo/p163.png",
     category: "camara",
     discountPct: 50 
   },
