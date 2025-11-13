@@ -89,10 +89,11 @@ const ALL_ITEMS = [
   },
   {
     id: "p16",
-    title: "SONY FX9",
-    price: "$325.000 por jornada",
+    title: "SONY FX6",
+    price: "$300.000 por jornada",
     image: "/fotos-catalogo/p16.png",
     category: "camara",
+    discountPct: 50 
   },
   {
     id: "p19",
