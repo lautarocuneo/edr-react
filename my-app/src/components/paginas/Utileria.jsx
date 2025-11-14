@@ -8,7 +8,6 @@ const ACCENT = "#b45309";        // óxido
 const MEDIA = (p) => `${process.env.PUBLIC_URL}${p}`;
 
 const SECTIONS = [
- 
   {
     id: "camara",
     bg: MEDIA("/utileria/antiguos-foto.jpg"),
@@ -37,7 +36,7 @@ const SECTIONS = [
       },
     ],
   },
-   {
+  {
     id: "galeria",
     bg: MEDIA("/utileria/hero-poster.jpg"),
     overlay:
@@ -83,7 +82,6 @@ function useFullpageDesktop(scrollerRef, pageRefs) {
     if (!scroller) return;
 
     const isDesktop = window.matchMedia("(pointer: fine) and (hover: hover)").matches;
-
     if (!isDesktop) return; // en mobile/tablet usamos scroll-snap nativo
 
     const pageTops = () =>
@@ -128,7 +126,7 @@ function useFullpageDesktop(scrollerRef, pageRefs) {
         e.preventDefault();
         jumpTo(idx - 1);
       } else {
-        // estamos en el extremo (header o más allá del footer): scroll nativo
+        // extremos: scroll nativo
       }
     };
 
@@ -161,10 +159,11 @@ export default function Utileria() {
   // scroller con altura = viewport - navbar
   const scrollerRef = useRef(null);
 
-  // refs de secciones + footer (footerPageRef)
+  // refs de secciones + intro + footer (footerPageRef)
   const sectionRefs = useMemo(() => SECTIONS.map(() => React.createRef()), []);
+  const introRef = useRef(null);     // nueva "página" de introducción
   const footerPageRef = useRef(null); // wrapper del footer que actúa como "página"
-  const pageRefs = [...sectionRefs, footerPageRef];
+  const pageRefs = [introRef, ...sectionRefs, footerPageRef];
 
   useFullpageDesktop(scrollerRef, pageRefs);
 
@@ -189,6 +188,14 @@ export default function Utileria() {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, []);
 
+  // handler para flecha "Pasar al catálogo"
+  const goToCatalog = () => {
+    const first = sectionRefs[0]?.current;
+    if (first && scrollerRef.current) {
+      scrollerRef.current.scrollTo({ top: first.offsetTop, behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="bg-black text-white min-h-screen" style={{ overflowX: "hidden" }}>
       {/* NAV fijo */}
@@ -208,7 +215,7 @@ export default function Utileria() {
         }}
       />
 
-      {/* SCROLLER: acá vive TODO (secciones + footer) */}
+      {/* SCROLLER: acá vive TODO (intro + secciones + footer) */}
       <div
         ref={scrollerRef}
         className="
@@ -223,6 +230,72 @@ export default function Utileria() {
         }}
       >
         <main className="relative">
+          {/* INTRO / BANNER */}
+          <section
+            id="intro"
+            ref={introRef}
+            className="relative w-full overflow-hidden snap-start"
+            style={{ height: "var(--sh)" }}
+          >
+            {/* fondo/overlay */}
+            <div
+              className="absolute inset-0 -z-10"
+              style={{
+                background: `
+                  radial-gradient(80% 60% at 50% 0%, ${ACCENT}22 0%, transparent 60%),
+                  linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.9) 100%)
+                `,
+              }}
+            />
+            {/* contenido centrado */}
+            <div className="h-full w-full flex items-center justify-center px-6">
+              <div className="max-w-3xl text-center">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">
+                  ARS MACHINA — Utilería
+                </h1>
+                <p className="mt-5 text-base sm:text-lg md:text-xl leading-relaxed text-neutral-200">
+                  El proyecto ARS MACHINA de utilería consiste en el alquiler de todo tipo de
+                  tecnología de todas las épocas, con un acento principal puesto en toda la
+                  historia de la fotografía, la historia del cine y la historia de la televisión; y además,
+                  en tecnología científica antigua basada en ópticas, latón y cobre, donde la
+                  estética era muy importante en el diseño.
+                </p>
+
+                {/* CTA flecha */}
+                <div className="mt-10 flex flex-col items-center gap-2">
+                  <button
+                    onClick={goToCatalog}
+                    className="uppercase tracking-wider text-sm sm:text-base inline-flex items-center gap-2 px-4 py-2 rounded-full border"
+                    style={{ borderColor: `${ACCENT}66`, color: `${ACCENT}` }}
+                    aria-label="Pasar al catálogo"
+                  >
+                    Pasar al catálogo
+                   
+                  </button>
+
+                  {/* flecha animada extra (rebote) */}
+                  <div className="mt-2 animate-bounce cursor-pointer" onClick={goToCatalog} aria-hidden="true">
+                    <svg
+                      className="w-6 h-6 opacity-80"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* línea superior de la intro */}
+            <div
+              className="absolute top-0 inset-x-0"
+              style={{ height: 1, background: `linear-gradient(90deg, ${ACCENT}88, transparent)` }}
+            />
+          </section>
+
+          {/* SECCIONES */}
           {SECTIONS.map((s, i) => (
             <section
               key={s.id}
