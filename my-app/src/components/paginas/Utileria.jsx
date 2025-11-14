@@ -3,75 +3,109 @@ import SlideCarousel from "../ui/SlideCarousel";
 import NavBarUtileria from "../NavBarUtileria";
 import FooterUtileria from "../FooterUtileria";
 
-const NAV_HEIGHT = 80;           // h-20 del navbar
-const ACCENT = "#b45309";        // óxido
-const MEDIA = (p) => `${process.env.PUBLIC_URL}${p}`;
+const NAV_HEIGHT = 80;
+const ACCENT = "#b45309";
 
-// SECCIONES PRINCIPALES
+// 100vh real
+const PAGE_HEIGHT = `calc((var(--vh, 1vh) * 100) - ${NAV_HEIGHT}px)`;
+
+// Hero BG
+const INTRO_BG = "/utileria/hero-poster.png";
+
+const INTRO_OVERLAY = `
+  linear-gradient(
+    180deg,
+    rgba(0,0,0,0.25) 0%,
+    rgba(0,0,0,0.35) 50%,
+    rgba(0,0,0,0.45) 100%
+  )
+`;
+
 const SECTIONS = [
   {
     id: "television",
-    bg: MEDIA("/utileria/hero-poster.jpg"),
-    overlay:
-      "radial-gradient(60% 60% at 50% 40%, rgba(0,0,0,.35) 0%, rgba(0,0,0,.65) 60%, rgba(0,0,0,.8) 100%)",
+    bg: "/utileria/hero-television.png",
+    overlay: `
+      linear-gradient(
+        180deg,
+        rgba(0,0,0,0.25) 0%,
+        rgba(0,0,0,0.35) 55%,
+        rgba(0,0,0,0.45) 100%
+      )
+    `,
     slides: [
       { type: "title", title: "TELEVISIÓN" },
       {
         title: "Estudios, móviles y señal al aire",
         text:
-          "Cámaras de estudio broadcast, cámaras portátiles de hombro de todas las épocas, camcorders, estuches profesionales de todo tipo, color y época, monitores, aparatología de televisión, mixers, editoras, trípodes y cabezales de cada época, pedestales con contrapeso e hidráulica, pedestales neumáticos, cables para cámaras de todas las épocas, etc.",
+          "Cámaras de estudio broadcast, cámaras portátiles de hombro de todas las épocas, camcorders, estuches profesionales...",
         cta: { label: "Ver equipamiento", href: "/catalogo?cat=utileria" },
       },
     ],
   },
   {
     id: "cine",
-    bg: MEDIA("/utileria/antiguos-foto.jpg"),
-    overlay:
-      "linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.6) 70%, rgba(0,0,0,.85) 100%)",
+    bg: "/utileria/hero-cine.png",
+    overlay: `
+      linear-gradient(
+        180deg,
+        rgba(0,0,0,0.20) 0%,
+        rgba(0,0,0,0.40) 60%,
+        rgba(0,0,0,0.55) 100%
+      )
+    `,
     slides: [
       { type: "title", title: "CINE" },
       {
         title: "Del origen del celuloide a lo contemporáneo",
         text:
-          "Cámaras de cine de todas las épocas, del origen del cine a la actualidad; lentes, trípodes y cabezales; instrumentos de cine antiguos (moviola), accesorios de set y cables para cámaras de todas las épocas.",
+          "Cámaras de cine de todas las épocas, lentes, trípodes, cabezales...",
         cta: { label: "Ver catálogo de cine", href: "/catalogo?cat=utileria" },
       },
     ],
   },
   {
     id: "fotografia",
-    bg: MEDIA("/utileria/antiguos-foto.jpg"),
-    overlay:
-      "linear-gradient(180deg, rgba(0,0,0,.2) 0%, rgba(0,0,0,.6) 65%, rgba(0,0,0,.85) 100%)",
+    bg: "/utileria/hero-foto.png",
+    overlay: `
+      linear-gradient(
+        180deg,
+        rgba(0,0,0,0.18) 0%,
+        rgba(0,0,0,0.35) 60%,
+        rgba(0,0,0,0.50) 100%
+      )
+    `,
     slides: [
       { type: "title", title: "FOTOGRAFÍA" },
       {
         title: "Cámaras, ópticas y flashes de época",
-        text:
-          "Cámaras antiguas de todas las épocas, lentes de todas las épocas y flashes de todas las épocas, listas para cuadro en cualquier década.",
+        text: "Cámaras antiguas de todas las épocas, lentes, flashes...",
         cta: { label: "Ver fotografía", href: "/catalogo?cat=utileria" },
       },
     ],
   },
   {
     id: "ciencia",
-    bg: MEDIA("/utileria/antiguos-ciencia.jpg"),
-    overlay:
-      "linear-gradient(180deg, rgba(0,0,0,.2) 0%, rgba(0,0,0,.6) 65%, rgba(0,0,0,.85) 100%)",
+    bg: "/utileria/hero-ciencia.png",
+    overlay: `
+      linear-gradient(
+        180deg,
+        rgba(0,0,0,0.18) 0%,
+        rgba(0,0,0,0.35) 60%,
+        rgba(0,0,0,0.50) 100%
+      )
+    `,
     slides: [
       { type: "title", title: "ARTEFACTOS CIENTÍFICOS" },
       {
         title: "Laboratorio, medición y óptica clásica",
-        text:
-          "Microscopios, instrumental y medidores vintage; aparatos de laboratorio, ópticas científicas en latón y cobre, kits armados por continuidad para ciencia, medicina, industria y universidades.",
+        text: "Microscopios, instrumental y medidores vintage...",
         cta: { label: "Ver ciencia", href: "/catalogo?cat=utileria" },
       },
     ],
   },
 ];
 
-/** 100vh real en móviles */
 function useMobileVh() {
   useEffect(() => {
     const setVh = () => {
@@ -88,10 +122,6 @@ function useMobileVh() {
   }, []);
 }
 
-/** Fullpage vertical jump en DESKTOP.
- *  - Usa un contenedor scroller (no la ventana) para evitar conflictos.
- *  - El footer se trata como una "página" extra para poder llegar con un salto.
- */
 function useFullpageDesktop(scrollerRef, pageRefs) {
   const animRef = useRef(false);
 
@@ -99,8 +129,10 @@ function useFullpageDesktop(scrollerRef, pageRefs) {
     const scroller = scrollerRef.current;
     if (!scroller) return;
 
-    const isDesktop = window.matchMedia("(pointer: fine) and (hover: hover)").matches;
-    if (!isDesktop) return; // en mobile/tablet usamos scroll-snap nativo
+    const isDesktop = window.matchMedia(
+      "(pointer: fine) and (hover: hover)"
+    ).matches;
+    if (!isDesktop) return;
 
     const pageTops = () =>
       pageRefs.map((r) => (r.current ? r.current.offsetTop : 0));
@@ -122,9 +154,8 @@ function useFullpageDesktop(scrollerRef, pageRefs) {
 
     const jumpTo = (i) => {
       const tops = pageTops();
-      const clamped = Math.max(0, Math.min(tops.length - 1, i));
       animRef.current = true;
-      scroller.scrollTo({ top: tops[clamped], behavior: "smooth" });
+      scroller.scrollTo({ top: tops[i], behavior: "smooth" });
       setTimeout(() => (animRef.current = false), 700);
     };
 
@@ -134,39 +165,20 @@ function useFullpageDesktop(scrollerRef, pageRefs) {
         return;
       }
       const idx = nearestIndex();
-      const last = pageRefs.length - 1;
       const dir = e.deltaY > 0 ? 1 : -1;
-
-      if (dir > 0 && idx < last) {
+      if (dir > 0 && idx < pageRefs.length - 1) {
         e.preventDefault();
         jumpTo(idx + 1);
       } else if (dir < 0 && idx > 0) {
         e.preventDefault();
         jumpTo(idx - 1);
-      } else {
-        // extremos: scroll nativo
-      }
-    };
-
-    const onKey = (e) => {
-      if (animRef.current) return;
-      if (["ArrowDown", "PageDown"].includes(e.key)) {
-        e.preventDefault();
-        const idx = nearestIndex();
-        if (idx < pageRefs.length - 1) jumpTo(idx + 1);
-      } else if (["ArrowUp", "PageUp"].includes(e.key)) {
-        e.preventDefault();
-        const idx = nearestIndex();
-        if (idx > 0) jumpTo(idx - 1);
       }
     };
 
     scroller.addEventListener("wheel", onWheel, { passive: false });
-    window.addEventListener("keydown", onKey, { passive: false });
 
     return () => {
       scroller.removeEventListener("wheel", onWheel);
-      window.removeEventListener("keydown", onKey);
     };
   }, [scrollerRef, pageRefs]);
 }
@@ -174,135 +186,86 @@ function useFullpageDesktop(scrollerRef, pageRefs) {
 export default function Utileria() {
   useMobileVh();
 
-  // scroller con altura = viewport - navbar
   const scrollerRef = useRef(null);
-
-  // refs de secciones + intro + footer (footerPageRef)
+  const introRef = useRef(null);
+  const footerRef = useRef(null);
   const sectionRefs = useMemo(() => SECTIONS.map(() => React.createRef()), []);
-  const introRef = useRef(null);     // nueva "página" de introducción
-  const footerPageRef = useRef(null); // wrapper del footer que actúa como "página"
-  const pageRefs = [introRef, ...sectionRefs, footerPageRef];
+
+  const pageRefs = [introRef, ...sectionRefs, footerRef];
 
   useFullpageDesktop(scrollerRef, pageRefs);
 
-  // seteo CSS var para altura de cada "pantalla" del scroller
-  useEffect(() => {
-    const setSh = () => {
-      const sh = window.innerHeight - NAV_HEIGHT;
-      if (scrollerRef.current) {
-        scrollerRef.current.style.setProperty("--sh", `${sh}px`);
-      }
-    };
-    setSh();
-    window.addEventListener("resize", setSh);
-    window.addEventListener("orientationchange", setSh);
-    return () => {
-      window.removeEventListener("resize", setSh);
-      window.removeEventListener("orientationchange", setSh);
-    };
-  }, []);
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, []);
-
-  // handler para flecha "Pasar al catálogo"
   const goToCatalog = () => {
     const first = sectionRefs[0]?.current;
-    if (first && scrollerRef.current) {
-      scrollerRef.current.scrollTo({ top: first.offsetTop, behavior: "smooth" });
-    }
+    scrollerRef.current?.scrollTo({
+      top: first.offsetTop,
+      behavior: "smooth",
+    });
   };
 
   return (
     <div className="bg-black text-white min-h-screen" style={{ overflowX: "hidden" }}>
-      {/* NAV fijo */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <NavBarUtileria />
       </div>
 
-      {/* separador navbar */}
-      <div style={{ height: NAV_HEIGHT }} aria-hidden="true" />
+      <div style={{ height: NAV_HEIGHT }} />
 
-      {/* línea superior óxido */}
-      <div
-        className="w-full"
-        style={{
-          height: 2,
-          background: `linear-gradient(90deg, ${ACCENT} 0%, rgba(180,83,9,.2) 100%)`,
-        }}
-      />
-
-      {/* SCROLLER: acá vive TODO (intro + secciones + footer) */}
       <div
         ref={scrollerRef}
-        className="
-          relative w-full
-          overflow-y-auto
-          md:snap-none
-          snap-y snap-mandatory
-        "
-        style={{
-          height: "calc((var(--vh, 1vh) * 100) - 80px)", // 100vh real - navbar
-          scrollBehavior: "smooth",
-        }}
+        className="relative w-full overflow-y-auto snap-y snap-mandatory"
+        style={{ height: PAGE_HEIGHT, scrollBehavior: "smooth" }}
       >
         <main className="relative">
-          {/* INTRO / BANNER */}
+
+          {/* HERO */}
+         {/* HERO COMPLETO */}
           <section
             id="intro"
             ref={introRef}
-            className="relative w-full overflow-hidden snap-start"
-            style={{ height: "var(--sh)" }}
+            className="relative w-full overflow-hidden snap-start bg-center bg-cover"
+            style={{
+              height: PAGE_HEIGHT,
+              backgroundImage: `url(${INTRO_BG})`,
+            }}
           >
-            {/* fondo/overlay con más tonos cobre */}
-            <div
-              className="absolute inset-0 -z-10"
-              style={{
-                background: `
-                  radial-gradient(
-                    80% 60% at 50% 0%,
-                    rgba(180, 83, 9, 0.38) 0%,
-                    rgba(120, 53, 15, 0.75) 35%,
-                    transparent 70%
-                  ),
-                  linear-gradient(
-                    180deg,
-                    rgba(0,0,0,0.85) 0%,
-                    rgba(15,7,0,0.96) 65%,
-                    rgba(0,0,0,1) 100%
-                  )
-                `,
-              }}
-            />
+            {/* Overlay */}
+            <div className="absolute inset-0" style={{ background: INTRO_OVERLAY }} />
 
-            {/* contenido centrado */}
-            <div className="h-full w-full flex items-center justify-center px-6">
+            {/* CONTENIDO */}
+            <div className="relative h-full w-full flex items-center justify-center px-6">
               <div className="max-w-3xl text-center">
+
+                {/* Título */}
                 <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight">
                   <span>ARS </span>
                   <span style={{ color: ACCENT }}>MACHINA</span>
                 </h1>
+
+                {/* Subtítulo restaurado */}
                 <p className="mt-4 text-xs sm:text-sm md:text-base leading-relaxed text-neutral-300 font-light">
-                  ARS MACHINA es un proyecto dedicado al alquiler de tecnología histórica: fotografía, cine, televisión y artefactos científicos. Con piezas donde la estética clásica en ópticas, latón y cobre es protagonista.
+                  ARS MACHINA es un proyecto dedicado al alquiler de tecnología histórica:
+                  fotografía, cine, televisión y artefactos científicos. Con piezas donde
+                  la estética clásica en ópticas, latón y cobre es protagonista.
                 </p>
 
-                {/* CTA flecha */}
+                {/* Botón */}
                 <div className="mt-8 flex flex-col items-center gap-2">
                   <button
                     onClick={goToCatalog}
                     className="uppercase tracking-wider text-sm sm:text-base inline-flex items-center gap-2 px-4 py-2 rounded-full border"
-                    style={{ borderColor: `${ACCENT}66`, color: `${ACCENT}` }}
-                    aria-label="Pasar al catálogo"
+                    style={{
+                      borderColor: `${ACCENT}66`,
+                      color: `${ACCENT}`,
+                    }}
                   >
                     Pasar al catálogo
                   </button>
 
-                  {/* flecha animada extra (rebote) */}
+                  {/* Flechita animada */}
                   <div
                     className="mt-2 animate-bounce cursor-pointer"
                     onClick={goToCatalog}
-                    aria-hidden="true"
                   >
                     <svg
                       className="w-6 h-6 opacity-80"
@@ -322,77 +285,30 @@ export default function Utileria() {
                 </div>
               </div>
             </div>
-
-            {/* línea superior de la intro */}
-            <div
-              className="absolute top-0 inset-x-0"
-              style={{
-                height: 1,
-                background: `linear-gradient(90deg, ${ACCENT}88, transparent)`,
-              }}
-            />
           </section>
+
 
           {/* SECCIONES */}
           {SECTIONS.map((s, i) => (
             <section
               key={s.id}
-              id={s.id}
               ref={sectionRefs[i]}
-              className="relative w-full overflow-hidden snap-start"
-              style={{ height: "var(--sh)" }} // cada sección = una pantalla del scroller
+              className="relative w-full overflow-hidden snap-start bg-center bg-cover"
+              style={{
+                height: PAGE_HEIGHT,
+                backgroundImage: `url(${s.bg})`,
+              }}
             >
-              {/* fondo */}
-              <div
-                className="absolute inset-0 -z-10 bg-center bg-cover"
-                style={{ backgroundImage: `url('${s.bg}')` }}
-              />
-              <div className="absolute inset-0 -z-10" style={{ background: s.overlay }} />
+              <div className="absolute inset-0" style={{ background: s.overlay }} />
 
-              {/* glow inferior óxido */}
-              <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-24 -z-10"
-                style={{
-                  background: `radial-gradient(60% 50% at 50% 100%, ${ACCENT}22 0%, transparent 70%)`,
-                }}
-              />
-
-              {/* carrusel */}
               <div className="h-full flex items-center">
-                <div className="w-full">
-                  <SlideCarousel slides={s.slides} accent={ACCENT} />
-                </div>
+                <SlideCarousel slides={s.slides} accent={ACCENT} />
               </div>
-
-              {/* badge */}
-              <div className="absolute bottom-5 left-5">
-                <span
-                  className="text-[10px] sm:text-xs tracking-widest uppercase px-3 py-1 rounded-full border"
-                  style={{ borderColor: `${ACCENT}66`, color: `${ACCENT}` }}
-                >
-                  Ars Machina • Argentina
-                </span>
-              </div>
-
-              {/* línea superior de sección */}
-              <div
-                className="absolute top-0 inset-x-0"
-                style={{ height: 1, background: `linear-gradient(90deg, ${ACCENT}88, transparent)` }}
-              />
             </section>
           ))}
 
-          {/* línea inferior óxido */}
-          <div
-            className="w-full"
-            style={{
-              height: 2,
-              background: `linear-gradient(90deg, rgba(180,83,9,.2) 0%, ${ACCENT} 100%)`,
-            }}
-          />
-
-          {/* FOOTER como "página" final del scroller */}
-          <div ref={footerPageRef} className="snap-start">
+          {/* FOOTER */}
+          <div ref={footerRef} className="snap-start">
             <FooterUtileria />
           </div>
         </main>

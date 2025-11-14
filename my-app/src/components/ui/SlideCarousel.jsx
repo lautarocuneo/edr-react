@@ -169,7 +169,7 @@ const SlideCarousel = ({ slides = [], accent = "#b45309" }) => {
         <div
           className="
             absolute
-            bottom-[-50px] sm:bottom-4
+            bottom-6
             left-1/2 -translate-x-1/2
             flex gap-2
           "
