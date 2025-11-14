@@ -81,25 +81,49 @@ const SlideCarousel = ({ slides = [], accent = "#b45309" }) => {
               ) : (
                 // --- Slide con texto y botón ---
                 <div className="h-full w-full flex items-center">
-                  <div className="max-w-[1100px] px-6 sm:px-10">
+                  <div
+                    className="
+                      max-w-[1100px]
+                      px-6 sm:px-10
+                      sm:ml-20
+                      text-center sm:text-left
+                      flex flex-col
+                      items-center sm:items-start
+                    "
+                  >
+                    {/* Título */}
                     <h3
                       className="font-extrabold leading-tight text-white"
                       style={{ fontSize: "clamp(22px, 4vw, 48px)" }}
                     >
                       {s.title}
                     </h3>
+
+                    {/* Texto */}
                     {s.text && (
                       <p
-                        className="mt-3 text-white/85"
-                        style={{ fontSize: "clamp(14px, 2.2vw, 18px)" }}
+                        className="
+                          mt-3
+                          text-white/85
+                          text-center sm:text-left
+                        "
+                        style={{ fontSize: "clamp(11px, 1.4vw, 15px)" }}
                       >
                         {s.text}
                       </p>
                     )}
+
+                    {/* Botón */}
                     {s.cta && (
                       <Link
                         to={s.cta.href}
-                        className="mt-6 inline-flex items-center rounded-full px-5 py-3 font-semibold uppercase tracking-wide"
+                        className="
+                          mt-6
+                          inline-flex items-center
+                          rounded-full px-5 py-3
+                          font-semibold uppercase tracking-wide
+                          justify-center sm:justify-start
+                        "
                         style={{
                           background: `linear-gradient(90deg, ${accent}, #7c3a07)`,
                           boxShadow: `0 10px 30px -12px ${accent}aa`,
@@ -142,7 +166,14 @@ const SlideCarousel = ({ slides = [], accent = "#b45309" }) => {
 
       {/* --- Bullets --- */}
       {slides.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        <div
+          className="
+            absolute
+            bottom-[-50px] sm:bottom-4
+            left-1/2 -translate-x-1/2
+            flex gap-2
+          "
+        >
           {slides.map((_, i) => (
             <button
               key={i}

@@ -7,18 +7,50 @@ const NAV_HEIGHT = 80;           // h-20 del navbar
 const ACCENT = "#b45309";        // óxido
 const MEDIA = (p) => `${process.env.PUBLIC_URL}${p}`;
 
+// SECCIONES PRINCIPALES
 const SECTIONS = [
   {
-    id: "camara",
+    id: "television",
+    bg: MEDIA("/utileria/hero-poster.jpg"),
+    overlay:
+      "radial-gradient(60% 60% at 50% 40%, rgba(0,0,0,.35) 0%, rgba(0,0,0,.65) 60%, rgba(0,0,0,.8) 100%)",
+    slides: [
+      { type: "title", title: "TELEVISIÓN" },
+      {
+        title: "Estudios, móviles y señal al aire",
+        text:
+          "Cámaras de estudio broadcast, cámaras portátiles de hombro de todas las épocas, camcorders, estuches profesionales de todo tipo, color y época, monitores, aparatología de televisión, mixers, editoras, trípodes y cabezales de cada época, pedestales con contrapeso e hidráulica, pedestales neumáticos, cables para cámaras de todas las épocas, etc.",
+        cta: { label: "Ver equipamiento", href: "/catalogo?cat=utileria" },
+      },
+    ],
+  },
+  {
+    id: "cine",
     bg: MEDIA("/utileria/antiguos-foto.jpg"),
     overlay:
       "linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.6) 70%, rgba(0,0,0,.85) 100%)",
     slides: [
-      { type: "title", title: "CÁMARAS ANTIGUAS" },
+      { type: "title", title: "CINE" },
       {
-        title: "35mm, medio formato y Polaroid",
-        text: "Disponibles con accesorios de época y rótulos personalizados según guion.",
-        cta: { label: "Ir a Foto", href: "/catalogo?cat=utileria" },
+        title: "Del origen del celuloide a lo contemporáneo",
+        text:
+          "Cámaras de cine de todas las épocas, del origen del cine a la actualidad; lentes, trípodes y cabezales; instrumentos de cine antiguos (moviola), accesorios de set y cables para cámaras de todas las épocas.",
+        cta: { label: "Ver catálogo de cine", href: "/catalogo?cat=utileria" },
+      },
+    ],
+  },
+  {
+    id: "fotografia",
+    bg: MEDIA("/utileria/antiguos-foto.jpg"),
+    overlay:
+      "linear-gradient(180deg, rgba(0,0,0,.2) 0%, rgba(0,0,0,.6) 65%, rgba(0,0,0,.85) 100%)",
+    slides: [
+      { type: "title", title: "FOTOGRAFÍA" },
+      {
+        title: "Cámaras, ópticas y flashes de época",
+        text:
+          "Cámaras antiguas de todas las épocas, lentes de todas las épocas y flashes de todas las épocas, listas para cuadro en cualquier década.",
+        cta: { label: "Ver fotografía", href: "/catalogo?cat=utileria" },
       },
     ],
   },
@@ -30,24 +62,10 @@ const SECTIONS = [
     slides: [
       { type: "title", title: "ARTEFACTOS CIENTÍFICOS" },
       {
-        title: "Microscopios & instrumental",
-        text: "Piezas científicas y medidores vintage; kits por continuidad.",
-        cta: { label: "Explorar", href: "/catalogo?cat=utileria" },
-      },
-    ],
-  },
-  {
-    id: "galeria",
-    bg: MEDIA("/utileria/hero-poster.jpg"),
-    overlay:
-      "radial-gradient(60% 60% at 50% 40%, rgba(0,0,0,.35) 0%, rgba(0,0,0,.65) 60%, rgba(0,0,0,.8) 100%)",
-    slides: [
-      { type: "title", title: "GALERÍA" },
-      {
-        title: "Selección curada",
+        title: "Laboratorio, medición y óptica clásica",
         text:
-          "Televisores CRT, cámaras analógicas y piezas de laboratorio. Listo para cámara con look de época.",
-        cta: { label: "Ver catálogo", href: "/catalogo?cat=utileria" },
+          "Microscopios, instrumental y medidores vintage; aparatos de laboratorio, ópticas científicas en latón y cobre, kits armados por continuidad para ciencia, medicina, industria y universidades.",
+        cta: { label: "Ver ciencia", href: "/catalogo?cat=utileria" },
       },
     ],
   },
@@ -237,32 +255,40 @@ export default function Utileria() {
             className="relative w-full overflow-hidden snap-start"
             style={{ height: "var(--sh)" }}
           >
-            {/* fondo/overlay */}
+            {/* fondo/overlay con más tonos cobre */}
             <div
               className="absolute inset-0 -z-10"
               style={{
                 background: `
-                  radial-gradient(80% 60% at 50% 0%, ${ACCENT}22 0%, transparent 60%),
-                  linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.9) 100%)
+                  radial-gradient(
+                    80% 60% at 50% 0%,
+                    rgba(180, 83, 9, 0.38) 0%,
+                    rgba(120, 53, 15, 0.75) 35%,
+                    transparent 70%
+                  ),
+                  linear-gradient(
+                    180deg,
+                    rgba(0,0,0,0.85) 0%,
+                    rgba(15,7,0,0.96) 65%,
+                    rgba(0,0,0,1) 100%
+                  )
                 `,
               }}
             />
+
             {/* contenido centrado */}
             <div className="h-full w-full flex items-center justify-center px-6">
               <div className="max-w-3xl text-center">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">
-                  ARS MACHINA — Utilería
+                <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight">
+                  <span>ARS </span>
+                  <span style={{ color: ACCENT }}>MACHINA</span>
                 </h1>
-                <p className="mt-5 text-base sm:text-lg md:text-xl leading-relaxed text-neutral-200">
-                  El proyecto ARS MACHINA de utilería consiste en el alquiler de todo tipo de
-                  tecnología de todas las épocas, con un acento principal puesto en toda la
-                  historia de la fotografía, la historia del cine y la historia de la televisión; y además,
-                  en tecnología científica antigua basada en ópticas, latón y cobre, donde la
-                  estética era muy importante en el diseño.
+                <p className="mt-4 text-xs sm:text-sm md:text-base leading-relaxed text-neutral-300 font-light">
+                  ARS MACHINA es un proyecto dedicado al alquiler de tecnología histórica: fotografía, cine, televisión y artefactos científicos. Con piezas donde la estética clásica en ópticas, latón y cobre es protagonista.
                 </p>
 
                 {/* CTA flecha */}
-                <div className="mt-10 flex flex-col items-center gap-2">
+                <div className="mt-8 flex flex-col items-center gap-2">
                   <button
                     onClick={goToCatalog}
                     className="uppercase tracking-wider text-sm sm:text-base inline-flex items-center gap-2 px-4 py-2 rounded-full border"
@@ -270,18 +296,27 @@ export default function Utileria() {
                     aria-label="Pasar al catálogo"
                   >
                     Pasar al catálogo
-                   
                   </button>
 
                   {/* flecha animada extra (rebote) */}
-                  <div className="mt-2 animate-bounce cursor-pointer" onClick={goToCatalog} aria-hidden="true">
+                  <div
+                    className="mt-2 animate-bounce cursor-pointer"
+                    onClick={goToCatalog}
+                    aria-hidden="true"
+                  >
                     <svg
                       className="w-6 h-6 opacity-80"
                       viewBox="0 0 24 24"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      <path
+                        d="M6 9l6 6 6-6"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
                     </svg>
                   </div>
                 </div>
@@ -291,7 +326,10 @@ export default function Utileria() {
             {/* línea superior de la intro */}
             <div
               className="absolute top-0 inset-x-0"
-              style={{ height: 1, background: `linear-gradient(90deg, ${ACCENT}88, transparent)` }}
+              style={{
+                height: 1,
+                background: `linear-gradient(90deg, ${ACCENT}88, transparent)`,
+              }}
             />
           </section>
 
