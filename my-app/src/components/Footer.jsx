@@ -68,8 +68,10 @@ const Footer = () => {
         {/* Navegación */}
         <div className="flex justify-center">
           <div>
-            <h6 className="font-semibold text-white mb-3 tracking-wide cursor-pointer hover:text-[#2A86E2] transition-colors duration-300"
-                onClick={() => scrollToSection("top")}>
+            <h6
+              className="font-semibold text-white mb-3 tracking-wide cursor-pointer hover:text-[#2A86E2] transition-colors duration-300"
+              onClick={() => scrollToSection("top")}
+            >
               Home
             </h6>
             <ul className="flex items-center justify-center gap-6">
@@ -79,6 +81,15 @@ const Footer = () => {
               >
                 Proyectos
               </li>
+
+              {/* 🔹 Nuevo item Ars Machina -> componente Utileria */}
+              <li
+                className="text-sm hover:text-[#c26d0c] transition-colors duration-300 cursor-pointer"
+                onClick={() => navigate("/utileria")}
+              >
+                Ars Machina
+              </li>
+
               <li
                 className="text-sm hover:text-[#2A86E2] transition-colors duration-300 cursor-pointer"
                 onClick={() => navigate("/catalogo")}
