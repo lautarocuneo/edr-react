@@ -7,7 +7,7 @@ const NAV_HEIGHT = 80;
 const ACCENT = "#b45309";
 
 // 100vh real
-const PAGE_HEIGHT = `calc((var(--vh, 1vh) * 100) - ${NAV_HEIGHT}px)`;
+const PAGE_HEIGHT = `calc((var(--vh, 1vh) * 100) - ${NAV_HEIGHT}px`;
 
 // Hero BG
 const INTRO_BG = "/utileria/hero-poster.png";
@@ -36,10 +36,14 @@ const SECTIONS = [
     slides: [
       { type: "title", title: "TELEVISIÓN" },
       {
-        title: "Estudios, móviles y señal al aire",
+        title: "Cámaras Broadcast, Estudio, Monitores, Mixers, y mucho más",
         text:
-          "Cámaras de estudio broadcast, cámaras portátiles de hombro de todas las épocas, camcorders, estuches profesionales...",
-        cta: { label: "Ver equipamiento", href: "/catalogo?cat=utileria" },
+          "Cámaras de estudio broadcast, monitores, cámaras portátiles de hombro de todas las épocas, camcorders, estuches profesionales y mucho más",
+        // ⬇️ Lleva al catálogo con filtro "utileria television" tildado
+        cta: {
+          label: "Ver equipamiento de TV",
+          href: "/catalogo?cat=utileria%20television",
+        },
       },
     ],
   },
@@ -59,8 +63,9 @@ const SECTIONS = [
       {
         title: "Del origen del celuloide a lo contemporáneo",
         text:
-          "Cámaras de cine de todas las épocas, lentes, trípodes, cabezales...",
-        cta: { label: "Ver catálogo de cine", href: "/catalogo?cat=utileria" },
+          "Cámaras de cine de todas las épocas, icónicas del cine clásico, lentes, trípodes, cabezales, sonido, y mucho más ",
+        // ⬇️ Filtro "utileria cine"
+        cta: { label: "Ver catálogo de cine", href: "/catalogo?cat=utileria%20cine" },
       },
     ],
   },
@@ -79,8 +84,10 @@ const SECTIONS = [
       { type: "title", title: "FOTOGRAFÍA" },
       {
         title: "Cámaras, ópticas y flashes de época",
-        text: "Cámaras antiguas de todas las épocas, lentes, flashes...",
-        cta: { label: "Ver fotografía", href: "/catalogo?cat=utileria" },
+        text:
+          "Cámaras fotográficas antiguas de todas las épocas, lentes, flashes, y mucho más",
+        // ⬇️ Filtro "utileria fotografia"
+        cta: { label: "Ver fotografía", href: "/catalogo?cat=utileria%20fotografia" },
       },
     ],
   },
@@ -99,8 +106,10 @@ const SECTIONS = [
       { type: "title", title: "ARTEFACTOS CIENTÍFICOS" },
       {
         title: "Laboratorio, medición y óptica clásica",
-        text: "Microscopios, instrumental y medidores vintage...",
-        cta: { label: "Ver ciencia", href: "/catalogo?cat=utileria" },
+        text:
+          "Microscopios, instrumental, medición, teodolitos, sextantes, y mucho más",
+        // ⬇️ Filtro "utileria cientifica"
+        cta: { label: "Ver ciencia", href: "/catalogo?cat=utileria%20cientifica" },
       },
     ],
   },
@@ -204,7 +213,10 @@ export default function Utileria() {
   };
 
   return (
-    <div className="bg-black text-white min-h-screen" style={{ overflowX: "hidden" }}>
+    <div
+      className="bg-black text-white min-h-screen"
+      style={{ overflowX: "hidden" }}
+    >
       <div className="fixed top-0 left-0 right-0 z-50">
         <NavBarUtileria />
       </div>
@@ -217,9 +229,7 @@ export default function Utileria() {
         style={{ height: PAGE_HEIGHT, scrollBehavior: "smooth" }}
       >
         <main className="relative">
-
           {/* HERO */}
-         {/* HERO COMPLETO */}
           <section
             id="intro"
             ref={introRef}
@@ -230,26 +240,29 @@ export default function Utileria() {
             }}
           >
             {/* Overlay */}
-            <div className="absolute inset-0" style={{ background: INTRO_OVERLAY }} />
+            <div
+              className="absolute inset-0"
+              style={{ background: INTRO_OVERLAY }}
+            />
 
             {/* CONTENIDO */}
             <div className="relative h-full w-full flex items-center justify-center px-6">
               <div className="max-w-3xl text-center">
-
                 {/* Título */}
                 <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight">
                   <span>ARS </span>
                   <span style={{ color: ACCENT }}>MACHINA</span>
                 </h1>
 
-                {/* Subtítulo restaurado */}
+                {/* Subtítulo */}
                 <p className="mt-4 text-xs sm:text-sm md:text-base leading-relaxed text-neutral-300 font-light">
-                  ARS MACHINA es un proyecto dedicado al alquiler de tecnología histórica:
-                  fotografía, cine, televisión y artefactos científicos. Con piezas donde
-                  la estética clásica en ópticas, latón y cobre es protagonista.
+                  ARS MACHINA es un proyecto dedicado al alquiler de tecnología
+                  histórica: fotografía, cine, televisión y artefactos
+                  científicos. Con piezas donde la estética clásica en ópticas,
+                  latón y cobre es protagonista.
                 </p>
 
-                {/* Botón */}
+                {/* Botón hero (scroll dentro de la misma página) */}
                 <div className="mt-8 flex flex-col items-center gap-2">
                   <button
                     onClick={goToCatalog}
@@ -287,7 +300,6 @@ export default function Utileria() {
             </div>
           </section>
 
-
           {/* SECCIONES */}
           {SECTIONS.map((s, i) => (
             <section
@@ -299,7 +311,10 @@ export default function Utileria() {
                 backgroundImage: `url(${s.bg})`,
               }}
             >
-              <div className="absolute inset-0" style={{ background: s.overlay }} />
+              <div
+                className="absolute inset-0"
+                style={{ background: s.overlay }}
+              />
 
               <div className="h-full flex items-center">
                 <SlideCarousel slides={s.slides} accent={ACCENT} />

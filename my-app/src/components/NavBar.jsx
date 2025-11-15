@@ -15,7 +15,14 @@ const CATEGORIES = [
   "griperia",
   "videoassist",
   "estabilizadores",
+
+  // === UTILERÍA EDR / ARS MACHINA ===
   "utileria",
+  "utileria television",
+  "utileria cine",
+  "utileria fotografia",
+  "utileria cientifica",
+
   "otros",
 ];
 
@@ -107,7 +114,7 @@ const NavBar = () => {
 
   // 🔹 Ir a categoría específica en catálogo
   const goToCatalogCategory = (cat) => {
-    navigate(`/catalogo?cat=${cat}`);
+    navigate(`/catalogo?cat=${encodeURIComponent(cat)}`);
     setShowDropdown(false);
     setNav(false);
   };
@@ -235,7 +242,7 @@ const NavBar = () => {
             Proyectos
           </LinkItem>
 
-          {/* 🔸 NUEVO: Utilería (landing dedicada) */}
+          {/* Utilería (landing dedicada) */}
           <LinkItem
             href="/utileria"
             section="utileria"
@@ -245,7 +252,7 @@ const NavBar = () => {
             Utilería
           </LinkItem>
 
-          {/* 🔹 Scroll a ContactUs */}
+          {/* Contacto */}
           <LinkItem href="#contacto" section="contacto" onClick={goToContact}>
             Contacto
           </LinkItem>
@@ -330,9 +337,7 @@ const NavBar = () => {
             )}
 
             <li
-              onClick={() => {
-                goToUtileria();
-              }}
+              onClick={goToUtileria}
               className="cursor-pointer hover:text-[color:var(--edr)]"
               style={{ "--edr": EDR }}
             >
@@ -347,7 +352,6 @@ const NavBar = () => {
               Proyectos
             </li>
 
-            {/* 🔹 Scroll a ContactUs en mobile */}
             <li
               onClick={goToContact}
               className="cursor-pointer hover:text-[color:var(--edr)]"
@@ -363,7 +367,7 @@ const NavBar = () => {
               FAQ
             </li>
 
-            {/* === ICONOS REDES (MOBILE) === */}
+            {/* ICONOS REDES (MOBILE) */}
             <div className="w-full pt-4 mt-2 border-t border-white/10 flex items-center gap-5 text-2xl">
               <a
                 href="https://facebook.com"

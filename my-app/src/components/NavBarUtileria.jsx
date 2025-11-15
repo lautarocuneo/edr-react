@@ -4,6 +4,7 @@ import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const ACCENT = "#b45309"; // óxido Ars Machina
+
 const CATEGORIES = [
   "camara",
   "opticas",
@@ -14,7 +15,14 @@ const CATEGORIES = [
   "griperia",
   "videoassist",
   "estabilizadores",
+
+  // === UTILERÍA ARS MACHINA ===
   "utileria",
+  "utileria television",
+  "utileria cine",
+  "utileria fotografia",
+  "utileria cientifica",
+
   "otros",
 ];
 
@@ -43,7 +51,7 @@ const NavBarUtileria = () => {
   };
 
   const goToCatalogCategory = (cat) => {
-    navigate(`/catalogo?cat=${cat}`);
+    navigate(`/catalogo?cat=${encodeURIComponent(cat)}`);
     setShowDropdown(false);
     setNav(false);
   };
@@ -75,7 +83,9 @@ const NavBarUtileria = () => {
     const under2 = [
       "pointer-events-none absolute left-0 -bottom-1 h-[1px] w-full",
       "transition-opacity duration-200",
-      isActive ? "opacity-100 bg-[color:var(--accent)]" : "opacity-0 group-hover:opacity-100 delay-[300ms] bg-[color:var(--accent)]",
+      isActive
+        ? "opacity-100 bg-[color:var(--accent)]"
+        : "opacity-0 group-hover:opacity-100 delay-[300ms] bg-[color:var(--accent)]",
     ].join(" ");
 
     const inner = (
@@ -110,7 +120,7 @@ const NavBarUtileria = () => {
               <li
                 key={cat}
                 onClick={() => goToCatalogCategory(cat)}
-                className="capitalize px-3 py-2 hover:bg-white/5 cursor-pointer"
+                className="capitalize px-3 py-2 hover:bg.white/5 hover:bg-white/5 cursor-pointer"
               >
                 {cat}
               </li>
@@ -132,7 +142,7 @@ const NavBarUtileria = () => {
         }}
       >
         <div className="flex justify-between items-center h-20 max-w-[1320px] mx-auto px-6 text-white">
-          {/* LOGO (otro archivo de logo) */}
+          {/* LOGO */}
           <div className="flex items-center gap-6">
             <img
               src={`${process.env.PUBLIC_URL}/logos/ars-machina-logo.svg`}
@@ -141,7 +151,6 @@ const NavBarUtileria = () => {
               onClick={goHome}
               style={{ cursor: "pointer" }}
             />
-          
           </div>
 
           {/* MENU DESKTOP */}
@@ -214,9 +223,13 @@ const NavBarUtileria = () => {
 
       {/* DROPDOWN MOBILE */}
       {nav && (
-        <div className="fixed top-20 left-0 w-full bg-[#0B0B0C]/95 backdrop-blur text-white border-t border-white/10 z-40">
+        <div className="fixed top-20 left-0 w-full bg-[#0B0B0C]/95 backdrop-blur text.white text-white border-t border.white/10 border-white/10 z-40">
           <ul className="flex flex-col items-start p-6 space-y-4 text-lg">
-            <li className="cursor-pointer hover:text-[color:var(--a)]" style={{ "--a": ACCENT }} onClick={goHome}>
+            <li
+              className="cursor-pointer hover.text-[color:var(--a)] hover:text-[color:var(--a)]"
+              style={{ "--a": ACCENT }}
+              onClick={goHome}
+            >
               Inicio
             </li>
             <li
@@ -228,7 +241,10 @@ const NavBarUtileria = () => {
             </li>
             {showDropdown && (
               <ul className="ml-3 mt-2 space-y-2 text-sm text-gray-300">
-                <li onClick={() => navigate("/catalogo")} className="cursor-pointer hover:text-white">
+                <li
+                  onClick={() => navigate("/catalogo")}
+                  className="cursor-pointer hover:text-white"
+                >
                   Catálogo Completo
                 </li>
                 {CATEGORIES.map((cat) => (
@@ -242,26 +258,57 @@ const NavBarUtileria = () => {
                 ))}
               </ul>
             )}
-            <li onClick={() => navigate("/proyectos")} className="cursor-pointer hover:text-[color:var(--a)]" style={{ "--a": ACCENT }}>
+            <li
+              onClick={() => navigate("/proyectos")}
+              className="cursor-pointer hover:text-[color:var(--a)]"
+              style={{ "--a": ACCENT }}
+            >
               Proyectos
             </li>
-            <li onClick={() => navigate("/utileria")} className="cursor-pointer text-[color:var(--a)] font-medium" style={{ "--a": ACCENT }}>
+            <li
+              onClick={() => navigate("/utileria")}
+              className="cursor-pointer text-[color:var(--a)] font-medium"
+              style={{ "--a": ACCENT }}
+            >
               Utilería
             </li>
-            <li onClick={() => navigate("/#contacto")} className="cursor-pointer hover:text-[color:var(--a)]" style={{ "--a": ACCENT }}>
+            <li
+              onClick={() => navigate("/#contacto")}
+              className="cursor-pointer hover:text-[color:var(--a)]"
+              style={{ "--a": ACCENT }}
+            >
               Contacto
             </li>
-            <li onClick={() => navigate("/#faq")} className="cursor-pointer hover:text-[color:var(--a)]" style={{ "--a": ACCENT }}>
+            <li
+              onClick={() => navigate("/#faq")}
+              className="cursor-pointer hover:text-[color:var(--a)]"
+              style={{ "--a": ACCENT }}
+            >
               FAQ
             </li>
             <div className="pt-4 flex items-center gap-5 text-2xl">
-              <a href="https://facebook.com" target="_blank" rel="noreferrer" className="hover:text-[#1877F2]">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-[#1877F2]"
+              >
                 <FaFacebookF />
               </a>
-              <a href="https://instagram.com/ars_machina_argentina" target="_blank" rel="noreferrer" className="hover:text-[#E1306C]">
+              <a
+                href="https://instagram.com/ars_machina_argentina"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-[#E1306C]"
+              >
                 <FaInstagram />
               </a>
-              <a href="https://wa.me/5491162983716" target="_blank" rel="noreferrer" className="hover:text-[#25D366]">
+              <a
+                href="https://wa.me/5491162983716"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-[#25D366]"
+              >
                 <FaWhatsapp />
               </a>
             </div>
